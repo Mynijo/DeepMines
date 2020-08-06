@@ -1,2 +1,4 @@
 /.import/*.md5
 /.import/*.stex
+/media/*.import
+*.import
