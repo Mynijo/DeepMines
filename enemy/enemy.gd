@@ -23,7 +23,7 @@ var astar
 
 func _ready():
 	spawn( get_parent().get_pos_on_map_mid(Vector2(0, 0)))
-	find_way(Vector2(7, 3))
+	find_way(Vector2(2, 2))
 
 func spawn(_position):
 	global_position = _position
@@ -52,8 +52,11 @@ func calc_move_direction():
 		if position.distance_to(way_points[0]) < 1:
 			way_points.erase(way_points[0])		
 	else:
-		move_direction = Vector2(0, 0)	
-	print(position)
+		move_direction = Vector2(0, 0)
+	if move_direction.x > 0.1: #You know why 0.1
+		$Sprite.scale.x = -1
+	else:
+		$Sprite.scale.x = 1
 	
 	
 func take_damage(damage):
