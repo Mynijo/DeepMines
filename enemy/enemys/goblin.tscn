@@ -24,7 +24,8 @@ tracks/0/keys = {
 
 [node name="goblin" instance=ExtResource( 1 )]
 speed = 40
-max_health = 100
+gold_value = 30
+max_health = 200
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -0.187286, 2.25415 )
@@ -35,5 +36,5 @@ texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 64, 64 )
 
-[node name="Animation" parent="." index="2"]
+[node name="Animation" parent="." index="5"]
 anims/walk = SubResource( 2 )

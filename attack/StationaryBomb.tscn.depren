@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Attack/StationaryAttack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Attack/StationaryBomb.gd" type="Script" id=2]
+
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 10.0
+
+[node name="StationaryBomb" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 1 )
+
+[node name="ExplodeAnimation" type="AnimatedSprite" parent="." index="4"]
+
+animation = "default"
+
+[connection signal="animation_finished" from="ExplodeAnimation" to="." method="_on_ExplodeAnimation_animation_finished"]
+
+

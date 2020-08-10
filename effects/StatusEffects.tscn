@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://effects/scripts/StatusEffects.gd" type="Script" id=1]
+[ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=2]
+
+[node name="StatusEffects" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Buffs" type="Node" parent="."]
+
+[node name="Debuffs" type="Node" parent="."]
+
+[node name="Tags" parent="." instance=ExtResource( 2 )]

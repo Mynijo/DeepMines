@@ -13,6 +13,8 @@ func _init():
 			map_as_bi[x].append(false)
 	map_as_bi[0][0] = true
 	map_as_bi[1][0] = true
+	map_as_bi[1][1] = true
+	map_as_bi[1][2] = true
 	map_as_bi[2][0] = true
 	map_as_bi[3][0] = true
 	map_as_bi[4][0] = true
@@ -66,6 +68,8 @@ func _init():
 	map_as_bi[4][4] = true
 	map_as_bi[4][5] = true
 	map_as_bi[4][6] = true
+	
+	map_as_bi[5][2] = true
 
 			
 # Called when the node enters the scene tree for the first time.
@@ -80,8 +84,7 @@ func _ready():
 			if map_as_bi[x][y]:
 				block_inst = air_block.instance()
 			else:
-				block_inst = dirt_block.instance()
-				
+				block_inst = dirt_block.instance()				
 			block_inst.global_position = Vector2(64 * x, 64 * y)
 			$blocks.add_child(block_inst)
 
@@ -100,7 +103,23 @@ func get_pos_on_map(_cor):
 func get_pos_on_map_mid(_cor):
 	return _cor * Vector2(64, 64) +  get_root_offset()
 
+func get_player():
+	return $Player
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_Tower_shoot(attack, _position, _direction, _tower):
+	var bullet = attack
+	$NodesTemp.add_child(bullet)
+	bullet.start(_position, _direction, _tower)
+	
+func _on_spawn_rune(rune, _position):
+	add_child(rune)
+	rune.rect_position = _position
+	
+func _on_spawn_attack(_attack, _position,_tower):
+	add_child(_attack)
+	_attack.spwan(_position,_tower)
+	
+func _on_Spawn_Enemy(_Enemy, _pos):
+	$EnemySpawner.add_child(_Enemy)
+	_Enemy.add_to_group('enemys')	
+	_Enemy.spawn(_pos)

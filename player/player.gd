@@ -1,9 +1,26 @@
 extends Node
 
-export (int) var HEALTH
+export (int) var health = 100
+export (int) var money = 120
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Live.text = "Health:" + String(health)
+	$Wave.text = "Wave:"
+	$Money.text = "Money:" + String(money)
+	
+func add_money(value):
+	money += value
+	$Money.text = "Money:" + String(money)
+	
+	
+func take_damage(damage):
+	health -= damage
+	$Live.text = "Health:" + String(health)
+	if health <= 0:
+		pass
+		
+func wave_changed(_wave):
+	$Wave.text = "Wave:" + String(_wave)
 
+func wave_status(_status):
+	$WaveEnd.text = _status

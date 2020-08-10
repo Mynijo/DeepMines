@@ -19,6 +19,13 @@ config/name="DeepMines"
 run/main_scene="res://terrain/map.tscn"
 config/icon="res://icon.png"
 
+[layer_names]
+
+2d_physics/layer_1="map"
+2d_physics/layer_2="buildings"
+2d_physics/layer_3="enemys"
+2d_physics/layer_4="bullets"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

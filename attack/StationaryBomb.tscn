@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Attack/StationaryAttack.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Attack/StationaryBomb.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="StationaryBomb" instance=ExtResource( 1 )]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource( 2 )
+
+[node name="Lifetime" parent="." index="0"]
+one_shot = true
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 1 )
+
+[node name="ExplodeAnimation" type="AnimatedSprite" parent="." index="4"]
+frames = SubResource( 2 )
+[connection signal="animation_finished" from="ExplodeAnimation" to="." method="_on_ExplodeAnimation_animation_finished"]

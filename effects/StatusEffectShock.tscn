@@ -1,0 +1,44 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/scripts/StatusEffectShock.gd" type="Script" id=2]
+[ext_resource path="res://media/effects/lightning_explosion01.png" type="Texture" id=3]
+[ext_resource path="res://media/effects/lightning_explosion02.png" type="Texture" id=4]
+[ext_resource path="res://media/effects/lightning_explosion03.png" type="Texture" id=5]
+[ext_resource path="res://media/effects/lightning_explosion04.png" type="Texture" id=6]
+[ext_resource path="res://media/effects/lightning_explosion05.png" type="Texture" id=7]
+[ext_resource path="res://media/effects/lightning_explosion06.png" type="Texture" id=8]
+[ext_resource path="res://media/effects/Shock01.png" type="Texture" id=9]
+[ext_resource path="res://media/effects/Shock02.png" type="Texture" id=10]
+[ext_resource path="res://media/effects/Shock03.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": false,
+"name": "explosion",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "shock",
+"speed": 5.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[node name="StatusEffektShock" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+duration = 2.0
+iniDamage = 10.0
+explodeDamage = 50.0
+explodeRadius = 100.0
+
+[node name="Animation" type="AnimatedSprite" parent="." index="2"]
+
+frames = SubResource( 1 )
+animation = "shock"
+_sections_unfolded = [ "Transform" ]
+
+

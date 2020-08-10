@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/scripts/StatusEffectHoT.gd" type="Script" id=2]
+
+[node name="StatusEffectHoT" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+duration = null
+healValue = 20
+tick_rate = 0.1
+
+[node name="Ticker" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="Ticker" to="." method="_on_Ticker_timeout"]
+
+
