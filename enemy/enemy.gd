@@ -1,6 +1,5 @@
 extends KinematicBody2D
 
-signal take_damage
 signal health_changed
 signal dead
 
@@ -24,10 +23,11 @@ var move_direction = Vector2(0, 0)
 var velocity = Vector2()
 
 export (Vector2) var start_pos_as_cor = Vector2(0, 0)
+export (Vector2) var target_pos_as_cor = Vector2(0, 0)
 
 func _ready():
 	spawn( get_parent().get_pos_on_map_mid(start_pos_as_cor))
-	find_way(Vector2(12, 7))
+	find_way(target_pos_as_cor)
 	# find_way(Vector2(7, 0))
 		
 func spawn(_position):
@@ -57,10 +57,10 @@ func control(delta):
 	if health <= 0:
 		die()
 		
-func take_damage(damage):
-	if dead or damage == null:
+func take_damage(_damage):
+	if dead or _damage == null:
 		return	
-	health = health - damage
+	health = health - _damage
 	emit_signal('health_changed',health)	
 		
 func die():
@@ -71,9 +71,9 @@ func die():
 		get_parent().get_player().add_money(gold_value)
 	if last_tower_hit:
 		last_tower_hit.add_exp(experience)
-	dead()
+	kill()
 		
-func dead():
+func kill():
 	dead = true
 	queue_free()
 	

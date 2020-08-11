@@ -21,6 +21,8 @@ var experience = 0
 
 var can_shoot = true
 
+onready var ray := $Node/RayCast2D
+
 
 enum e_rule{
 	closest_first
@@ -60,8 +62,11 @@ func _process(delta):
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		
 		if target_dir.dot(current_dir) > 0.9999:
-			if can_shoot:
-				shoot()
+			$Node.look_at(predicted_position)
+			if ray.is_colliding():
+				if ray.get_collider().is_in_group("enemys"):
+					if can_shoot:
+						shoot()
 	else:
 		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 		$Body.global_rotation = current_dir.linear_interpolate(Vector2(1,0), turret_speed * delta).angle()
@@ -80,8 +85,11 @@ func order_by(order_by):
 			if !closest:
 				closest = t
 			else:
-				if t.global_position.x < closest.global_position.x:
-					closest = t
+				$Node.look_at(t.global_position)
+				if ray.is_colliding():
+					if ray.get_collider().is_in_group("enemys"):
+						if t.global_position.x < closest.global_position.x:
+							closest = t
 		if closest != target.front():
 			target.erase(closest)
 			target.push_front(closest)
