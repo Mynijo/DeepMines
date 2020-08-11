@@ -52,7 +52,7 @@ position = Vector2( 420, 230 )
 
 [node name="goblin" parent="." instance=ExtResource( 2 )]
 max_health = 500
-target_pos_as_cor = Vector2( 4, 3 )
+target_pos_as_cor = Vector2( 4, 4 )
 
 [node name="goblin2" parent="." instance=ExtResource( 2 )]
 max_health = 500
