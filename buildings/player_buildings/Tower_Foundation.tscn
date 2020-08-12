@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://buildings/Building.tscn" type="PackedScene" id=1]
+[ext_resource path="res://buildings/player_buildings/Tower_Foundation.gd" type="Script" id=2]
+[ext_resource path="res://media/towerDefense_tilesheet180.png" type="Texture" id=3]
+[ext_resource path="res://buildings/tower/Tower.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 25.7914
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 453.551, 133.962, 52, 52 )
+
+[node name="Building" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+size = Vector2( 1, 1 )
+tower = ExtResource( 4 )
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = SubResource( 2 )
+[connection signal="input_event" from="." to="." method="_on_Building_input_event"]

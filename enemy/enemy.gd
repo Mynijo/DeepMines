@@ -33,6 +33,7 @@ func _ready():
 func spawn(_position):
 	global_position = _position
 	health = max_health
+	
 
 func control(delta):
 	calc_move_direction()

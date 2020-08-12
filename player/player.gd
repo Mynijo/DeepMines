@@ -17,7 +17,10 @@ func take_damage(damage):
 	health -= damage
 	$Live.text = "Health:" + String(health)
 	if health <= 0:
-		pass
+		pass 
+
+func get_health():
+	return health
 		
 func wave_changed(_wave):
 	$Wave.text = "Wave:" + String(_wave)
