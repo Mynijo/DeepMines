@@ -151,6 +151,9 @@ func cor_to_id(cor):
 func id_to_cor(id):
 	return Vector2(stepify(id/10000, 1),id % 10000)
 	
+func hit_building_get_dmg():
+	kill()
+	return damage
 
 func is_Enemy():
 	return true
