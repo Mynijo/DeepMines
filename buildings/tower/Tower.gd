@@ -39,14 +39,16 @@ func _ready():
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddCharme.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
-	runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())
+	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())
 	runes_attached.append(load("res://rune/RuneAddSlow.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneBoomerang.tscn").instance())
-	#runes_attached.append(load("res://rune/RuneChain.tscn").instance())
+	runes_attached.append(load("res://rune/RuneChain.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreasedAps.tscn").instance())
 	#runes_attached.append(load("res://rune/RunePierce.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreaseTurretDetectRadius.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneWhirl.tscn").instance())
+	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
+	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
 	apply_runes(runes_attached)
 		
 func _process(delta):	
@@ -72,8 +74,9 @@ func _process(delta):
 				else:
 					pass
 	else:
-		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
-		$Body.global_rotation = current_dir.linear_interpolate(Vector2(1,0), turret_speed * delta).angle()
+		#var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
+		#$Body.global_rotation = current_dir.linear_interpolate(Vector2(1,0), turret_speed * delta).angle()
+		pass
 		
 func spawn(_position):
 	position = _position
