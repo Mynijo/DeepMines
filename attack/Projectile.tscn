@@ -5,6 +5,7 @@
 [ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 1.0
 
 [node name="Attack" type="Area2D"]
 collision_layer = 8
@@ -18,12 +19,11 @@ crit_chance = 5.0
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 86, 1303.04, 18, 16.5 )
+region_rect = Rect2( 87.517, 1303.82, 16.483, 15.7246 )
 
 [node name="Lifetime" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 1.12254, -0.264181 )
 scale = Vector2( 0.843435, 0.831598 )
 shape = SubResource( 1 )
 

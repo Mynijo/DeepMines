@@ -15,7 +15,7 @@ var tags
 var dead = false
 
 var astar
-
+var map
 
 
 var way_points = []
@@ -26,8 +26,10 @@ export (Vector2) var start_pos_as_cor = Vector2(0, 0)
 export (Vector2) var target_pos_as_cor = Vector2(0, 0)
 
 func _ready():
-	spawn( get_parent().get_pos_on_map_mid(start_pos_as_cor))
-	find_way(target_pos_as_cor)
+	map = get_tree().get_root().get_node("map")	
+	var heart = map.get_heart()
+	spawn(map.get_pos_on_map_mid(start_pos_as_cor))
+	find_way(heart.get_cor())
 	# find_way(Vector2(7, 0))
 		
 func spawn(_position):

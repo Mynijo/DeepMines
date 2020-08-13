@@ -1,12 +1,14 @@
 extends Node2D
 
 
-var map_size = Vector2(20, 10)
+var map_size = Vector2(20, 20)
 var width
 var height
 var map_as_bi = []
 
 var block_size_pix = Vector2(64,64)
+
+var heart
 
 func _init():
 	width = map_size.x
@@ -31,7 +33,6 @@ func _init():
 	map_as_bi[8][3] = true
 	map_as_bi[9][3] = true
 	map_as_bi[10][3] = true
-	map_as_bi[10][2] = true
 	map_as_bi[10][1] = true
 	map_as_bi[10][0] = true
 	map_as_bi[11][0] = true
@@ -82,23 +83,36 @@ func _init():
 	map_as_bi[1][4] = true
 	map_as_bi[2][3] = true
 	map_as_bi[3][3] = true
+	
+	
+	map_as_bi[9][0] = true
+	map_as_bi[9][1] = true
+	map_as_bi[10][0] = true
+	map_as_bi[10][1] = true
+	map_as_bi[11][4] = true
 
 
 func ready_buildings():
-	var heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn")
-	add_building(heart.instance(), Vector2(10,5))
+	add_heart()
 	var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
 	add_building(tf.instance(), Vector2(1,3))
+	add_building(tf.instance(), Vector2(11,6))
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fill_blocks()
 	ready_buildings()
 	
+func add_heart():
+	if heart == null:
+		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()
+		add_building(heart, Vector2(9,0))
+		
+
 
 func fill_blocks():
-	var dirt_block = load("res://terrain/blocks/dirt.tscn")
-	var air_block = load("res://terrain/blocks/air.tscn")
+	var dirt_block = load("res://terrain/blocks/Dirt.tscn")
+	var air_block = load("res://terrain/blocks/Air.tscn")
 	var block_inst
 	for x in range(width):
 		map_as_bi.append([])
@@ -125,6 +139,10 @@ func get_pos_on_map_mid(_cor):
 func get_player():
 	return $Player
 	
+func get_heart():
+	add_heart()
+	return heart
+	
 func _on_Tower_shoot(attack, _position, _direction, _tower):
 	var bullet = attack
 	$NodesTemp.add_child(bullet)
@@ -147,7 +165,7 @@ func add_building(_building, _cor):
 	var size = _building.get_size()
 	for x in range(_cor.x, size.x + _cor.x):
 		for y in range(_cor.y, size.y + _cor.y):
-			if(x < 0 or x > map_size.x or y < 0 or y > map_size.y or !map_as_bi[x][y]):
+			if(x < 0 or x >= map_size.x or y < 0 or y >= map_size.y or !map_as_bi[x][y]):
 				return -1
 				
 	for x in range(_cor.x, size.x + _cor.x):
@@ -157,6 +175,6 @@ func add_building(_building, _cor):
 	var temp_pos = get_pos_on_map_mid(_cor) + (((size - Vector2(1,1)) * (block_size_pix /2))) + Vector2(1,1)
 	_building.set_pos(temp_pos)
 	_building.set_cor(_cor)
-	add_child(_building)
+	$buildings.add_child(_building)
 	
 	

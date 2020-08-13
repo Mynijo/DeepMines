@@ -36,11 +36,12 @@ func set_pos(_pos):
 func set_cor(_cor):
 	cor = _cor
 
+func get_cor():
+	return cor
 
 func _on_Building_body_entered(body):
-	if body.has_method('hit_building_get_dmg') and body.is_in_group("enemys"):		
-		if get_parent().get_player():
-			get_parent().get_player().take_damage(calcDmg(body))
+	if body.has_method('hit_building_get_dmg') and body.is_in_group("enemys"):
+		player.take_damage(calcDmg(body))
 
 func calcDmg(_body):
 	var dmg = _body.hit_building_get_dmg()

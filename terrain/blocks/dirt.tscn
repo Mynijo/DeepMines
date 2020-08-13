@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://terrain/block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://terrain/Block.tscn" type="PackedScene" id=1]
 [ext_resource path="res://media/blocks/dirt.jpg" type="Texture" id=2]
 
 [node name="Block" instance=ExtResource( 1 )]

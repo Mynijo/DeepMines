@@ -33,6 +33,7 @@ func _ready():
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
+	$Node/RayCast2D.cast_to.y = get_detect_radius()
 	#runes_attached.append(load("res://rune/RuneBurst.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneScatterShot.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
@@ -140,6 +141,7 @@ func get_detect_radius():
 func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
+	$Node/RayCast2D.cast_to.y = detect_radius_effected
 	
 func runes_changed():
 	reset_tower()

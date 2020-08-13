@@ -30,6 +30,7 @@ window/size/height=900
 2d_physics/layer_2="buildings"
 2d_physics/layer_3="enemys"
 2d_physics/layer_4="bullets"
+2d_physics/layer_5="camera"
 
 [rendering]
 
