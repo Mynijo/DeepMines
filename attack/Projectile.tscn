@@ -11,12 +11,13 @@ radius = 1.0
 collision_layer = 8
 collision_mask = 5
 script = ExtResource( 1 )
-speed = 500
+speed = 400
 damage = 50.0
 lifetime = 5.0
 crit_chance = 5.0
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 87.517, 1303.82, 16.483, 15.7246 )

@@ -6,7 +6,7 @@ var width
 var height
 var map_as_bi = []
 
-var block_size_pix = Vector2(64,64)
+var block_size_pix = Vector2(40,40)
 
 var heart
 

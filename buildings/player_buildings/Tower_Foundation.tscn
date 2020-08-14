@@ -6,14 +6,15 @@
 [ext_resource path="res://buildings/tower/Tower.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 25.7914
+radius = 18.9492
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 3 )
-region = Rect2( 453.551, 133.962, 52, 52 )
+region = Rect2( 454.421, 134.673, 50, 50 )
 
 [node name="Building" instance=ExtResource( 1 )]
+scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 2 )
 size = Vector2( 1, 1 )
 tower = ExtResource( 4 )
