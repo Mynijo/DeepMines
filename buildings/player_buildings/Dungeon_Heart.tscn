@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://buildings/Building.tscn" type="PackedScene" id=1]
 [ext_resource path="res://media/player_buildings/Lebenskristall.png" type="Texture" id=2]
+[ext_resource path="res://buildings/player_buildings/Dungeon_Heart.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -10,6 +11,7 @@ extents = Vector2( 16, 16 )
 scale = Vector2( 2.5, 2.5 )
 collision_layer = 2147483651
 collision_mask = 4
+script = ExtResource( 3 )
 size = Vector2( 2, 2 )
 solid = false
 

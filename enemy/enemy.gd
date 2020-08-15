@@ -16,7 +16,7 @@ var dead = false
 
 var astar
 var map
-
+var player
 
 var way_points = []
 var move_direction = Vector2(0, 0)
@@ -25,16 +25,21 @@ var velocity = Vector2()
 export (Vector2) var start_pos_as_cor = Vector2(0, 0)
 export (Vector2) var target_pos_as_cor = Vector2(0, 0)
 
+var spawner = null
+
 func _ready():
-	map = get_tree().get_root().get_node("map")	
-	var heart = map.get_heart()
-	spawn(map.get_pos_on_map_mid(start_pos_as_cor))
-	find_way(heart.get_cor())
+	map = get_tree().get_root().get_node("map")
+	player = map.get_player()
+	
+	
 	# find_way(Vector2(7, 0))
 		
-func spawn(_position):
+func spawn(_position, _start_cor):
 	global_position = _position
 	health = max_health
+	start_pos_as_cor = _start_cor
+	var heart = map.get_heart()
+	find_way(heart.get_cor())
 	
 
 func control(delta):
@@ -70,14 +75,15 @@ func die():
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.cast_on_death):
 			x.effekt(self,$Tags.e_effect.cast_on_death)
 	
-	if get_parent().get_player():
-		get_parent().get_player().add_money(gold_value)
+	if player:
+		player.add_money(gold_value)
 	if last_tower_hit:
 		last_tower_hit.add_exp(experience)
 	kill()
 		
 func kill():
 	dead = true
+	spawner.remove_enemy(self)
 	queue_free()
 	
 func _physics_process(delta):
@@ -122,11 +128,11 @@ func find_way(_target):
 	ini_astar()
 	var path = astar.get_id_path(cor_to_id(start_pos_as_cor), cor_to_id(_target))	
 	for id in path:
-		way_points.append(get_parent().get_pos_on_map_mid(id_to_cor(id)))
+		way_points.append(map.get_pos_on_map_mid(id_to_cor(id)))
 
 func ini_astar():
-	var map_size = get_parent().get_map_size()
-	var map_as_bi = get_parent().get_map_as_bi()
+	var map_size = map.get_map_size()
+	var map_as_bi = map.get_map_as_bi()
 	astar = AStar.new()
 	if astar == null:
 		astar = AStar.new()
@@ -159,3 +165,6 @@ func hit_building_get_dmg():
 
 func is_Enemy():
 	return true
+	
+func add_spawner(_spawner):
+	spawner = _spawner

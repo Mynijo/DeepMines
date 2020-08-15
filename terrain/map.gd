@@ -94,9 +94,17 @@ func _init():
 
 func ready_buildings():
 	add_heart()
+
+	var base1 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
+	add_building(base1, Vector2(1,2))
+	base1.spawn_enemys(0)
 	var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
-	add_building(tf.instance(), Vector2(1,3))
-	add_building(tf.instance(), Vector2(11,6))
+	base1.add_spawn_on_kill(tf.instance())
+	
+	var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
+	add_building(base2, Vector2(11,6))
+	base2.spawn_enemys(0)
+	base2.add_spawn_on_kill(tf.instance())
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -156,10 +164,13 @@ func _on_spawn_attack(_attack, _position,_tower):
 	add_child(_attack)
 	_attack.spwan(_position,_tower)
 	
-func _on_Spawn_Enemy(_Enemy, _pos):
-	$EnemySpawner.add_child(_Enemy)
-	_Enemy.add_to_group('enemys')	
-	_Enemy.spawn(_pos)
+func _on_Spawn_Enemy(_Enemy, _pos, _cor):
+	$enemys.add_child(_Enemy)
+	_Enemy.spawn(_pos, _cor)
+	
+func _on_Spawn_Building(_building, _cor):
+	add_building(_building, _cor)
+	
 	
 func add_building(_building, _cor):
 	var size = _building.get_size()
