@@ -26,4 +26,7 @@ func remove_enemy(var _enemy):
 	enemys.erase(_enemy)
 	if enemys.empty() and buliding_on_death:
 		emit_signal('Spawn_Building', buliding_on_death, cor)
+		queue_free()
+	
+
 

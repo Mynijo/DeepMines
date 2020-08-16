@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 800, 50 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 450 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 50, 450 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -49,9 +55,7 @@ __meta__ = {
 position = Vector2( 1, 450 )
 offset = Vector2( 800, 0 )
 current = true
-limit_left = -800
-limit_top = 0
-limit_right = 800
+limit_top = -100
 
 [node name="Area2DTop" type="Area2D" parent="Camera"]
 collision_layer = 2147483664
@@ -66,7 +70,23 @@ shape = SubResource( 1 )
 [node name="CollisionShapeBottom" type="CollisionShape2D" parent="Camera/Area2DBottom"]
 position = Vector2( 800, 400 )
 shape = SubResource( 1 )
+
+[node name="Area2DLeft" type="Area2D" parent="Camera"]
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Camera/Area2DLeft"]
+position = Vector2( 50, 0 )
+shape = SubResource( 2 )
+
+[node name="Area2D2Right" type="Area2D" parent="Camera"]
+
+[node name="CollisionShapeRigth" type="CollisionShape2D" parent="Camera/Area2D2Right"]
+position = Vector2( 1550, 0 )
+shape = SubResource( 3 )
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_exited"]
+[connection signal="mouse_entered" from="Camera/Area2DLeft" to="." method="_on_Area2DLeft_mouse_entered"]
+[connection signal="mouse_exited" from="Camera/Area2DLeft" to="." method="_on_Area2DLeft_mouse_exited"]
+[connection signal="mouse_entered" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_entered"]
+[connection signal="mouse_exited" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_exited"]
