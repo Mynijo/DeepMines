@@ -18,6 +18,7 @@ var astar
 var map
 var player
 
+var start_level_cor
 var way_points = []
 var move_direction = Vector2(0, 0)
 var velocity = Vector2()
@@ -34,12 +35,12 @@ func _ready():
 	
 	# find_way(Vector2(7, 0))
 		
-func spawn(_position, _start_cor):
+func spawn(_position, _start_cor, _start_level_cor):
 	global_position = _position
 	health = max_health
 	start_pos_as_cor = _start_cor
-	var heart = map.get_heart()
-	find_way(heart.get_cor())
+	start_level_cor = _start_level_cor
+	
 	
 
 func control(delta):
@@ -119,45 +120,33 @@ func calc_move_direction():
 			way_points.erase(way_points[0])		
 	else:
 		move_direction = Vector2(0, 0)
+		var heart = map.get_heart()
+		find_way(heart.get_cor(), heart.get_level_cor())
 	if move_direction.x > 0.1: #You know why 0.1
 		$Sprite.scale.x = -1
 	else:
 		$Sprite.scale.x = 1
 
-func find_way(_target):
-	ini_astar()
-	var path = astar.get_id_path(cor_to_id(start_pos_as_cor), cor_to_id(_target))	
-	for id in path:
-		way_points.append(map.get_pos_on_map_mid(id_to_cor(id)))
+func find_way(_target, _level_cor):
+	astar = map.get_astar()
+	var point1 = astar.get_closest_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, map.level_cor_to_id(start_level_cor)))
+	var point2 = astar.get_closest_point(Vector3(_target.x, _target.y, map.level_cor_to_id(_level_cor)))
 
-func ini_astar():
-	var map_size = map.get_map_size()
-	var map_as_bi = map.get_map_as_bi()
-	astar = AStar.new()
-	if astar == null:
-		astar = AStar.new()
-	else:
-		astar.clear()
-		
-	for x in range(map_size.x):
-		for y in range(map_size.y):
-			astar.add_point(cor_to_id(Vector2(x,y)), Vector3(x, y, 0))
-			
-	for x in range(map_size.x):
-		for y in range(map_size.y):
-			if map_as_bi[x][y]:
-				if x -1 >= 0:
-					if map_as_bi[x -1][y]:
-						astar.connect_points(cor_to_id(Vector2(x,y)), cor_to_id(Vector2(x -1,y)), true)
-				if y -1 >= 0:
-					if map_as_bi[x][y -1]:
-						astar.connect_points(cor_to_id(Vector2(x,y)), cor_to_id(Vector2(x ,y -1)), true)
-
-func cor_to_id(cor):
-	return cor.x * 10000 + cor.y
+	var path = astar.get_id_path(point1,point2)
 	
-func id_to_cor(id):
-	return Vector2(stepify(id/10000, 1),id % 10000)
+	if start_level_cor != Vector2(0,0):
+		pass
+	
+	for id in path:
+		var point = astar.get_point_position(id)
+		var level_cor = map.id_to_level_cor(point.z)
+		var cor = Vector2(point.x, point.y)
+		if level_cor != Vector2(0,0):
+			pass
+		way_points.append(map.get_pos_on_map_mid(cor, level_cor))
+
+
+
 	
 func hit_building_get_dmg():
 	kill()

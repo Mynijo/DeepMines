@@ -20,6 +20,7 @@ var target = []
 var experience = 0
 
 var can_shoot = true
+var map
 
 onready var ray := $Node/RayCast2D
 
@@ -28,8 +29,9 @@ enum e_rule{
 	closest_first
 }
 
-
 func _ready():	
+	map = get_tree().get_root().get_node("map")
+	
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
@@ -39,8 +41,7 @@ func _ready():
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddCharme.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
-	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())
-	runes_attached.append(load("res://rune/RuneAddSlow.tscn").instance())
+	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
 	#runes_attached.append(load("res://rune/RuneBoomerang.tscn").instance())
 	runes_attached.append(load("res://rune/RuneChain.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreasedAps.tscn").instance())
@@ -49,6 +50,11 @@ func _ready():
 	#runes_attached.append(load("res://rune/RuneWhirl.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
+	var runes = map.get_Tower_Runes(0)
+	
+	for r in runes:
+		runes_attached.append(r.duplicate())
+	
 	apply_runes(runes_attached)
 		
 func _process(delta):	

@@ -41,30 +41,23 @@ func _physics_process(delta):
 func _on_Area2DTop_mouse_entered():
 	velocity += Vector2(0, -1)
 
-
 func _on_Area2DTop_mouse_exited():
 	velocity += Vector2(0, +1)
-
 
 func _on_Area2DBottom_mouse_entered():
 	velocity += Vector2(0, +1)
 
-
 func _on_Area2DBottom_mouse_exited():
 	velocity += Vector2(0, -1)
-
 
 func _on_Area2DLeft_mouse_entered():
 	velocity += Vector2(-1, 0)
 
-
 func _on_Area2DLeft_mouse_exited():
 	velocity += Vector2(1, 0)
 
-
 func _on_Area2D2Right_mouse_entered():
 	velocity += Vector2(1, 0)
-
 
 func _on_Area2D2Right_mouse_exited():
 	velocity += Vector2(-1, 0)

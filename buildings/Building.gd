@@ -9,6 +9,7 @@ export (bool) var solid = true
 var player
 var pos
 var cor
+var level_cor
 
 func _ready():
 	player = get_tree().get_root().get_node("map").get_player()
@@ -33,13 +34,16 @@ func set_pos(_pos):
 	global_position = _pos
 
 
-func set_cor(_cor):
+func set_cor(_cor, _level_cor):
 	cor = _cor
+	level_cor = _level_cor
 
 func get_cor():
 	return cor
 
-
+func get_level_cor():
+	return level_cor
+	
 func calcDmg(_body):
 	var dmg = _body.hit_building_get_dmg()
 	return dmg
