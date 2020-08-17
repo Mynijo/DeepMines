@@ -7,7 +7,10 @@ export (int) var camera_spped = 500
 
 var velocity = Vector2(0, 0)
 
+var map
+
 func _ready():
+	map = get_tree().get_root().get_node("map")
 	$Live.text = "Health:" + String(health)
 	$Wave.text = "Wave:"
 	$Money.text = "Money:" + String(money)
@@ -61,3 +64,7 @@ func _on_Area2D2Right_mouse_entered():
 
 func _on_Area2D2Right_mouse_exited():
 	velocity += Vector2(-1, 0)
+
+
+func _on_Gen_Next_Level_pressed():
+	map.gen_next_level()

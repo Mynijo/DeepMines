@@ -22,14 +22,6 @@ func _ready():
 	ini_astar()
 	fill_blocks(Vector2(0,0))
 	
-	gen_level(Vector2(0,1))
-	fill_blocks(Vector2(0,1))
-	add_level_to_astar(Vector2(0,1))
-	
-	gen_level(Vector2(1,1))
-	fill_blocks(Vector2(1,1))
-	add_level_to_astar(Vector2(1,1))
-	
 func add_heart():
 	if heart == null:
 		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()
@@ -110,25 +102,7 @@ func ini_astar():
 		astar = AStar.new()
 	else:
 		astar.clear()
-				
-	for x in range(map_size.x):
-		for y in range(map_size.y):
-			astar.add_point(astar.get_available_point_id(), Vector3(x, y, level_cor_to_id(Vector2(0,0))))
-	
-	var map_as_bi_lvl = map_as_bi[String(level_cor_to_id(Vector2(0,0)))]
-	for x in range(map_size.x):
-		for y in range(map_size.y):
-			if map_as_bi_lvl[x][y]:
-				if x -1 >= 0:
-					if map_as_bi_lvl[x -1][y]:
-						var point1 = astar.get_closest_point(Vector3(   x, y, level_cor_to_id(Vector2(0,0))))
-						var point2 = astar.get_closest_point(Vector3(x -1, y, level_cor_to_id(Vector2(0,0))))
-						astar.connect_points(point1, point2, true)
-				if y -1 >= 0:
-					if map_as_bi_lvl[x][y -1]:
-						var point1 = astar.get_closest_point(Vector3( x, y  , level_cor_to_id(Vector2(0,0))))
-						var point2 = astar.get_closest_point(Vector3( x, y -1, level_cor_to_id(Vector2(0,0))))
-						astar.connect_points(point1, point2, true)
+	add_level_to_astar(Vector2(0,0))
 
 func add_level_to_astar(_level_cor):
 	for x in range(map_size.x):
@@ -218,7 +192,6 @@ func level_cor_to_id(_level_cor):
 	
 	
 func level_id_to_floor_number(_ebene):
-	levels = [[0,0],[0,1],[-1,1]]
 	var i = 0	
 	for lvl in levels:
 		++i
@@ -226,10 +199,17 @@ func level_id_to_floor_number(_ebene):
 			return i
 	return -1
 
+func gen_next_level():
+	var next_level = levels.back() + Vector2(0,1)
+	gen_level(next_level)
+	fill_blocks(next_level)
+	add_level_to_astar(next_level)
+	
 func gen_level(_level_cor):
 	if _level_cor == Vector2(0,0):
 		add_heart()
 	gen_empty_lvl(_level_cor)
+	levels.append(_level_cor)
 
 func gen_empty_lvl(_level_cor):
 	if map_as_bi.has(String(level_cor_to_id(_level_cor))):
