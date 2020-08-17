@@ -95,14 +95,16 @@ func _on_spawn_attack(_attack, _position,_tower):
 	add_child(_attack)
 	_attack.spwan(_position,_tower)
 	
+var enemys = []
 func _on_Spawn_Enemy(_Enemy, _pos, _cor, _level_cor):
 	$enemys.add_child(_Enemy)
+	enemys.append(_Enemy)
 	_Enemy.spawn(_pos, _cor, _level_cor)
 	change_game_state(e_GAMESTATE.battel_phase)
 
 func remove_enemy(_enemy):
-	$enemys.remove_child(_enemy)
-	if $enemys.get_child_count() == 0:
+	enemys.erase(_enemy)
+	if enemys.empty():
 		change_game_state(e_GAMESTATE.build_phase)
 	
 	
@@ -219,16 +221,17 @@ func level_cor_to_id(_level_cor):
 func level_id_to_floor_number(_ebene):
 	var i = 0	
 	for lvl in levels:
-		++i
+		i += 1
 		if lvl == _ebene:
 			return i
 	return -1
 
 func gen_level(_level_cor):
+	levels.append(_level_cor)
 	if _level_cor == Vector2(0,0):
 		add_heart()
 	gen_empty_lvl(_level_cor)
-	levels.append(_level_cor)
+	
 
 func gen_empty_lvl(_level_cor):
 	if map_as_bi.has(String(level_cor_to_id(_level_cor))):
@@ -252,7 +255,7 @@ func add_buildings_level(_level_cor):
 		
 	var base1 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
 	add_building(base1,rand_pos , _level_cor)
-	base1.spawn_enemys(0)
+	base1.spawn_enemys(level_id_to_floor_number(_level_cor))
 	var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
 	base1.add_spawn_on_kill(tf.instance())
 	
@@ -262,7 +265,7 @@ func add_buildings_level(_level_cor):
 	
 	var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
 	add_building(base2, rand_pos, _level_cor)
-	base2.spawn_enemys(0)
+	base2.spawn_enemys(level_id_to_floor_number(_level_cor))
 	base2.add_spawn_on_kill(tf.instance())
 
 func show_gen_buttons():

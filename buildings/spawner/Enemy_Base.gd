@@ -18,10 +18,11 @@ func add_spawn_on_kill(var _building):
 	
 
 func spawn_enemys(var ebene):
-	var e = load("res://enemy/enemys/Goblin.tscn").instance()
-	emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
-	e.add_spawner(self)
-	enemys.append(e)
+	for i in (ebene +1):
+		var e = load("res://enemy/enemys/Goblin.tscn").instance()
+		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
+		e.add_spawner(self)
+		enemys.append(e)
 	
 func remove_enemy(var _enemy):
 	enemys.erase(_enemy)
