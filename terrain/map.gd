@@ -11,7 +11,16 @@ var block_size_pix = Vector2(40,40)
 var heart
 var astar
 
+
 var levels = []
+
+enum e_GAMESTATE{
+	none,
+	build_phase,
+	battel_phase
+}
+
+var game_stat = e_GAMESTATE.none
 
 func _init():
 	pass
@@ -27,7 +36,15 @@ func add_heart():
 		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()
 		add_building(heart, Vector2(9,0),  Vector2(0,0))
 		
-
+func change_game_state(var _new_stat):
+	if game_stat == _new_stat:
+		return
+	game_stat = _new_stat
+	match game_stat:
+		e_GAMESTATE.battel_phase:
+			hide_gen_buttons()
+		e_GAMESTATE.build_phase:
+			show_gen_buttons()
 
 func fill_blocks(_level_cor):
 	var dirt_block = load("res://terrain/blocks/Dirt.tscn")
@@ -44,6 +61,7 @@ func fill_blocks(_level_cor):
 			$blocks.add_child(block_inst)
 			block_inst.global_position = get_pos_on_map_mid(Vector2(x,y), _level_cor)
 			
+
 
 func get_map_size():
 	return Vector2(width, height)
@@ -80,6 +98,13 @@ func _on_spawn_attack(_attack, _position,_tower):
 func _on_Spawn_Enemy(_Enemy, _pos, _cor, _level_cor):
 	$enemys.add_child(_Enemy)
 	_Enemy.spawn(_pos, _cor, _level_cor)
+	change_game_state(e_GAMESTATE.battel_phase)
+
+func remove_enemy(_enemy):
+	$enemys.remove_child(_enemy)
+	if $enemys.get_child_count() == 0:
+		change_game_state(e_GAMESTATE.build_phase)
+	
 	
 func _on_Spawn_Building(_building, _cor, _level_cor):
 	add_building(_building, _cor, _level_cor)
@@ -199,12 +224,6 @@ func level_id_to_floor_number(_ebene):
 			return i
 	return -1
 
-func gen_next_level():
-	var next_level = levels.back() + Vector2(0,1)
-	gen_level(next_level)
-	fill_blocks(next_level)
-	add_level_to_astar(next_level)
-	
 func gen_level(_level_cor):
 	if _level_cor == Vector2(0,0):
 		add_heart()
@@ -245,3 +264,56 @@ func add_buildings_level(_level_cor):
 	add_building(base2, rand_pos, _level_cor)
 	base2.spawn_enemys(0)
 	base2.add_spawn_on_kill(tf.instance())
+
+func show_gen_buttons():
+	var new_level
+	new_level = levels.back() + Vector2(-1,0)
+	if levels.find(new_level) == -1:
+		var pos =  get_pos_on_map_mid(Vector2(0,int((map_size.y -1) / 2)), levels.back())
+		$Buttons/Gen_Level_Left.set_global_position(pos)
+		$Buttons/Gen_Level_Left.disabled = false
+		$Buttons/Gen_Level_Left.visible = true
+		
+	new_level = levels.back() + Vector2(0,1)
+	if levels.find(new_level) == -1:
+		var pos =  get_pos_on_map_mid(Vector2(int((map_size.x -1) / 2),int((map_size.y -1))), levels.back())
+		$Buttons/Gen_Level_Down.set_global_position(pos)
+		$Buttons/Gen_Level_Down.disabled = false
+		$Buttons/Gen_Level_Down.visible = true
+		
+	new_level = levels.back() + Vector2(1,0)
+	if levels.find(new_level) == -1:
+		var pos =  get_pos_on_map_mid(Vector2(map_size.x -1,int((map_size.y -1) / 2)), levels.back())
+		$Buttons/Gen_Level_Right.set_global_position(pos)
+		$Buttons/Gen_Level_Right.disabled = false
+		$Buttons/Gen_Level_Right.visible = true
+	
+	
+func hide_gen_buttons():
+	$Buttons/Gen_Level_Left.disabled = true
+	$Buttons/Gen_Level_Left.visible = false
+	$Buttons/Gen_Level_Down.disabled = true
+	$Buttons/Gen_Level_Down.visible = false
+	$Buttons/Gen_Level_Right.disabled = true
+	$Buttons/Gen_Level_Right.visible = false
+	
+
+func _on_Gen_Level_Left_pressed():
+	var next_level = levels.back() + Vector2(-1,0)
+	gen_level(next_level)
+	fill_blocks(next_level)
+	add_level_to_astar(next_level)
+
+
+func _on_Gen_Level_Down_pressed():
+	var next_level = levels.back() + Vector2(0,1)
+	gen_level(next_level)
+	fill_blocks(next_level)
+	add_level_to_astar(next_level)
+
+
+func _on_Gen_Level_Right_pressed():
+	var next_level = levels.back() + Vector2(1,0)
+	gen_level(next_level)
+	fill_blocks(next_level)
+	add_level_to_astar(next_level)

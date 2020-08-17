@@ -64,7 +64,3 @@ func _on_Area2D2Right_mouse_entered():
 
 func _on_Area2D2Right_mouse_exited():
 	velocity += Vector2(-1, 0)
-
-
-func _on_Gen_Next_Level_pressed():
-	map.gen_next_level()

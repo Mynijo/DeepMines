@@ -82,16 +82,6 @@ shape = SubResource( 2 )
 [node name="CollisionShapeRigth" type="CollisionShape2D" parent="Camera/Area2D2Right"]
 position = Vector2( 1550, 0 )
 shape = SubResource( 3 )
-
-[node name="Gen_Next_Level" type="Button" parent="."]
-margin_left = 100.0
-margin_top = 100.0
-margin_right = 208.0
-margin_bottom = 120.0
-text = "Gen next Level"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]
@@ -100,4 +90,3 @@ __meta__ = {
 [connection signal="mouse_exited" from="Camera/Area2DLeft" to="." method="_on_Area2DLeft_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_exited"]
-[connection signal="pressed" from="Gen_Next_Level" to="." method="_on_Gen_Next_Level_pressed"]

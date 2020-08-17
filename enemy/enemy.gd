@@ -85,6 +85,7 @@ func die():
 func kill():
 	dead = true
 	spawner.remove_enemy(self)
+	map.remove_enemy(self)
 	queue_free()
 	
 func _physics_process(delta):
@@ -143,7 +144,8 @@ func find_way(_target, _level_cor):
 		var cor = Vector2(point.x, point.y)
 		if level_cor != Vector2(0,0):
 			pass
-		way_points.append(map.get_pos_on_map_mid(cor, level_cor))
+		var random_offset = Vector2(rand_range(-3,3), rand_range(-3,3))
+		way_points.append(map.get_pos_on_map_mid(cor, level_cor) + random_offset)
 
 
 

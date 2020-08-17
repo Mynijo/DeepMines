@@ -16,3 +16,34 @@ position = Vector2( 200, 50 )
 [node name="NodesTemp" type="Node" parent="."]
 
 [node name="enemys" type="Node" parent="."]
+
+[node name="Buttons" type="Node" parent="."]
+
+[node name="Gen_Level_Left" type="Button" parent="Buttons"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Gen Left"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gen_Level_Down" type="Button" parent="Buttons"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Gen Down"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Gen_Level_Right" type="Button" parent="Buttons"]
+margin_right = 12.0
+margin_bottom = 20.0
+text = "Gen Right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Buttons/Gen_Level_Left" to="." method="_on_Gen_Level_Left_pressed"]
+[connection signal="pressed" from="Buttons/Gen_Level_Down" to="." method="_on_Gen_Level_Down_pressed"]
+[connection signal="pressed" from="Buttons/Gen_Level_Right" to="." method="_on_Gen_Level_Right_pressed"]
+
+[editable path="Player"]
