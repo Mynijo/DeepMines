@@ -129,9 +129,9 @@ func calc_move_direction():
 		$Sprite.scale.x = 1
 
 func find_way(_target, _level_cor):
-	astar = map.get_astar()
-	var point1 = astar.get_closest_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, map.level_cor_to_id(start_level_cor)))
-	var point2 = astar.get_closest_point(Vector3(_target.x, _target.y, map.level_cor_to_id(_level_cor)))
+	astar = Global_AStar.get_astar()
+	var point1 = Global_AStar.astar.get_closest_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, Global_AStar.level_cor_to_id(start_level_cor)))
+	var point2 = Global_AStar.astar.get_closest_point(Vector3(_target.x, _target.y, Global_AStar.level_cor_to_id(_level_cor)))
 
 	var path = astar.get_id_path(point1,point2)
 	
@@ -140,7 +140,7 @@ func find_way(_target, _level_cor):
 	
 	for id in path:
 		var point = astar.get_point_position(id)
-		var level_cor = map.id_to_level_cor(point.z)
+		var level_cor = Global_AStar.id_to_level_cor(point.z)
 		var cor = Vector2(point.x, point.y)
 		if level_cor != Vector2(0,0):
 			pass

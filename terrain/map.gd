@@ -4,12 +4,10 @@ extends Node2D
 var map_size = Vector2(20, 20)
 var width
 var height
-var map_as_bi = {}
 
 var block_size_pix = Vector2(40,40)
 
 var heart
-var astar
 
 
 var levels = []
@@ -26,13 +24,19 @@ signal Runes_Changed
 var game_stat = e_GAMESTATE.none
 
 func _init():
-	pass
+	Global_AStar.set_map_size(map_size)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gen_level(Vector2(0,0))
-	ini_astar()
+	Global_AStar.ini_astar()
 	fill_blocks(Vector2(0,0))
+	_on_Gen_Level_Down_pressed()
+	_on_Gen_Level_Down_pressed()
+	_on_Gen_Level_Down_pressed()
+	_on_Gen_Level_Down_pressed()
+	_on_Gen_Level_Down_pressed()
+	_on_Gen_Level_Down_pressed()
 	
 func add_heart():
 	if heart == null:
@@ -53,7 +57,7 @@ func fill_blocks(_level_cor):
 	var dirt_block = load("res://terrain/blocks/Dirt.tscn")
 	var air_block = load("res://terrain/blocks/Air.tscn")
 	var block_inst
-	var map_as_bi_lvl = map_as_bi[String(level_cor_to_id(_level_cor))]
+	var map_as_bi_lvl = Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
 	for x in range(width):
 		map_as_bi_lvl.append([])
 		for y in range(height):
@@ -69,8 +73,6 @@ func fill_blocks(_level_cor):
 func get_map_size():
 	return Vector2(width, height)
 
-func get_map_as_bi():
-	return map_as_bi
 
 func get_root_offset():
 	return $blocks.global_position
@@ -122,69 +124,7 @@ func add_building(_building, _cor, _level_cor):
 	_building.set_cor(_cor, _level_cor)
 	$buildings.add_child(_building)
 	
-func get_astar():
-	return astar
 
-
-func ini_astar():
-	astar = AStar.new()
-	if astar == null:
-		astar = AStar.new()
-	else:
-		astar.clear()
-	add_level_to_astar(Vector2(0,0))
-
-func add_level_to_astar(_level_cor):
-	for x in range(map_size.x):
-		for y in range(map_size.y):
-			astar.add_point(astar.get_available_point_id(), Vector3(x, y, level_cor_to_id(_level_cor)))
-		
-	var map_as_bi_lvl = map_as_bi[String(level_cor_to_id(_level_cor))]
-	for x in range(map_size.x):
-		for y in range(map_size.y):
-			if map_as_bi_lvl[x][y]:
-				if x -1 >= 0:
-					if map_as_bi_lvl[x -1][y]:
-						var point1 = astar.get_closest_point(Vector3(   x, y, level_cor_to_id(_level_cor)))
-						var point2 = astar.get_closest_point(Vector3(x -1, y, level_cor_to_id(_level_cor)))
-						astar.connect_points(point1, point2, true)
-				if y -1 >= 0:
-					if map_as_bi_lvl[x][y -1]:
-						var point1 = astar.get_closest_point(Vector3( x, y  , level_cor_to_id(_level_cor)))
-						var point2 = astar.get_closest_point(Vector3( x, y -1, level_cor_to_id(_level_cor)))
-						astar.connect_points(point1, point2, true)
-						
-	if map_as_bi.has(String(level_cor_to_id(_level_cor + Vector2(1,0)))):
-		var neighbour = map_as_bi[String(level_cor_to_id(_level_cor + Vector2(1,0)))]
-		for y in range(map_size.y):
-			if map_as_bi_lvl[map_size.x -1][y] && neighbour[0][y]:
-					var point1 = astar.get_closest_point(Vector3(map_size.x -1, y, level_cor_to_id(_level_cor)))
-					var point2 = astar.get_closest_point(Vector3(            0, y, level_cor_to_id(_level_cor+ Vector2(1,0))))
-					astar.connect_points(point1, point2, true)
-					
-	if map_as_bi.has(String(level_cor_to_id(_level_cor + Vector2(-1,0)))):
-		var neighbour = map_as_bi[String(level_cor_to_id(_level_cor + Vector2(-1,0)))]
-		for y in range(map_size.y):
-			if map_as_bi_lvl[0][y] && neighbour[map_size.x -1][y]:
-					var point1 = astar.get_closest_point(Vector3(             0, y, level_cor_to_id(_level_cor)))
-					var point2 = astar.get_closest_point(Vector3( map_size.x -1, y, level_cor_to_id(_level_cor+ Vector2(-1,0))))
-					astar.connect_points(point1, point2, true)
-
-	if map_as_bi.has(String(level_cor_to_id(_level_cor + Vector2(0,1)))):
-		var neighbour = map_as_bi[String(level_cor_to_id(_level_cor + Vector2(0,1)))]
-		for x in range(map_size.x):
-			if map_as_bi_lvl[x][map_size.y -1] && neighbour[x][0]:
-					var point1 = astar.get_closest_point(Vector3( x, map_size.y -1, level_cor_to_id(_level_cor)))
-					var point2 = astar.get_closest_point(Vector3( x,             0, level_cor_to_id(_level_cor+ Vector2(0,1))))
-					astar.connect_points(point1, point2, true)
-
-	if map_as_bi.has(String(level_cor_to_id(_level_cor + Vector2(0,-1)))):
-		var neighbour = map_as_bi[String(level_cor_to_id(_level_cor + Vector2(0,-1)))]
-		for x in range(map_size.x):
-			if map_as_bi_lvl[x][0] && neighbour[x][map_size.y -1]:
-					var point1 = astar.get_closest_point(Vector3( x,             0, level_cor_to_id(_level_cor)))
-					var point2 = astar.get_closest_point(Vector3( x, map_size.y -1, level_cor_to_id(_level_cor+ Vector2(0,-1))))
-					astar.connect_points(point1, point2, true)
 
 var runes_per_level = {}
 var runes_global = []
@@ -211,17 +151,6 @@ func add_runes_per_level(_level_id, _rune):
 	emit_signal('Runes_Changed')	
 		
 	
-func id_to_level_cor(_id):
-	var x = (int(_id) % 1000000) 
-	if x != 0:
-		x -=  1000
-	var y = stepify((_id +1000)/1000000, 1)
-	return Vector2(x, y)
-	
-
-func level_cor_to_id(_level_cor):
-	return _level_cor.y * 1000000 + (_level_cor.x +1000)
-	
 	
 func level_id_to_floor_number(_ebene):
 	var i = 0	
@@ -239,13 +168,13 @@ func gen_level(_level_cor):
 	
 
 func gen_empty_lvl(_level_cor):
-	if map_as_bi.has(String(level_cor_to_id(_level_cor))):
+	if Global_AStar.map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
 		return
 	width = map_size.x
 	height = map_size.y
-	map_as_bi[String(level_cor_to_id(_level_cor))] = []
-	map_as_bi[String(level_cor_to_id(_level_cor))].clear()
-	var map_as_bi_lvl = map_as_bi[String(level_cor_to_id(_level_cor))]
+	Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))] = []
+	Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))].clear()
+	var map_as_bi_lvl = Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
 	
 	for x in range(width):
 		map_as_bi_lvl.append([])
@@ -318,18 +247,18 @@ func _on_Gen_Level_Left_pressed():
 	var next_level = levels.back() + Vector2(-1,0)
 	gen_level(next_level)
 	fill_blocks(next_level)
-	add_level_to_astar(next_level)
+	Global_AStar.add_level_to_astar(next_level)
 
 
 func _on_Gen_Level_Down_pressed():
 	var next_level = levels.back() + Vector2(0,1)
 	gen_level(next_level)
 	fill_blocks(next_level)
-	add_level_to_astar(next_level)
+	Global_AStar.add_level_to_astar(next_level)
 
 
 func _on_Gen_Level_Right_pressed():
 	var next_level = levels.back() + Vector2(1,0)
 	gen_level(next_level)
 	fill_blocks(next_level)
-	add_level_to_astar(next_level)
+	Global_AStar.add_level_to_astar(next_level)

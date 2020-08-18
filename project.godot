@@ -19,6 +19,10 @@ config/name="DeepMines"
 run/main_scene="res://terrain/map.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global_AStar="*res://global/AStar.gd"
+
 [display]
 
 window/size/width=1600

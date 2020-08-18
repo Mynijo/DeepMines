@@ -56,6 +56,7 @@ func shoot():
 		b.runes[0].remove_tag($Tags.e_rune.process_animation)
 		b.effect_lifetime(2) 
 		b.effect_speed(b.get_speed()/2)
+		b.damage = 0
 		emit_signal('shoot', b, parent.global_position, dir,parent.last_tower_hit)
 		for r in runnes:
 			r.queue_free()

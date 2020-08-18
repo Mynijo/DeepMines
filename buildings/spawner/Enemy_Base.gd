@@ -20,6 +20,8 @@ func add_spawn_on_kill(var _building):
 func spawn_enemys(var ebene):
 	for i in (ebene +1):
 		var e = load("res://enemy/enemys/Goblin.tscn").instance()
+		e.max_health = e.max_health * rand_range(0.95, 1.05)
+		e.speed = e.speed * rand_range(0.95, 1.05)
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 		e.add_spawner(self)
 		enemys.append(e)
