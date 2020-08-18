@@ -11,8 +11,12 @@ var crit_chance_effected
 export (float) var direction
 var direction_effected
 
+export (int) var max_target = 1
+
 var velocity = Vector2()
 var runes = []
+
+
 
 var tower
 
@@ -48,7 +52,9 @@ func explode():
 	queue_free()
 	
 func _on_Attack_body_entered(body):
-	if body.has_method('take_damage'):
+	var target_counter = max_target
+	if body.has_method('take_damage') and target_counter > 0:
+		target_counter -= 1
 		body.take_damage(calcDmg(body))
 		for r in runes:
 			if r.has_tag($Tags.e_rune.enemy_was_dmg):

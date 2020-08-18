@@ -19,6 +19,7 @@ var target = []
 
 var experience = 0
 
+signal Runes_Changed
 var can_shoot = true
 var map
 
@@ -29,7 +30,9 @@ enum e_rule{
 	closest_first
 }
 
-func _ready():	
+func _ready():
+	self.connect("Runes_Changed", self, "runes_changed")
+	
 	map = get_tree().get_root().get_node("map")
 	
 	$GunCooldown.wait_time = get_gun_cooldown()
@@ -50,12 +53,8 @@ func _ready():
 	#runes_attached.append(load("res://rune/RuneWhirl.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
-	var runes = map.get_Tower_Runes(0)
-	
-	for r in runes:
-		runes_attached.append(r.duplicate())
-	
-	apply_runes(runes_attached)
+	emit_signal('Runes_Changed')
+
 		
 func _process(delta):	
 	if target.size() != 0:
@@ -87,6 +86,7 @@ func _process(delta):
 func spawn(_position):
 	position = _position
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
+	self.get_tree().get_current_scene().connect("Runes_Changed", self , "runes_changed")
 
 
 func order_by(order_by):
@@ -154,7 +154,15 @@ func effect_detect_radius(_detect_radius):
 	
 func runes_changed():
 	reset_tower()
-	apply_runes(runes_attached)
+	var temp_runes = []
+	var runes = map.get_Tower_Runes(0)
+	for r in runes:
+		temp_runes.append(r.duplicate())
+	for r in runes_attached:
+		temp_runes.append(r.duplicate())	
+	apply_runes(temp_runes)
+	if runes_active[0] == null:
+		pass
 	
 func apply_runes(_runes):
 	for r in _runes:

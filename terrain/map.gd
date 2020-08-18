@@ -20,6 +20,9 @@ enum e_GAMESTATE{
 	battel_phase
 }
 
+
+signal Runes_Changed
+
 var game_stat = e_GAMESTATE.none
 
 func _init():
@@ -197,6 +200,7 @@ func get_Tower_Runes(var _level_id):
 	
 func add_runes_global( _rune):
 	runes_global.append(_rune)
+	emit_signal('Runes_Changed')
 	
 func add_runes_per_level(_level_id, _rune):
 	if runes_per_level.has (String(_level_id)):
@@ -204,6 +208,7 @@ func add_runes_per_level(_level_id, _rune):
 	else:
 		runes_per_level[String(_level_id)] = []
 		runes_per_level[String(_level_id)].append(_rune)
+	emit_signal('Runes_Changed')	
 		
 	
 func id_to_level_cor(_id):
@@ -266,7 +271,15 @@ func add_buildings_level(_level_cor):
 	var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
 	add_building(base2, rand_pos, _level_cor)
 	base2.spawn_enemys(level_id_to_floor_number(_level_cor))
-	base2.add_spawn_on_kill(tf.instance())
+	base2.add_spawn_on_kill(tf.instance())	
+	
+	rand_pos =  Vector2(0, 0)
+	if _level_cor == Vector2(0,1):
+		var baseb = load("res://buildings/spawner/Enemy_Base_Big.tscn").instance()
+		tf = load("res://buildings/Runen_Tower.tscn")
+		add_building(baseb, rand_pos, _level_cor)
+		baseb.spawn_enemys(level_id_to_floor_number(_level_cor))
+		baseb.add_spawn_on_kill(tf.instance())
 
 func show_gen_buttons():
 	var new_level
