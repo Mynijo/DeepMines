@@ -12,3 +12,8 @@ func _ready():
 
 func spawn(_position):
 	global_position = _position
+
+
+func _on_StaticBody2D_input_event(viewport, event, shape_idx):
+	if (event is InputEventMouseButton and event.pressed and event.button_index == BUTTON_LEFT):
+		pass

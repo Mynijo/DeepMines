@@ -180,6 +180,7 @@ func gen_empty_lvl(_level_cor):
 		map_as_bi_lvl.append([])
 		for y in range(height):
 			map_as_bi_lvl[x].append(true)
+	map_as_bi_lvl[15][15] = false
 	add_buildings_level(_level_cor)
 
 func add_buildings_level(_level_cor):
