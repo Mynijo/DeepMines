@@ -31,12 +31,6 @@ func _ready():
 	gen_level(Vector2(0,0))
 	Global_AStar.ini_astar()
 	fill_blocks(Vector2(0,0))
-	_on_Gen_Level_Down_pressed()
-	_on_Gen_Level_Down_pressed()
-	_on_Gen_Level_Down_pressed()
-	_on_Gen_Level_Down_pressed()
-	_on_Gen_Level_Down_pressed()
-	_on_Gen_Level_Down_pressed()
 	
 func add_heart():
 	if heart == null:
@@ -67,7 +61,7 @@ func fill_blocks(_level_cor):
 				block_inst = dirt_block.instance()
 			$blocks.add_child(block_inst)
 			block_inst.global_position = get_pos_on_map_mid(Vector2(x,y), _level_cor)
-			
+	pass
 
 
 func get_map_size():
@@ -256,7 +250,7 @@ func _on_Gen_Level_Down_pressed():
 	gen_level(next_level)
 	fill_blocks(next_level)
 	Global_AStar.add_level_to_astar(next_level)
-
+	pass
 
 func _on_Gen_Level_Right_pressed():
 	var next_level = levels.back() + Vector2(1,0)

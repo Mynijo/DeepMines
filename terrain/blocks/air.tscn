@@ -8,6 +8,3 @@ scale = Vector2( 0.64, 0.64 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
-
-[node name="StaticBody2D" parent="." index="1"]
-collision_layer = 0
