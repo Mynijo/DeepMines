@@ -186,7 +186,3 @@ func is_Tower():
 
 func add_exp(_exp):
 	experience += _exp
-
-
-func _on_DetectRadius_mouse_entered():
-	pass # Replace with function body.
