@@ -8,7 +8,6 @@ var enemys = []
 var buliding_on_death = null
 
 func _ready():
-	player = get_tree().get_root().get_node("map").get_player()
 	self.connect("Spawn_Enemy", get_tree().get_root().get_node("map"), "_on_Spawn_Enemy")
 	self.connect("Spawn_Building", get_tree().get_root().get_node("map"), "_on_Spawn_Building")
 	

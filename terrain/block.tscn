@@ -3,7 +3,7 @@
 [ext_resource path="res://terrain/Block.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+extents = Vector2( 30, 30 )
 
 [node name="Block" type="Area2D"]
 script = ExtResource( 1 )

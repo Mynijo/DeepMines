@@ -30,7 +30,6 @@ var spawner = null
 
 func _ready():
 	map = get_tree().get_root().get_node("map")
-	player = map.get_player()
 	
 	
 	# find_way(Vector2(7, 0))
@@ -130,8 +129,8 @@ func calc_move_direction():
 
 func find_way(_target, _level_cor):
 	astar = Global_AStar.get_astar()
-	var point1 = Global_AStar.astar.get_closest_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, Global_AStar.level_cor_to_id(start_level_cor)))
-	var point2 = Global_AStar.astar.get_closest_point(Vector3(_target.x, _target.y, Global_AStar.level_cor_to_id(_level_cor)))
+	var point1 = Global_AStar.get_id_of_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, Global_AStar.level_cor_to_id(start_level_cor)))
+	var point2 = Global_AStar.get_id_of_point(Vector3(_target.x, _target.y, Global_AStar.level_cor_to_id(_level_cor)))
 
 	var path = astar.get_id_path(point1,point2)
 	

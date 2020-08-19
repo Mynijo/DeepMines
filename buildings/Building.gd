@@ -6,14 +6,13 @@ export (Vector2) var size
 export (int) var health = 1000
 export (bool) var solid = true
 
-var player
 var pos
 var cor
 var level_cor
 
 func _ready():
-	player = get_tree().get_root().get_node("map").get_player()
-
+	pass
+	
 func take_damage(_damage):
 	health -= _damage
 	if(health <= 0):

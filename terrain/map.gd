@@ -18,6 +18,9 @@ enum e_GAMESTATE{
 	battel_phase
 }
 
+var map_as_bi = {}
+
+
 
 signal Runes_Changed
 
@@ -29,13 +32,14 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gen_level(Vector2(0,0))
+	fill_blocks(Vector2(0,0))	
 	Global_AStar.ini_astar()
-	fill_blocks(Vector2(0,0))
 	
 func add_heart():
 	if heart == null:
 		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()
 		add_building(heart, Vector2(9,0),  Vector2(0,0))
+		Global_AStar.set_heart(Vector2(9,0),  Vector2(0,0))
 		
 func change_game_state(var _new_stat):
 	if game_stat == _new_stat:
@@ -50,18 +54,39 @@ func change_game_state(var _new_stat):
 func fill_blocks(_level_cor):
 	var dirt_block = load("res://terrain/blocks/Dirt.tscn")
 	var air_block = load("res://terrain/blocks/Air.tscn")
+	var none_block = load("res://terrain/blocks/none.tscn")
 	var block_inst
-	var map_as_bi_lvl = Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
+	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
+	Global_AStar.map_level_block[String(Global_AStar.level_cor_to_id(_level_cor))] = []
+	var map_level = Global_AStar.map_level_block[String(Global_AStar.level_cor_to_id(_level_cor))]
 	for x in range(width):
-		map_as_bi_lvl.append([])
+		map_level.append([])
 		for y in range(height):
-			if map_as_bi_lvl[x][y]:
-				block_inst = air_block.instance()
-			else:
+			if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.dirt:
 				block_inst = dirt_block.instance()
+			else: if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.air:
+				block_inst = air_block.instance()
+			else: if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.none:
+				block_inst = none_block.instance()
+				
 			$blocks.add_child(block_inst)
-			block_inst.global_position = get_pos_on_map_mid(Vector2(x,y), _level_cor)
-	pass
+			block_inst.set_pos(Vector2(x,y) ,_level_cor,get_pos_on_map_mid(Vector2(x,y), _level_cor))
+			map_level[x].append(block_inst)
+
+
+func replace_block(var _block, var _newBlock):
+	$blocks.add_child(_newBlock)
+	_newBlock.set_pos(_block.Cor, _block.Level_cor, _block.global_position)
+	$blocks.remove_child(_block)
+	
+	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_newBlock.Level_cor))]
+	map_as_bi_lvl[_newBlock.Cor.x][_newBlock.Cor.y] = _newBlock.BlockType
+	
+	var map_level = Global_AStar.map_level_block[String(Global_AStar.level_cor_to_id(_newBlock.Level_cor))]
+	map_level[_newBlock.Cor.x][_newBlock.Cor.y] = _newBlock
+	Global_AStar.recalc(_newBlock.Cor, _newBlock.Level_cor)
+
+
 
 
 func get_map_size():
@@ -73,9 +98,6 @@ func get_root_offset():
 	
 func get_pos_on_map_mid(_cor, _level_cor):
 	return _cor * block_size_pix +  get_root_offset() + (_level_cor*block_size_pix*map_size)
-
-func get_player():
-	return $Player
 	
 func get_heart():
 	add_heart()
@@ -118,8 +140,16 @@ func add_building(_building, _cor, _level_cor):
 	_building.set_cor(_cor, _level_cor)
 	$buildings.add_child(_building)
 	
+	if !map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
+		return
+		
+	for x in range(_cor.x, _cor.x + size.x):
+		for y in range(_cor.y, _cor.y + size.y):
+			var temp = Vector2(x, y)
+			var level = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
+			level[x][y] = Global_Block.e_BLOCKS.air
 
-
+	
 var runes_per_level = {}
 var runes_global = []
 
@@ -159,23 +189,23 @@ func gen_level(_level_cor):
 	if _level_cor == Vector2(0,0):
 		add_heart()
 	gen_empty_lvl(_level_cor)
+	add_buildings_level(_level_cor)
 	
 
 func gen_empty_lvl(_level_cor):
-	if Global_AStar.map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
+	if map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
 		return
 	width = map_size.x
 	height = map_size.y
-	Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))] = []
-	Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))].clear()
-	var map_as_bi_lvl = Global_AStar.map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
+	map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))] = []
+	map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))].clear()
+	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
 	
 	for x in range(width):
 		map_as_bi_lvl.append([])
 		for y in range(height):
-			map_as_bi_lvl[x].append(true)
-	map_as_bi_lvl[15][15] = false
-	add_buildings_level(_level_cor)
+			map_as_bi_lvl[x].append(Global_Block.e_BLOCKS.air)
+	map_as_bi_lvl[15][15] = Global_Block.e_BLOCKS.dirt		
 
 func add_buildings_level(_level_cor):
 	var rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))	
@@ -227,7 +257,7 @@ func show_gen_buttons():
 		$Buttons/Gen_Level_Right.set_global_position(pos)
 		$Buttons/Gen_Level_Right.disabled = false
 		$Buttons/Gen_Level_Right.visible = true
-	
+
 	
 func hide_gen_buttons():
 	$Buttons/Gen_Level_Left.disabled = true

@@ -5,6 +5,10 @@
 
 [node name="Block" instance=ExtResource( 1 )]
 scale = Vector2( 0.64, 0.64 )
+Mineable = false
+Buildable = true
+Walkable = true
+BlockType = 2
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )

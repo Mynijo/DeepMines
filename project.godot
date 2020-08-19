@@ -22,6 +22,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Global_AStar="*res://global/AStar.gd"
+Player="*res://player/player.tscn"
+Global_Block="*res://terrain/Block.gd"
 
 [display]
 

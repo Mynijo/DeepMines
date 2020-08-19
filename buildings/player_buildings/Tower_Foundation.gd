@@ -21,8 +21,8 @@ func _on_Building_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			if !accTower:
-				if player.money -50 < 10:
+				if Player.money -50 < 10:
 					return
-				player.add_money(-50)
+				Player.add_money(-50)
 				spawn_tower()
 
