@@ -42,13 +42,14 @@ func _on_Block_input_event(_viewport, _event, _shape_idx):
 				return
 			Player.e_CURSOR_MODE.Pickaxe:
 				if Mineable:
-					pass
+					var air_block = load("res://terrain/blocks/air.tscn").instance()
+					map.replace_block(self, air_block)
 			Player.e_CURSOR_MODE.Shovel:
 				if Buildable:
 					pass
 			Player.e_CURSOR_MODE.Barricade:
 				if Buildable:
-					var dirt_block = load("res://terrain/blocks/Dirt.tscn").instance()					
+					var dirt_block = load("res://terrain/blocks/Dirt.tscn").instance()
 					if Global_AStar.is_replacement_valid(self, dirt_block):
 						map.replace_block(self, dirt_block)
 						queue_free()
