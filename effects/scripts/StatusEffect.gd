@@ -30,6 +30,8 @@ func _on_Duration_timeout():
 func delteYou():
 	if get_parent().has_method('remove_Status'):
 		get_parent().remove_Status(self)
+	if parent.has_method('remove_Status'):
+		parent.remove_Status(self)
 	queue_free()
 
 func refresh(_obj):
@@ -86,3 +88,14 @@ func rewrite_tags():
 		for t in removed_tags:
 			removed_tags.erase(t)
 			$Tags.add_tag(t)
+
+func has_icon():
+	if $Icon.texture:
+		return true
+	else:
+		return false
+	
+func get_icon():
+	if $Icon.texture:
+		return  $Icon
+	return null

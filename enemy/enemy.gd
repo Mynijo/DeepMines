@@ -96,14 +96,29 @@ func _physics_process(delta):
 func get_velocity():
 	return velocity
 	
-func add_Status(_status):	
-	$StatusEffects.add_Status(_status)
+func add_Status(_status):
+	$StatusEffects.add_Status(_status)	
+	add_Status_Icon(_status)
 	
 	if _status.has_tag($Tags.e_effect.init):
 		_status.effekt(self, $Tags.e_effect.init)
+	
+
+func add_Status_Icon(_status):
+	var icon = _status.get_icon()
+	icon.visible = true
+	$StatusLeiste.add_child(icon.duplicate())
+	
+func remove_Status_Icon(_status):
+	for icon in $StatusLeiste.get_children():
+		var _status_icon = _status.get_icon()
+		if icon.texture == _status_icon.texture:
+			$StatusLeiste.remove_child(icon)
+			return
 
 func remove_Status(_status):
 	$StatusEffects.remove_Status(_status)
+	remove_Status_Icon(_status)
 
 func get_StatusEffects(_tag = null):
 	return  $StatusEffects.get_Status_list(_tag)

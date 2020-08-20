@@ -1,6 +1,5 @@
 extends Node2D
 
-
 func _ready():
 	var parent = get_parent()
 	$HealthBar.max_value = parent.max_health
@@ -14,3 +13,5 @@ func update_healthbar(_value):
 	if _value < $HealthBar.max_value:
 		$HealthBar.show()
 	$HealthBar.value = _value
+
+	
