@@ -18,7 +18,7 @@ func effekt(value, tag):
 		parent = value
 	if tag == $Tags.e_effect.health:
 		if ready:
-			if  parent.health + healValue <= parent.max_health:
+			if  parent.health <  parent.max_health:
 				ready = false
 				$Ticker.start()
 				$Ticker.wait_time = tick_rate
