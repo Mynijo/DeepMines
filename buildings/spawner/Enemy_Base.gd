@@ -20,6 +20,7 @@ func spawn_enemys(var ebene):
 	for i in (ebene +1):
 		var e 
 		var status
+		var status2
 		if first:
 			e = load("res://enemy/enemys/jinn.tscn").instance()
 			status = load("res://effects/StatusEffectCharge.tscn").instance()
@@ -27,13 +28,15 @@ func spawn_enemys(var ebene):
 			e.add_Status(status)
 			first = false
 		else:
-			e = load("res://enemy/enemys/goblin.tscn").instance()
+			e = load("res://enemy/enemys/dragon.tscn").instance()
 			status = load("res://effects/StatusEffectHoT.tscn").instance()
-			status.duration = 5
+			status2 = load("res://effects/StatusEffectMoveOnFullLive.tscn").instance()
 			emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 			e.add_Status(status)
+			e.add_Status(status2)
+			
 		
-		e.max_health = e.max_health * rand_range(0.95, 1.05)
+		e.max_health = int(e.max_health * rand_range(0.95, 1.05))
 		e.speed = e.speed * rand_range(0.95, 1.05)
 		e.add_spawner(self)
 		enemys.append(e)

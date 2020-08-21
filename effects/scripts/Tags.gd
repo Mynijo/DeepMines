@@ -24,7 +24,7 @@ enum e_effect{
 	animation,
 	debuff,
 	buff,
-	velocity
+	took_dmg
 }
 
 var tags = []

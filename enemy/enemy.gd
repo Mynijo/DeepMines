@@ -54,6 +54,9 @@ func control(delta):
 	
 	if !$Animation.is_playing():
 		$Animation.play('walk')
+		$Sprite.visible = true
+	else:
+		$Sprite.visible = false
 	#if $Animation.is_playing() and speed != changed_speed:
 		#$Animation.playback_speed = changed_speed/speed
 	velocity = move_direction * changed_speed * delta * -100	
@@ -67,7 +70,14 @@ func control(delta):
 func take_damage(_damage):
 	if dead or _damage == null:
 		return	
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
+		_damage = x.effekt(_damage, $Tags.e_effect.took_dmg)
 	health = health - _damage
+	if health > max_health:
+		health = max_health	
+	if health < 0:
+		health = 0
+	
 	emit_signal('health_changed',health)	
 		
 func die():
@@ -139,11 +149,15 @@ func calc_move_direction():
 		var heart = map.get_heart()
 		find_way(heart.get_cor(), heart.get_level_cor())
 	if move_direction.x > 0.1: #You know why 0.1
-		$Sprite.scale.x = -1
-		$Animation.scale.x = -1
+		if $Sprite.scale.x > 0: 
+			$Sprite.scale.x *= -1
+		if $Animation.scale.x > 0: 
+			$Animation.scale.x *= -1
 	else:
-		$Sprite.scale.x = 1
-		$Animation.scale.x = 1
+		if $Sprite.scale.x < 0: 
+			$Sprite.scale.x *= -1
+		if $Animation.scale.x < 0: 
+			$Animation.scale.x *= -1
 
 func find_way(_target, _level_cor):
 	astar = Global_AStar.get_astar()

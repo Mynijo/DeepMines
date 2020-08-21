@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://enemy/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://media/monster/dragon/Walk1.png" type="Texture" id=2]
+[ext_resource path="res://media/monster/dragon/Walk3.png" type="Texture" id=3]
+[ext_resource path="res://media/monster/dragon/Walk4.png" type="Texture" id=4]
+[ext_resource path="res://media/monster/dragon/Walk5.png" type="Texture" id=5]
+[ext_resource path="res://media/monster/dragon/Walk2.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28.5815, 14.4555 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "walk",
+"speed": 6.0
+} ]
+
+[node name="dragon" instance=ExtResource( 1 )]
+speed = 40
+damage = 10
+gold_value = 50
+max_health = 1000
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2( -0.187286, 2.25415 )
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -130, -155 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 256, 256 )
+
+[node name="Animation" parent="." index="6"]
+scale = Vector2( 0.4, 0.4 )
+frames = SubResource( 2 )
+animation = "walk"
+offset = Vector2( -130, -155 )

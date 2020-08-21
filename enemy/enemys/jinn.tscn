@@ -37,5 +37,4 @@ region_rect = Rect2( 0, 0, 128, 128 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
 animation = "walk"
-centered = false
 offset = Vector2( -60, -62 )
