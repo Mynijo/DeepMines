@@ -132,7 +132,7 @@ func load_settings(_settings):
 func calc_move_direction():
 	if way_points.size() >= 1:
 		move_direction = (position - way_points[0]).normalized()
-		if position.distance_to(way_points[0]) < 1:
+		if position.distance_to(way_points[0]) < 10:
 			way_points.erase(way_points[0])		
 	else:
 		move_direction = Vector2(0, 0)
