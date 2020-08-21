@@ -21,7 +21,6 @@ enum e_GAMESTATE{
 var map_as_bi = {}
 
 
-
 signal Runes_Changed
 
 var game_stat = e_GAMESTATE.none
@@ -152,8 +151,17 @@ func add_building(_building, _cor, _level_cor):
 	
 	for x in range(_cor.x, _cor.x + size.x):
 		for y in range(_cor.y, _cor.y + size.y):
-			var level = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
-			level[x][y] = Global_Block.e_BLOCKS.air
+			var levle_cor = String(Global_AStar.level_cor_to_id(_level_cor))
+			if Global_AStar.map_level_block.has(levle_cor):
+				var map_level = Global_AStar.map_level_block[levle_cor]
+				if map_level.has(x):
+					if map_level[x].has(y):
+						var block = map_level[x][y]
+						replace_block(block, load("res://terrain/blocks/None.tscn").instance())
+						block.queue_free()
+			else:
+				var level = map_as_bi[String(levle_cor)]
+				level[x][y] = Global_Block.e_BLOCKS.pit
 
 	
 var runes_per_level = {}
@@ -195,7 +203,6 @@ func gen_level(_level_cor):
 	gen_empty_lvl(_level_cor)
 	if _level_cor == Vector2(0,0):
 		add_heart()
-	
 	add_buildings_level(_level_cor)
 	
 
@@ -210,7 +217,7 @@ func gen_empty_lvl(_level_cor):
 	
 	for x in range(width):
 		map_as_bi_lvl.append([])
-		for y in range(height):
+		for _y in range(height):
 			map_as_bi_lvl[x].append(Global_Block.e_BLOCKS.air)
 	map_as_bi_lvl[15][15] = Global_Block.e_BLOCKS.dirt		
 
@@ -219,25 +226,34 @@ func add_buildings_level(_level_cor):
 	if _level_cor == Vector2(0,0):
 		rand_pos =  Vector2(2,8)
 	
-	var base1 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
-	add_building(base1,rand_pos , _level_cor)
-	base1.spawn_enemys(level_id_to_floor_number(_level_cor))
-	var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
-	base1.add_spawn_on_kill(tf.instance())		
-	
+	if !_level_cor == Vector2(0,0):
+		var base1 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
+		add_building(base1,rand_pos , _level_cor)
+		base1.spawn_enemys(level_id_to_floor_number(_level_cor))
+		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
+		base1.add_spawn_on_kill(tf.instance())
+	else:
+		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
+		add_building(tf.instance(),rand_pos , _level_cor)
+		
 	rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))
 	if _level_cor == Vector2(0,0):
 		rand_pos =  Vector2(8,16)
 	
-	var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
-	add_building(base2,rand_pos , _level_cor)
-	base2.spawn_enemys(level_id_to_floor_number(_level_cor))
-	base2.add_spawn_on_kill(tf.instance())		
-	
+	if !_level_cor == Vector2(0,0):
+		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
+		var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
+		add_building(base2,rand_pos , _level_cor)
+		base2.spawn_enemys(level_id_to_floor_number(_level_cor))
+		base2.add_spawn_on_kill(tf.instance())		
+	else:
+		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
+		add_building(tf.instance(),rand_pos , _level_cor)
+		
 	rand_pos =  Vector2(0, 0)
 	if _level_cor == Vector2(0,1):
+		var tf = load("res://buildings/Runen_Tower.tscn")
 		var baseb = load("res://buildings/spawner/Enemy_Base_Big.tscn").instance()
-		tf = load("res://buildings/Runen_Tower.tscn")
 		add_building(baseb, rand_pos, _level_cor)
 		baseb.spawn_enemys(level_id_to_floor_number(_level_cor))
 		baseb.add_spawn_on_kill(tf.instance())

@@ -42,7 +42,7 @@ func add_level_to_astar(_level_cor):
 						var point2 = get_id_of_point(Vector3(x -1, y, level_cor_to_id(_level_cor)))
 						astar.connect_points(point1, point2, true)
 				if y -1 >= 0:
-					if map_level[x][y -1]:
+					if map_level[x][y -1].Walkable:
 						var point1 = get_id_of_point(Vector3( x, y  , level_cor_to_id(_level_cor)))
 						var point2 = get_id_of_point(Vector3( x, y -1, level_cor_to_id(_level_cor)))
 						astar.connect_points(point1, point2, true)
