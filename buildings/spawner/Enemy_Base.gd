@@ -21,8 +21,7 @@ func spawn_enemys(var ebene):
 		var e = load("res://enemy/enemys/Goblin.tscn").instance()
 		var status = load("res://effects/StatusEffectHoT.tscn").instance()
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
-		e.add_Status(status)
-		status = load("res://effects/StatusEffectFreeze.tscn").instance()
+		status.duration = 5
 		e.add_Status(status)
 		e.max_health = e.max_health * rand_range(0.95, 1.05)
 		e.speed = e.speed * rand_range(0.95, 1.05)

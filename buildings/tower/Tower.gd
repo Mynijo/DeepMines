@@ -46,13 +46,21 @@ func _ready():
 	#runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
 	#runes_attached.append(load("res://rune/RuneBoomerang.tscn").instance())
-	runes_attached.append(load("res://rune/RuneChain.tscn").instance())
+	#runes_attached.append(load("res://rune/RuneChain.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreasedAps.tscn").instance())
 	#runes_attached.append(load("res://rune/RunePierce.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreaseTurretDetectRadius.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneWhirl.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
+	emit_signal('Runes_Changed')
+
+func add_rune(_rune):
+	runes_attached.append(_rune)
+	emit_signal('Runes_Changed')
+
+func remove_rune(_rune):
+	runes_attached.remove(_rune)
 	emit_signal('Runes_Changed')
 
 		
@@ -161,8 +169,6 @@ func runes_changed():
 	for r in runes_attached:
 		temp_runes.append(r.duplicate())	
 	apply_runes(temp_runes)
-	if runes_active[0] == null:
-		pass
 	
 func apply_runes(_runes):
 	for r in _runes:

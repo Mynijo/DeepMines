@@ -34,6 +34,7 @@ func _ready():
 	gen_level(Vector2(0,0))
 	fill_blocks(Vector2(0,0))	
 	Global_AStar.ini_astar()
+	change_game_state(e_GAMESTATE.build_phase)
 	
 func add_heart():
 	if heart == null:
@@ -54,6 +55,7 @@ func change_game_state(var _new_stat):
 func fill_blocks(_level_cor):
 	var dirt_block = load("res://terrain/blocks/Dirt.tscn")
 	var air_block = load("res://terrain/blocks/Air.tscn")
+	var pit_block = load("res://terrain/blocks/Pit.tscn")
 	var none_block = load("res://terrain/blocks/none.tscn")
 	var block_inst
 	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
@@ -68,6 +70,8 @@ func fill_blocks(_level_cor):
 				block_inst = air_block.instance()
 			else: if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.none:
 				block_inst = none_block.instance()
+			else: if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.pit:
+				block_inst = pit_block.instance()
 				
 			$blocks.add_child(block_inst)
 			block_inst.set_pos(Vector2(x,y) ,_level_cor,get_pos_on_map_mid(Vector2(x,y), _level_cor))
@@ -97,7 +101,7 @@ func get_root_offset():
 	return $blocks.global_position
 	
 func get_pos_on_map_mid(_cor, _level_cor):
-	return _cor * block_size_pix +  get_root_offset() + (_level_cor*block_size_pix*map_size)
+	return (_cor * block_size_pix) + (_level_cor*block_size_pix*map_size) +  get_root_offset()
 	
 func get_heart():
 	add_heart()
@@ -142,10 +146,12 @@ func add_building(_building, _cor, _level_cor):
 	
 	if !map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
 		return
-		
+	
+	if !_building.solid:
+		return
+	
 	for x in range(_cor.x, _cor.x + size.x):
 		for y in range(_cor.y, _cor.y + size.y):
-			var temp = Vector2(x, y)
 			var level = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
 			level[x][y] = Global_Block.e_BLOCKS.air
 
@@ -186,9 +192,10 @@ func level_id_to_floor_number(_ebene):
 
 func gen_level(_level_cor):
 	levels.append(_level_cor)
+	gen_empty_lvl(_level_cor)
 	if _level_cor == Vector2(0,0):
 		add_heart()
-	gen_empty_lvl(_level_cor)
+	
 	add_buildings_level(_level_cor)
 	
 
@@ -211,21 +218,21 @@ func add_buildings_level(_level_cor):
 	var rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))	
 	if _level_cor == Vector2(0,0):
 		rand_pos =  Vector2(2,8)
-		
+	
 	var base1 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
 	add_building(base1,rand_pos , _level_cor)
 	base1.spawn_enemys(level_id_to_floor_number(_level_cor))
 	var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
-	base1.add_spawn_on_kill(tf.instance())
+	base1.add_spawn_on_kill(tf.instance())		
 	
 	rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))
 	if _level_cor == Vector2(0,0):
 		rand_pos =  Vector2(8,16)
 	
 	var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
-	add_building(base2, rand_pos, _level_cor)
+	add_building(base2,rand_pos , _level_cor)
 	base2.spawn_enemys(level_id_to_floor_number(_level_cor))
-	base2.add_spawn_on_kill(tf.instance())	
+	base2.add_spawn_on_kill(tf.instance())		
 	
 	rand_pos =  Vector2(0, 0)
 	if _level_cor == Vector2(0,1):
