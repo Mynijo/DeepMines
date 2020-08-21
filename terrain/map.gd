@@ -240,7 +240,7 @@ func add_buildings_level(_level_cor):
 	if _level_cor == Vector2(0,0):
 		rand_pos =  Vector2(8,16)
 	
-	if !_level_cor == Vector2(0,0):
+	if !_level_cor == Vector2(0,0) and false:
 		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
 		var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
 		add_building(base2,rand_pos , _level_cor)

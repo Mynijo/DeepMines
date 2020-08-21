@@ -23,7 +23,8 @@ enum e_effect{
 	direction,
 	animation,
 	debuff,
-	buff
+	buff,
+	velocity
 }
 
 var tags = []

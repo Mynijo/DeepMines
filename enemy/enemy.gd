@@ -54,8 +54,8 @@ func control(delta):
 	
 	if !$Animation.is_playing():
 		$Animation.play('walk')
-	if $Animation.is_playing() and speed != changed_speed:
-		$Animation.playback_speed = changed_speed/speed
+	#if $Animation.is_playing() and speed != changed_speed:
+		#$Animation.playback_speed = changed_speed/speed
 	velocity = move_direction * changed_speed * delta * -100	
 	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
@@ -161,8 +161,7 @@ func find_way(_target, _level_cor):
 		var cor = Vector2(point.x, point.y)
 		if level_cor != Vector2(0,0):
 			pass
-		var random_offset = Vector2(rand_range(-3,3), rand_range(-3,3))
-		way_points.append(map.get_pos_on_map_mid(cor, level_cor) + random_offset)
+		way_points.append(map.get_pos_on_map_mid(cor, level_cor))
 
 
 
