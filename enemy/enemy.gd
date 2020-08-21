@@ -52,11 +52,10 @@ func control(delta):
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
 		move_direction = x.effekt(move_direction, $Tags.e_effect.direction)	
 	
-	if $Animation.has_animation('walk'):
-		if 	!$Animation.is_playing():
-			$Animation.play('walk')		
-		if speed != changed_speed:
-			$Animation.playback_speed = changed_speed/speed		
+	if !$Animation.is_playing():
+		$Animation.play('walk')
+	if $Animation.is_playing() and speed != changed_speed:
+		$Animation.playback_speed = changed_speed/speed
 	velocity = move_direction * changed_speed * delta * -100	
 	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
@@ -141,8 +140,10 @@ func calc_move_direction():
 		find_way(heart.get_cor(), heart.get_level_cor())
 	if move_direction.x > 0.1: #You know why 0.1
 		$Sprite.scale.x = -1
+		$Animation.scale.x = -1
 	else:
 		$Sprite.scale.x = 1
+		$Animation.scale.x = 1
 
 func find_way(_target, _level_cor):
 	astar = Global_AStar.get_astar()

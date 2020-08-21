@@ -18,7 +18,8 @@ func add_spawn_on_kill(var _building):
 
 func spawn_enemys(var ebene):
 	for i in (ebene +1):
-		var e = load("res://enemy/enemys/Goblin.tscn").instance()
+		var e = load("res://enemy/enemys/jinn.tscn").instance()
+		#var e = load("res://enemy/enemys/goblin.tscn").instance()
 		var status = load("res://effects/StatusEffectHoT.tscn").instance()
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 		status.duration = 5
