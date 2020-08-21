@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=1]
-[ext_resource path="res://effects/StatusEffectMoveOnFullLive.gd" type="Script" id=2]
+[ext_resource path="res://effects/scripts/StatusEffectMoveOnFullLive.gd" type="Script" id=2]
 [ext_resource path="res://media/button_0.png" type="Texture" id=3]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 608, 64.5, 15, 15 )
@@ -17,7 +17,7 @@ duration = 0.0
 margin_right = 25.0
 margin_bottom = 25.0
 rect_scale = Vector2( 0.6, 0.6 )
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 
 [node name="Timer" type="Timer" parent="." index="3"]
 wait_time = 5.0
