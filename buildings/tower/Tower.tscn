@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://buildings/tower/Tower.gd" type="Script" id=1]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=2]
 [ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/MapIcon.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 21.2798 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 131.75, 1226.82, 55.75, 42.5 )
 
 [node name="Tower" type="KinematicBody2D"]
 input_pickable = true
@@ -42,6 +48,10 @@ rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 500 )
 collision_mask = 2147483653
+
+[node name="MapIcon" parent="." instance=ExtResource( 4 )]
+visible = false
+texture = SubResource( 2 )
 [connection signal="timeout" from="GunCooldown" to="." method="_on_GunCooldown_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]

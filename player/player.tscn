@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
+[ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 800, 50 )
@@ -73,12 +74,12 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 1, 450 )
-offset = Vector2( 800, 0 )
+position = Vector2( 800, 450 )
 current = true
 limit_top = -100
 
 [node name="Area2DTop" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
 collision_layer = 2147483664
 collision_mask = 16
 
@@ -87,18 +88,21 @@ position = Vector2( 800, -401.888 )
 shape = SubResource( 1 )
 
 [node name="Area2DBottom" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
 
 [node name="CollisionShapeBottom" type="CollisionShape2D" parent="Camera/Area2DBottom"]
 position = Vector2( 800, 400 )
 shape = SubResource( 1 )
 
 [node name="Area2DLeft" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
 
 [node name="CollisionShapeLeft" type="CollisionShape2D" parent="Camera/Area2DLeft"]
 position = Vector2( 50, 0 )
 shape = SubResource( 2 )
 
 [node name="Area2D2Right" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
 
 [node name="CollisionShapeRigth" type="CollisionShape2D" parent="Camera/Area2D2Right"]
 position = Vector2( 1550, 0 )
@@ -143,6 +147,18 @@ icon = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Minimap" parent="CanvasLayer" instance=ExtResource( 3 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -300.0
+margin_right = -99.9999
+margin_bottom = -100.0
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]
