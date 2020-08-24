@@ -5,4 +5,5 @@
 [node name="MapIcon" type="Sprite" groups=[
 "minimap_icons",
 ]]
+visible = false
 script = ExtResource( 1 )

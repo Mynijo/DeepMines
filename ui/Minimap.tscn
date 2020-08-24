@@ -4,8 +4,8 @@
 [ext_resource path="res://ui/Minimap.gd" type="Script" id=2]
 
 [node name="Minimap" type="MarginContainer"]
-margin_right = 200.0
-margin_bottom = 200.0
+margin_right = 330.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 60, 60 )
 custom_constants/margin_right = 0
 custom_constants/margin_top = 0
@@ -17,8 +17,8 @@ __meta__ = {
 }
 
 [node name="Frame" type="NinePatchRect" parent="."]
-margin_right = 200.0
-margin_bottom = 200.0
+margin_right = 330.0
+margin_bottom = 190.0
 texture = ExtResource( 1 )
 patch_margin_left = 3
 patch_margin_top = 3
@@ -26,8 +26,8 @@ patch_margin_right = 3
 patch_margin_bottom = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 200.0
-margin_bottom = 200.0
+margin_right = 330.0
+margin_bottom = 190.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
@@ -36,6 +36,6 @@ custom_constants/margin_bottom = 5
 [node name="Grid" type="TextureRect" parent="MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 195.0
-margin_bottom = 195.0
+margin_right = 325.0
+margin_bottom = 185.0
 [connection signal="gui_input" from="." to="." method="_on_Minimap_gui_input"]

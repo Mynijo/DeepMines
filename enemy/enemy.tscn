@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://effects/StatusEffects.tscn" type="PackedScene" id=2]
 [ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=3]
 [ext_resource path="res://enemy/UnitDisplay.tscn" type="PackedScene" id=4]
+[ext_resource path="res://media/monster/monsterIcons.png" type="Texture" id=5]
+[ext_resource path="res://ui/MapIcon.tscn" type="PackedScene" id=6]
 
 [node name="enemy" type="KinematicBody2D" groups=[
 "enemys",
@@ -36,4 +38,9 @@ __meta__ = {
 
 [node name="Animation" type="AnimatedSprite" parent="."]
 centered = false
+
+[node name="MapIcon" parent="." instance=ExtResource( 6 )]
+visible = true
+texture = ExtResource( 5 )
+region_rect = Rect2( 576.75, 336.156, 14.5219, 15.1644 )
 [connection signal="health_changed" from="." to="UnitDisplay" method="update_healthbar"]

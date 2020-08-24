@@ -23,12 +23,12 @@ func _process(delta):
 		var obj_pos = local_pos * grid_scale + grid.rect_size / 2
 		# If marker is outside grid, hide or shrink it.
 		if grid.get_rect().has_point(obj_pos + grid.rect_position):
-			if item.is_in_group("Enemeys"):
+			if item.get_parent().is_in_group("enemys"):
 				item.scale = Vector2(1, 1)
 			else:
 				item.show()
 		else:
-			if item.is_in_group("Enemeys"):
+			if item.get_parent().is_in_group("enemys"):
 				item.scale = Vector2(0.75, 0.75)
 			else:
 				item.hide()
