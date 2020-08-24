@@ -50,9 +50,10 @@ func explode():
 			if !r.effect(self, $Tags.e_rune.explode):
 				return
 	queue_free()
-	
-func _on_Attack_body_entered(body):
-	var target_counter = max_target
+
+var target_counter = max_target
+
+func _on_Attack_body_entered(body):	
 	if body.has_method('take_damage') and target_counter > 0:
 		target_counter -= 1
 		body.take_damage(calcDmg(body))
@@ -64,8 +65,9 @@ func _on_Attack_body_entered(body):
 	if "last_tower_hit" in body:
 		body.last_tower_hit = tower
 	for r in runes:
-		if r.has_tag($Tags.e_rune.enemy_was_hit):			
+		if r.has_tag($Tags.e_rune.enemy_was_hit):
 			if !r.effect(body, $Tags.e_rune.enemy_was_hit): # continue?
+				target_counter = max_target
 				return
 	explode()
 	

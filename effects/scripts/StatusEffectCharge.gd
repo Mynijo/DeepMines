@@ -31,7 +31,6 @@ func effekt(value, tag):
 			last_direction_angle = value.angle()
 		var temp =  value.angle() - last_direction_angle
 		last_direction_angle = value.angle()
-		print(String(inc_speed_actual) + " / " + String(temp))
 		if temp < 1 and temp > -1:
 			if ready:
 				ready = false

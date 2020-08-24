@@ -16,10 +16,9 @@ func add_Status(_status):
 	
 	if _status.has_tag($Tags.e_effect.buff):
 		$Buffs.add_child(_status)
-		return
 	if _status.has_tag($Tags.e_effect.debuff):
 		$Debuffs.add_child(_status)
-		return
+	return
 		
 func get_Status_list(_tag = null):
 	var status_list = []	

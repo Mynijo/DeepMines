@@ -72,6 +72,8 @@ func take_damage(_damage):
 		return	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
 		_damage = x.effekt(_damage, $Tags.e_effect.took_dmg)
+	if _damage == 0:
+		return
 	health = health - _damage
 	if health > max_health:
 		health = max_health	
