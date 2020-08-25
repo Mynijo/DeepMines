@@ -1,0 +1,21 @@
+Monster Eggs (Maybe JSON)
+Add monster buffs to map
+Player relics (bar)
+Player Display Resources
+Tower Status Bar
+Monster Tool tip
+Rooms Only Heal fundation
+Gold Room
+Display Monster Route button (maybe relict)
+Relict add random traps
+Shop
+Tower Upgrade menu
+Relict new Tower Upgrade option
+Hidden rooms?
+Play/Stop Button
+Save and load game
+Rune/Relict shoot on kill
+Disable Building actions while battle state
+Camera Control with arrow buttons
+Relict Heal play on death
+Map Mods bar
