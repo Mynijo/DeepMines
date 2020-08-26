@@ -12,7 +12,7 @@ region = Rect2( 627, 163, 10, 10 )
 [node name="StatusEffectHoT" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 duration = 0.0
-healValue = 10
+heal_value = 50
 tick_rate = 0.5
 
 [node name="Ticker" type="Timer" parent="." index="2"]

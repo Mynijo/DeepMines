@@ -23,10 +23,12 @@ var way_points = []
 var move_direction = Vector2(0, 0)
 var velocity = Vector2()
 
-export (Vector2) var start_pos_as_cor = Vector2(0, 0)
-export (Vector2) var target_pos_as_cor = Vector2(0, 0)
+var start_pos_as_cor = Vector2(0, 0)
+var target_pos_as_cor = Vector2(0, 0)
 
 var spawner = null
+
+var spawned = false
 
 func _ready():
 	map = get_tree().get_root().get_node("map")
@@ -40,6 +42,9 @@ func spawn(_position, _start_cor, _start_level_cor):
 	start_pos_as_cor = _start_cor
 	start_level_cor = _start_level_cor
 	
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.init):
+		x.effekt(self, $Tags.e_effect.init)
+	spawned = true
 	
 
 func control(delta):
@@ -112,7 +117,7 @@ func add_Status(_status):
 	if _status.has_icon():
 		add_Status_Icon(_status)
 	
-	if _status.has_tag($Tags.e_effect.init):
+	if spawned and _status.has_tag($Tags.e_effect.init):
 		_status.effekt(self, $Tags.e_effect.init)
 	
 
@@ -137,9 +142,10 @@ func get_StatusEffects(_tag = null):
 	return  $StatusEffects.get_Status_list(_tag)
 
 func load_settings(_settings):
-	if _settings[0][0]:
-		for s in _settings:
-			set(s[0],s[1])
+	if _settings.empty():
+		return
+	for k in _settings.keys():
+		set(k ,_settings[k])
 
 func calc_move_direction():
 	if way_points.size() >= 1:

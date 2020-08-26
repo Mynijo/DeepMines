@@ -24,17 +24,17 @@ func spawn_enemys(var ebene):
 		if first:
 			e = load("res://enemy/enemys/jinn.tscn").instance()
 			status = load("res://effects/StatusEffectCharge.tscn").instance()
-			emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 			e.add_Status(status)
+			emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
+			
 			first = false
 		else:
 			e = load("res://enemy/enemys/dragon.tscn").instance()
 			status = load("res://effects/StatusEffectHoT.tscn").instance()
 			status2 = load("res://effects/StatusEffectShield.tscn").instance()
-			emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 			e.add_Status(status)
 			e.add_Status(status2)
-			
+			emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 		
 		e.max_health = int(e.max_health * rand_range(0.95, 1.05))
 		e.speed = e.speed * rand_range(0.95, 1.05)

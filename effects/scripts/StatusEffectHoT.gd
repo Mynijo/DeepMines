@@ -1,6 +1,6 @@
 extends "res://effects/scripts/StatusEffect.gd"
 
-export (int) var healValue
+export (int) var heal_value
 export (float) var tick_rate
 
 var ready = true
@@ -22,7 +22,7 @@ func effekt(value, tag):
 				ready = false
 				$Ticker.start()
 				$Ticker.wait_time = tick_rate
-				return -healValue
+				return -heal_value
 		return 0
 	return value
 
