@@ -41,3 +41,6 @@ scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 2 )
 animation = "walk"
 offset = Vector2( -130, -155 )
+
+[node name="MapIcon" parent="." index="7"]
+visible = false

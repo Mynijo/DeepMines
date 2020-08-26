@@ -76,13 +76,13 @@ func parent_health_changed(_health):
 		parent.disconnect("health_changed",self, "parent_health_changed")
 		
 func load_settings(_settings):
-	if _settings[0][0]:
-		for s in _settings:
-			if s[0] == "condition":
-				add_condition(s[1],s[2])
-			else:
-				set(s[0],s[1])
-		
+	if _settings.empty():
+		return
+	for k in _settings.keys():
+		set(k ,_settings[k])
+
+
+
 func rewrite_tags():
 	if conditions.empty():
 		for t in removed_tags:

@@ -65,6 +65,7 @@ func change_game_state(var _new_stat):
 			hide_gen_buttons()
 		e_GAMESTATE.build_phase:
 			show_gen_buttons()
+			
 
 func fill_blocks(_level_cor):
 	var dirt_block = load("res://terrain/blocks/Dirt.tscn")

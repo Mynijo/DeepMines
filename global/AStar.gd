@@ -89,6 +89,14 @@ func id_to_level_cor(_id):
 	var y = stepify((_id +1000)/1000000, 1)
 	return Vector2(x, y)
 	
+func cor_to_id(_level_cor):
+	return _level_cor.y * 10000 + _level_cor.x
+	
+func id_to_cor(_id):
+	var x = (int(_id) % 10000) 
+	var y = stepify(_id /10000, 1)
+	return Vector2(x, y)
+	
 func get_id_of_point(var _vector):
 	var id = astar.get_closest_point(_vector)
 	var temp_pos = astar.get_point_position(id)
@@ -137,6 +145,8 @@ func get_neighbour(_pos):
 		
 	
 func is_replacement_valid(_block_old, _block_new):
+	if _block_old.Cor.x == 0  or _block_old.Cor.y == 0 or _block_old.Cor.x == map_size.x -1  or _block_old.Cor.y == map_size.y -1:
+		return false
 	if _block_new.Walkable:
 		return true
 	var rc = true

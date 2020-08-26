@@ -1,26 +1,22 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
+[ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 800, 50 )
+extents = Vector2( 800, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 50, 450 )
+extents = Vector2( 20, 450 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 50, 450 )
+extents = Vector2( 20, 450 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 640, 208, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=5]
-flags = 4
-atlas = ExtResource( 2 )
-region = Rect2( 688, 80, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
@@ -32,10 +28,53 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 640, 48, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 688, 80, 16, 16 )
+
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Live" type="Label" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2( 800, 450 )
+current = true
+limit_top = -100
+
+[node name="Area2DTop" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
+collision_layer = 2147483664
+collision_mask = 16
+
+[node name="CollisionShapeTop" type="CollisionShape2D" parent="Camera/Area2DTop"]
+position = Vector2( 800, -430 )
+shape = SubResource( 1 )
+
+[node name="Area2DBottom" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
+
+[node name="CollisionShapeBottom" type="CollisionShape2D" parent="Camera/Area2DBottom"]
+position = Vector2( 800, 430 )
+shape = SubResource( 1 )
+
+[node name="Area2DLeft" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
+
+[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Camera/Area2DLeft"]
+position = Vector2( 20, 0 )
+shape = SubResource( 2 )
+
+[node name="Area2D2Right" type="Area2D" parent="Camera"]
+position = Vector2( -800, 0 )
+
+[node name="CollisionShapeRigth" type="CollisionShape2D" parent="Camera/Area2D2Right"]
+position = Vector2( 1580, 0 )
+shape = SubResource( 3 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Live" type="Label" parent="UI"]
 margin_top = 10.0
 margin_right = 154.0
 margin_bottom = 43.0
@@ -44,7 +83,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wave" type="Label" parent="."]
+[node name="Wave" type="Label" parent="UI"]
 margin_top = 100.0
 margin_right = 101.0
 margin_bottom = 117.0
@@ -53,7 +92,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Money" type="Label" parent="."]
+[node name="Money" type="Label" parent="UI"]
 margin_left = -1.0
 margin_top = 40.0
 margin_right = 50.0
@@ -63,7 +102,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WaveEnd" type="Label" parent="."]
+[node name="WaveEnd" type="Label" parent="UI"]
 margin_left = 699.0
 margin_top = 24.0
 margin_right = 739.0
@@ -72,39 +111,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2( 1, 450 )
-offset = Vector2( 800, 0 )
-current = true
-limit_top = -100
-
-[node name="Area2DTop" type="Area2D" parent="Camera"]
-collision_layer = 2147483664
-collision_mask = 16
-
-[node name="CollisionShapeTop" type="CollisionShape2D" parent="Camera/Area2DTop"]
-position = Vector2( 800, -401.888 )
-shape = SubResource( 1 )
-
-[node name="Area2DBottom" type="Area2D" parent="Camera"]
-
-[node name="CollisionShapeBottom" type="CollisionShape2D" parent="Camera/Area2DBottom"]
-position = Vector2( 800, 400 )
-shape = SubResource( 1 )
-
-[node name="Area2DLeft" type="Area2D" parent="Camera"]
-
-[node name="CollisionShapeLeft" type="CollisionShape2D" parent="Camera/Area2DLeft"]
-position = Vector2( 50, 0 )
-shape = SubResource( 2 )
-
-[node name="Area2D2Right" type="Area2D" parent="Camera"]
-
-[node name="CollisionShapeRigth" type="CollisionShape2D" parent="Camera/Area2D2Right"]
-position = Vector2( 1550, 0 )
-shape = SubResource( 3 )
-
-[node name="Cursor_Mode_None" type="Button" parent="."]
+[node name="Cursor_Mode_None" type="Button" parent="UI"]
 margin_left = 105.0
 margin_top = 220.0
 margin_right = 135.0
@@ -114,17 +121,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cursor_Mode_Pickaxe" type="Button" parent="."]
-margin_left = 105.0
-margin_top = 100.0
-margin_right = 135.0
-margin_bottom = 130.0
-icon = SubResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor_Mode_Shovel" type="Button" parent="."]
+[node name="Cursor_Mode_Shovel" type="Button" parent="UI"]
 margin_left = 105.0
 margin_top = 140.0
 margin_right = 135.0
@@ -134,7 +131,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cursor_Mode_Barricade" type="Button" parent="."]
+[node name="Cursor_Mode_Barricade" type="Button" parent="UI"]
 margin_left = 105.0
 margin_top = 180.0
 margin_right = 135.0
@@ -143,6 +140,23 @@ icon = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Cursor_Mode_Pickaxe" type="Button" parent="UI"]
+margin_left = 105.0
+margin_top = 100.0
+margin_right = 135.0
+margin_bottom = 130.0
+icon = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Minimap" parent="UI" instance=ExtResource( 3 )]
+process_priority = 2
+margin_left = 1258.99
+margin_top = 664.005
+margin_right = 1498.99
+margin_bottom = 799.005
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]
@@ -151,7 +165,7 @@ __meta__ = {
 [connection signal="mouse_exited" from="Camera/Area2DLeft" to="." method="_on_Area2DLeft_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_exited"]
-[connection signal="pressed" from="Cursor_Mode_None" to="." method="_on_Cursor_Mode_None_pressed"]
-[connection signal="pressed" from="Cursor_Mode_Pickaxe" to="." method="_on_Cursor_Mode_Pickaxe_pressed"]
-[connection signal="pressed" from="Cursor_Mode_Shovel" to="." method="_on_Cursor_Mode_Shovel_pressed"]
-[connection signal="pressed" from="Cursor_Mode_Barricade" to="." method="_on_Cursor_Mode_Barricade_pressed"]
+[connection signal="pressed" from="UI/Cursor_Mode_None" to="." method="_on_Cursor_Mode_None_pressed"]
+[connection signal="pressed" from="UI/Cursor_Mode_Shovel" to="." method="_on_Cursor_Mode_Shovel_pressed"]
+[connection signal="pressed" from="UI/Cursor_Mode_Barricade" to="." method="_on_Cursor_Mode_Barricade_pressed"]
+[connection signal="pressed" from="UI/Cursor_Mode_Pickaxe" to="." method="_on_Cursor_Mode_Pickaxe_pressed"]
