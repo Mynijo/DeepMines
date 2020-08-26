@@ -12,10 +12,25 @@ var heart
 
 var levels = []
 
+var level_entries = {}
+
 enum e_GAMESTATE{
 	none,
 	build_phase,
 	battel_phase
+}
+
+enum e_LEVELTYPE {
+	none,
+	heart,
+	shop, # no towers
+	biome,
+	rune, # big enemy spawner for rune field and 2 enemy spawner for normal tower
+	tower, #3x tower type
+	event, # not implemented yet, no towers
+	fountain, # choose heal or gold
+	treasure, # hidden room
+	boss
 }
 
 var map_as_bi = {}
@@ -35,11 +50,11 @@ func _ready():
 	Global_AStar.ini_astar()
 	change_game_state(e_GAMESTATE.build_phase)
 	
-func add_heart():
+func add_heart(var _heart_cor, var _level_cor):
 	if heart == null:
 		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()
-		add_building(heart, Vector2(9,0),  Vector2(0,0))
-		Global_AStar.set_heart(Vector2(9,0),  Vector2(0,0))
+		add_building(heart, _heart_cor,  _level_cor)
+		Global_AStar.set_heart(_heart_cor, _level_cor)
 		
 func change_game_state(var _new_stat):
 	if game_stat == _new_stat:
@@ -60,9 +75,9 @@ func fill_blocks(_level_cor):
 	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
 	Global_AStar.map_level_block[String(Global_AStar.level_cor_to_id(_level_cor))] = []
 	var map_level = Global_AStar.map_level_block[String(Global_AStar.level_cor_to_id(_level_cor))]
-	for x in range(width):
+	for x in range(map_size.x):
 		map_level.append([])
-		for y in range(height):
+		for y in range(map_size.y):
 			if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.dirt:
 				block_inst = dirt_block.instance()
 			else: if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.air:
@@ -103,7 +118,7 @@ func get_pos_on_map_mid(_cor, _level_cor):
 	return (_cor * block_size_pix) + (_level_cor*block_size_pix*map_size) +  get_root_offset()
 	
 func get_heart():
-	add_heart()
+	add_heart(Vector2(9, 0), Vector2(0, 0))
 	return heart
 	
 func _on_Tower_shoot(attack, _position, _direction, _tower):
@@ -198,13 +213,127 @@ func level_id_to_floor_number(_ebene):
 			return i
 	return -1
 
+#func gen_level(_level_cor):
+#	levels.append(_level_cor)
+#	gen_empty_lvl(_level_cor)
+#	if _level_cor == Vector2(0,0):
+#		add_heart()
+#	add_buildings_level(_level_cor)
+
+func gen_lvl_cor_to_id(_level_cor):
+	return _level_cor.y * 10000 + _level_cor.x
+
+func gen_lvl_id_to_cor(_id):
+	var x = (int(_id) % 10000) 
+	var y = stepify(_id /10000, 1)
+	return Vector2(x, y)
+
+func is_cor_in_map(_cor):
+	return _cor.x >= 0 and _cor.y >= 0 and _cor.x < map_size.x and _cor.y < map_size.y
+
 func gen_level(_level_cor):
+	var used_pos = []
 	levels.append(_level_cor)
-	gen_empty_lvl(_level_cor)
 	if _level_cor == Vector2(0,0):
-		add_heart()
-	add_buildings_level(_level_cor)
+		var heart_pos = Vector2(9, 0)
+		add_heart(heart_pos, Vector2(0, 0))
+		used_pos.append(heart_pos)
+		used_pos.append(heart_pos + Vector2(0, 1))
+		used_pos.append(heart_pos + Vector2(1, 1))
+		used_pos.append(heart_pos + Vector2(1, 0))
+		
+	# Check if there's a level to the left
+	var rand_left
+	if level_entries.has(String(Global_AStar.level_cor_to_id(_level_cor + Vector2(-1, 0)))):
+		rand_left = Vector2(0, level_entries[String(Global_AStar.level_cor_to_id(_level_cor + Vector2(-1, 0)))].y)	
+	else:
+		rand_left = Vector2(0, randi() % int(map_size.y))
+		while(used_pos.find(rand_left) != -1):
+			rand_left =  Vector2(map_size.x - 1, randi() % int(map_size.y))
+	used_pos.append(rand_left)
 	
+	# Check if there's a level to the right
+	var rand_right
+	if level_entries.has(String(Global_AStar.level_cor_to_id(_level_cor + Vector2(1, 0)))):
+		rand_right = Vector2(map_size.x - 1, level_entries[String(Global_AStar.level_cor_to_id(_level_cor + Vector2(1, 0)))].x)	
+	else:
+		rand_right = Vector2(map_size.x - 1, randi() % int(map_size.y))
+		while(used_pos.find(rand_right) != -1):
+			rand_right =  Vector2(map_size.x - 1, randi() % int(map_size.y))
+	used_pos.append(rand_right)
+	
+	var rand_bot = Vector2(randi() % int(map_size.x), map_size.y - 1)
+	while(used_pos.find(rand_bot) != -1):
+		rand_bot =  Vector2(randi() % int(map_size.x), map_size.y - 1)
+	used_pos.append(rand_bot)
+	
+	# Generate two random unequal postions for buildings
+	var rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))
+	while(used_pos.find(rand_pos) != -1):
+		rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))
+	used_pos.append(rand_pos)
+	
+	var rand_pos_2 =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))
+	while(used_pos.find(rand_pos_2) != -1):
+		rand_pos_2 =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))
+	used_pos.append(rand_pos_2)
+	
+	level_entries[String(Global_AStar.level_cor_to_id(_level_cor))] = Vector3(rand_left.y, rand_right.y, rand_bot.x)
+	
+	# If level above exists, add a connection
+	if level_entries.has(String(Global_AStar.level_cor_to_id(_level_cor + Vector2(0, -1)))):
+		used_pos.append(Vector2(level_entries[String(Global_AStar.level_cor_to_id(_level_cor + Vector2(0, -1)))].z, 0))
+	
+	# run astar
+	# Run random weighted AStar for each edge in MST
+	var astar = AStar.new()
+	for x in range(map_size.x):
+		for y in range(map_size.y):
+			var temp_id = gen_lvl_cor_to_id(Vector2(x, y))
+			astar.add_point(temp_id, Vector3(x, y, 0), rand_range(10, 20))
+		
+	for x in range(map_size.x):
+		for y in range(map_size.y):
+			if x -1 >= 0:
+				var point1 = gen_lvl_cor_to_id(Vector2(x, y))
+				var point2 = gen_lvl_cor_to_id(Vector2(x - 1, y))
+				astar.connect_points(point1, point2, true)
+			if y -1 >= 0:
+				var point1 = gen_lvl_cor_to_id(Vector2(x, y))
+				var point2 = gen_lvl_cor_to_id(Vector2(x, y - 1))
+				astar.connect_points(point1, point2, true)
+	
+	# Fill whole level with dirt		
+	map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))] = []
+	map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))].clear()
+	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
+	
+	for _x in range(map_size.x):
+		map_as_bi_lvl.append([])
+		for _y in range(map_size.y):
+			map_as_bi_lvl[_x].append(Global_Block.e_BLOCKS.dirt)
+			
+	# Shuffle positions and connect them
+	used_pos.shuffle()
+	for index in range(used_pos.size() - 1):
+		var point1 = gen_lvl_cor_to_id(used_pos[index])
+		var point2 = gen_lvl_cor_to_id(used_pos[index + 1])
+		for id in astar.get_id_path(point1, point2):
+			var temp_pos = gen_lvl_id_to_cor(id)
+			map_as_bi_lvl[temp_pos.x][temp_pos.y] = Global_Block.e_BLOCKS.air
+		
+	# Set each field around the buildings to air
+	for _x in range(rand_pos.x - 1, rand_pos.x + 2):
+		for _y in range(rand_pos.y - 1, rand_pos.y + 2):
+			if is_cor_in_map(Vector2(_x, _y)):
+				map_as_bi_lvl[_x][_y] = Global_Block.e_BLOCKS.air
+				
+	for _x in range(rand_pos_2.x - 1, rand_pos_2.x + 2):
+		for _y in range(rand_pos_2.y - 1, rand_pos_2.y + 2):
+			if is_cor_in_map(Vector2(_x, _y)):
+				map_as_bi_lvl[_x][_y] = Global_Block.e_BLOCKS.air
+	
+	add_buildings_level(_level_cor, rand_pos, rand_pos_2)
 
 func gen_empty_lvl(_level_cor):
 	if map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
@@ -221,10 +350,7 @@ func gen_empty_lvl(_level_cor):
 			map_as_bi_lvl[x].append(Global_Block.e_BLOCKS.air)
 	map_as_bi_lvl[15][15] = Global_Block.e_BLOCKS.dirt		
 
-func add_buildings_level(_level_cor):
-	var rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))	
-	if _level_cor == Vector2(0,0):
-		rand_pos =  Vector2(2,8)
+func add_buildings_level(_level_cor, rand_pos, rand_pos_2):
 	
 	if !_level_cor == Vector2(0,0):
 		var base1 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
@@ -235,28 +361,16 @@ func add_buildings_level(_level_cor):
 	else:
 		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
 		add_building(tf.instance(),rand_pos , _level_cor)
-		
-	rand_pos =  Vector2(randi() % int(map_size.x), randi() % int(map_size.y))
-	if _level_cor == Vector2(0,0):
-		rand_pos =  Vector2(8,16)
 	
-	if !_level_cor == Vector2(0,0) and false:
+	if !_level_cor == Vector2(0,0):
 		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
 		var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
-		add_building(base2,rand_pos , _level_cor)
+		add_building(base2,rand_pos_2 , _level_cor)
 		base2.spawn_enemys(level_id_to_floor_number(_level_cor))
 		base2.add_spawn_on_kill(tf.instance())		
 	else:
 		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
-		add_building(tf.instance(),rand_pos , _level_cor)
-		
-	rand_pos =  Vector2(0, 0)
-	if _level_cor == Vector2(0,1):
-		var tf = load("res://buildings/Runen_Tower.tscn")
-		var baseb = load("res://buildings/spawner/Enemy_Base_Big.tscn").instance()
-		add_building(baseb, rand_pos, _level_cor)
-		baseb.spawn_enemys(level_id_to_floor_number(_level_cor))
-		baseb.add_spawn_on_kill(tf.instance())
+		add_building(tf.instance(),rand_pos_2 , _level_cor)
 
 func show_gen_buttons():
 	var new_level
