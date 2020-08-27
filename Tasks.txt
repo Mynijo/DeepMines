@@ -1,4 +1,3 @@
-Monster Eggs (Maybe JSON)
 Add monster buffs to map
 Player relics (bar)
 Player Display Resources
