@@ -6,4 +6,5 @@
 "minimap_icons",
 ]]
 visible = false
+z_index = 2
 script = ExtResource( 1 )

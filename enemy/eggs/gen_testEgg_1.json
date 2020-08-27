@@ -1,0 +1,34 @@
+{
+"eggName" : "eggName" ,
+"tier" : 0 ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+]
+}

@@ -38,7 +38,7 @@ func _process(delta):
 		obj_pos.y = clamp(obj_pos.y, 0, grid.rect_size.y)
 		
 		var temp = obj_pos +  self.rect_global_position
-		item.global_position = obj_pos +  Player.global_position +self.rect_position
+		item.global_position = obj_pos +  Player.global_position +grid.rect_global_position
 		
 		item.set_scale(grid_scale)
 

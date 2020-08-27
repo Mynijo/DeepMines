@@ -23,5 +23,4 @@ shape = SubResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="MapIcon" parent="." index="2" instance=ExtResource( 4 )]
-visible = false
 texture = ExtResource( 2 )
