@@ -19,6 +19,10 @@ func incubate_egg():
 		for effect_values in enemy_values["effects"]:
 			var effect = load(effect_values["packed_scene"]).instance()
 			effect.load_settings(effect_values["not_default_values"])
+			for condition_values in effect_values["conditions"]:
+				var condition = load(condition_values["packed_scene"]).instance()
+				condition.load_settings(condition_values["not_default_values"])
+				effect.add_condition(condition)
 			enemy.add_Status(effect)
 		enemys.append(enemy)
 	return enemys

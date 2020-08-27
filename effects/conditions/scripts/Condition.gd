@@ -16,3 +16,9 @@ func delete_me():
 
 func set_parent(_parent):
 	parent = _parent
+
+func load_settings(_settings):
+	if _settings.empty():
+		return
+	for k in _settings.keys():
+		set(k ,_settings[k])
