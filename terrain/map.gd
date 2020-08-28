@@ -42,6 +42,8 @@ var game_stat = e_GAMESTATE.none
 
 func _init():
 	Global_AStar.set_map_size(map_size)
+	rand_seed(420)
+	randomize ( )
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

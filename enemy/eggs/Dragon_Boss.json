@@ -1,14 +1,15 @@
 {
-"eggName" : " " ,
-"tier" : 1 ,
+"eggName" : "  Test" ,
+"tier" : 2 ,
 "small_boss" : false ,
-"boss" : false ,
+"boss" : true ,
 "enemeys" : [
 {
 "packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
 "not_default_values" : 
 {
 "damage" :4,
+"gold_value" :234,
 },
 "effects" : 
 [
@@ -30,6 +31,167 @@
 },
 ],
 },
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"not_default_values" : 
+{
+"experience" :234,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectCharge.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+{
+"packed_scene" : "res://Effects/StatusEffectFreeze.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+{
+"packed_scene" : "res://Effects/StatusEffectFreeze.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+{
+"packed_scene" : "res://Effects/StatusEffectFreeze.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+}
+},
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+}
+},
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :324,
+}
+},
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+}
+},
+],
+},
+{
+"packed_scene" : "res://Effects/StatusEffectFreeze.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
 ],
 },
 ]

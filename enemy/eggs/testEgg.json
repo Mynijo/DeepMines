@@ -1,36 +1,36 @@
 {
-   "egg_name":"TestEgg",
-   "tier":1,
-   "boss":false,
-   "enemeys":
-   [
-      {
-         "packed_scene":"res://Enemy//Enemys//goblin.tscn",
-         "not_default_values":
-		 {
-            "speed":200
-         },
-		 "effects" :
-		 [
-			{
-				 "packed_scene":"res://effects//StatusEffectHoT.tscn",
-				 "not_default_values":
-				 {
-					"tick_rate":0.5,
-					"heal_value":20
-				 },
-				 "conditions" :
-				 [
-					 {
-						"condition" : "at_life",
-						"not_default_values" :					
-						{
-							"at_life" : 0.5
-						}					
-					 }
-				 ]
-			 }
-		 ]
-      },
-   ]
+"eggName" : " " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"not_default_values" : 
+{
+"max_health" :100,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectHoT.tscn" ,
+"not_default_values" : 
+{
+"tick_rate" :0.5,
+"heal_value" :50,
+},
+"conditions" : 
+[
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :0.2,
+}
+},
+],
+},
+],
+},
+]
 }

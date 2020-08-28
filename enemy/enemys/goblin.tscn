@@ -40,6 +40,5 @@ region_rect = Rect2( 0, 0, 64, 64 )
 frames = SubResource( 2 )
 animation = "walk"
 frame = 6
-centered = false
 offset = Vector2( -32, -42 )
 flip_h = true

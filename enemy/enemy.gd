@@ -62,8 +62,9 @@ func control(delta):
 		$Sprite.visible = true
 	else:
 		$Sprite.visible = false
-	#if $Animation.is_playing() and speed != changed_speed:
-		#$Animation.playback_speed = changed_speed/speed
+	if $Animation.is_playing() and speed != changed_speed:
+		var farmes_count = $Animation.frames.get_frame_count('walk')
+		$Animation.frames.set_animation_speed('walk', farmes_count*changed_speed/speed)
 	velocity = move_direction * changed_speed * delta * -100	
 	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
