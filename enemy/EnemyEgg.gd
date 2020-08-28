@@ -3,12 +3,28 @@ extends Node
 var egg_values
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	load_json_egg("res://enemy/eggs/Dragon_Boss.json")
-	incubate_egg()
+func _ready():	
 	pass
 
-
+func get_tier():
+	return egg_values["tier"]
+	
+func get_egg_type():
+	if is_small_boss():
+		return "small_boss_egg"
+	if is_boss():
+		return "boss_egg"
+	return "nomal_egg"
+	
+func is_small_boss():
+	if egg_values.has("small_boss"):
+		return egg_values["small_boss"]
+	return false
+ 
+func is_boss():
+	if egg_values.has("boss"):
+		return egg_values["boss"]
+	return false
 
 func incubate_egg():
 	var enemys = []

@@ -33,7 +33,6 @@ var spawned = false
 func _ready():
 	map = get_tree().get_root().get_node("map")
 	
-	
 	# find_way(Vector2(7, 0))
 		
 func spawn(_position, _start_cor, _start_level_cor):

@@ -11,7 +11,8 @@ func _ready():
 	pass # Replace with function body.
 
 func delete_me():
-	get_parent().remove_condition(self)
+	if get_parent():
+		get_parent().remove_condition(self)
 	self.queue_free()
 
 func set_parent(_parent):

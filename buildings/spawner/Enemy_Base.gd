@@ -17,20 +17,44 @@ func add_spawn_on_kill(var _building):
 	
 var first = true
 func spawn_enemys(var ebene):
-	for i in (ebene +1):
-		var e 
-		var status
-		var status2
-		var condition
-		e = load("res://enemy/enemys/lizard.tscn").instance()
-		#status = load("res://effects/StatusEffectCharge.tscn").instance()
-		#e.add_Status(status)
+	var egg
+	var enemeys
+	
+	if ebene < 5:
+		egg = Global_EggManager.get_egg(1, false, false)
+	else: if ebene == 5:
+		egg = Global_EggManager.get_egg(1, true, false)
+	else: if ebene  < 10:
+		egg = Global_EggManager.get_egg(1, false, false)
+	else: if ebene == 10:
+		egg = Global_EggManager.get_egg(1, false, true)
+	else: if ebene < 15:
+		egg = Global_EggManager.get_egg(2, false, false)
+	else: if ebene == 15:
+		egg = Global_EggManager.get_egg(2, true, false)
+	else: if ebene  < 20:
+		egg = Global_EggManager.get_egg(2, false, false)
+	else: if ebene == 20:
+		egg = Global_EggManager.get_egg(2, false, true)
+	else: if ebene < 25:
+		egg = Global_EggManager.get_egg(3, false, false)
+	else: if ebene == 25:
+		egg = Global_EggManager.get_egg(3, true, false)
+	else: if ebene  < 30:
+		egg = Global_EggManager.get_egg(3, false, false)
+	else: if ebene == 30:
+		egg = Global_EggManager.get_egg(3, false, true)
+	else:
+		egg = Global_EggManager.get_egg(3, false, false)
+		
+	enemeys = egg.incubate_egg()
+		
+	for e in enemeys:
+		e.speed = e.speed * rand_range(0.9, 1.1)
+		e.add_spawner(self)
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 		
-		e.max_health = 200
-		e.speed = e.speed * rand_range(0.95, 1.05)
-		e.add_spawner(self)
-		enemys.append(e)
+
 	
 func remove_enemy(var _enemy):
 	enemys.erase(_enemy)

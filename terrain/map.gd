@@ -293,7 +293,7 @@ func gen_level(_level_cor):
 	for x in range(map_size.x):
 		for y in range(map_size.y):
 			var temp_id = gen_lvl_cor_to_id(Vector2(x, y))
-			astar.add_point(temp_id, Vector3(x, y, 0), rand_range(10, 20))
+			astar.add_point(temp_id, Vector3(x, y, 0), rand_range(10, 11000))
 		
 	for x in range(map_size.x):
 		for y in range(map_size.y):
