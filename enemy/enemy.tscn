@@ -11,7 +11,7 @@
 "enemys",
 ]]
 collision_layer = 4
-collision_mask = 2147483656
+collision_mask = 2147483657
 script = ExtResource( 1 )
 damage = 10
 gold_value = 20

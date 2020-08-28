@@ -1,0 +1,36 @@
+{
+"eggName" : " " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://enemy/enemys/demon.tscn" ,
+"not_default_values" : 
+{
+"max_health" :100,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectHoT.tscn" ,
+"not_default_values" : 
+{
+"tick_rate" :0.5,
+"heal_value" :50,
+},
+"conditions" : 
+[
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :0.2,
+}
+},
+],
+},
+],
+},
+]
+}

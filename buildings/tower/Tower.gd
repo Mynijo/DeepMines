@@ -44,7 +44,7 @@ func _ready():
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddCharme.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
-	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
+	runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
 	#runes_attached.append(load("res://rune/RuneBoomerang.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneChain.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreasedAps.tscn").instance())

@@ -20,9 +20,7 @@ animations = [ {
 
 [node name="dragon" instance=ExtResource( 1 )]
 speed = 40
-damage = 10
 gold_value = 50
-max_health = 200
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -0.187286, 2.25415 )

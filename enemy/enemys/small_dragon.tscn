@@ -19,7 +19,6 @@ animations = [ {
 
 [node name="small_dragon" instance=ExtResource( 1 )]
 speed = 30
-damage = 10
 gold_value = 30
 max_health = 100
 

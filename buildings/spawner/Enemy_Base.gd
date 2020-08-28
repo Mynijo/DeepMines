@@ -22,8 +22,8 @@ func spawn_enemys(var ebene):
 		var status
 		var status2
 		var condition
-		e = load("res://enemy/enemys/small_dragon.tscn").instance()
-		status = load("res://effects/StatusEffectCharge.tscn").instance()
+		e = load("res://enemy/enemys/lizard.tscn").instance()
+		#status = load("res://effects/StatusEffectCharge.tscn").instance()
 		#e.add_Status(status)
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 		

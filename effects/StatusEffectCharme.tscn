@@ -8,11 +8,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "charme03",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "charme02",
@@ -22,6 +17,11 @@ animations = [ {
 "loop": true,
 "name": "charme01",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "charme03",
+"speed": 5.0
 } ]
 
 [node name="StatusEffectCharme" instance=ExtResource( 1 )]

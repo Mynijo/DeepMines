@@ -2,6 +2,7 @@ extends "res://effects/scripts/StatusEffect.gd"
 
 
 export (int) var max_health
+export (float) var size_factor = 1
 
 var first = true
 
@@ -16,6 +17,7 @@ func effekt(value, tag):
 		parent = value
 		$Shield.set_max_health(max_health)
 		$Shield.visible = false
+		$Shield.scale *= size_factor
 	if tag == $Tags.e_effect.animation:
 		if first:
 			first = false
