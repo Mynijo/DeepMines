@@ -8,26 +8,27 @@
 "packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
 "not_default_values" : 
 {
-"max_health" :100,
 },
 "effects" : 
 [
-{
-"packed_scene" : "res://Effects/StatusEffectShield.tscn" ,
-"not_default_values" : 
-{
-},
-"conditions" : 
-[
-{
-"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
-"not_default_values" : 
-{
-"health_percent" :0.8,
-}
-},
 ],
 },
+{
+"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
 ],
 },
 ]

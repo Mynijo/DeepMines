@@ -1,14 +1,16 @@
 {
-"eggName" : " " ,
+"eggName" : "   " ,
 "tier" : 1 ,
 "small_boss" : false ,
-"boss" : false ,
+"boss" : true ,
 "enemeys" : [
 {
-"packed_scene" : "res://enemy/enemys/demon.tscn" ,
+"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
 "not_default_values" : 
 {
-"max_health" :100,
+"max_health" :1000,
+"damage" :50,
+"gold_value" :500,
 },
 "effects" : 
 [
@@ -16,18 +18,19 @@
 "packed_scene" : "res://Effects/StatusEffectHoT.tscn" ,
 "not_default_values" : 
 {
-"tick_rate" :0.5,
-"heal_value" :50,
 },
 "conditions" : 
 [
+],
+},
 {
-"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"packed_scene" : "res://Effects/StatusEffectShield.tscn" ,
 "not_default_values" : 
 {
-"health_percent" :0.2,
-}
+"max_health" :1000,
 },
+"conditions" : 
+[
 ],
 },
 ],

@@ -9,25 +9,18 @@
 "not_default_values" : 
 {
 "max_health" :100,
+"gold_value" :20,
+"damage" :10,
 },
 "effects" : 
 [
 {
-"packed_scene" : "res://Effects/StatusEffectHoT.tscn" ,
+"packed_scene" : "res://Effects/StatusEffectCharge.tscn" ,
 "not_default_values" : 
 {
-"tick_rate" :0.5,
-"heal_value" :50,
 },
 "conditions" : 
 [
-{
-"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
-"not_default_values" : 
-{
-"health_percent" :0.2,
-}
-},
 ],
 },
 ],
