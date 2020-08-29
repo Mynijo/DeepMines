@@ -34,7 +34,9 @@ func _ready():
 	map = get_tree().get_root().get_node("map")
 	
 	# find_way(Vector2(7, 0))
-		
+func set_last_tower_hit(_last_tower_hit):
+	last_tower_hit = _last_tower_hit
+
 func spawn(_position, _start_cor, _start_level_cor):
 	global_position = _position
 	health = max_health

@@ -10,7 +10,8 @@ func explode():
 			if r.has_tag($Tags.e_rune.enemy_was_dmg):
 				r.effect(t,$Tags.e_rune.enemy_was_dmg)	
 		if tower:
-			t.last_tower_hit = tower
+			if t.has_method("set_last_tower_hit"):
+				t.set_last_tower_hit(tower)
 		for r in runes:
 			if r.has_tag($Tags.e_rune.enemy_was_hit):			
 				if !r.effect(t, $Tags.e_rune.enemy_was_hit): # continue?
