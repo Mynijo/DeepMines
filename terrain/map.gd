@@ -206,6 +206,28 @@ func add_runes_per_level(_level_id, _rune):
 		runes_per_level[String(_level_id)].append(_rune)
 	emit_signal('Runes_Changed')	
 		
+		
+var enemy_effects_per_level = {}
+var enemy_effects_global = []
+
+func get_enemy_effects(var _level_id):
+	var run = []
+	if enemy_effects_per_level.has (String(_level_id)):
+		for r in enemy_effects_per_level[String(_level_id)]:
+			run.append(r)
+	for r in enemy_effects_global:
+		run.append(r)
+	return run
+	
+func add_enemy_effect_global( _rune):
+	enemy_effects_global.append(_rune)
+	
+func add_enemy_effect_per_level(_level_id, _rune):
+	if enemy_effects_per_level.has (String(_level_id)):
+		enemy_effects_per_level[String(_level_id)].append(_rune)
+	else:
+		enemy_effects_per_level[String(_level_id)] = []
+		enemy_effects_per_level[String(_level_id)].append(_rune)
 	
 	
 func level_id_to_floor_number(_ebene):

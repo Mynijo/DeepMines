@@ -99,7 +99,8 @@ func die():
 		
 func kill():
 	dead = true
-	spawner.remove_enemy(self)
+	if spawner:
+		spawner.remove_enemy(self)
 	map.remove_enemy(self)
 	queue_free()
 	

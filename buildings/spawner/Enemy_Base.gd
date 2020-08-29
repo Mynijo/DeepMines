@@ -18,7 +18,6 @@ func add_spawn_on_kill(var _building):
 var first = true
 func spawn_enemys(var ebene):
 	var egg
-	var enemeys
 	
 	if ebene < 5:
 		egg = Global_EggManager.get_egg(1, false, false)
@@ -47,9 +46,9 @@ func spawn_enemys(var ebene):
 	else:
 		egg = Global_EggManager.get_egg(3, false, false)
 		
-	enemeys = egg.incubate_egg()
+	enemys = egg.incubate_egg()
 		
-	for e in enemeys:
+	for e in enemys:
 		e.speed = e.speed * rand_range(0.9, 1.1)
 		e.add_spawner(self)
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
