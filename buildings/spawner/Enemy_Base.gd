@@ -4,12 +4,13 @@ signal Spawn_Enemy
 signal Spawn_Building
 
 var enemys = []
-
+var map
 var buliding_on_death = null
 
 func _ready():
-	self.connect("Spawn_Enemy", get_tree().get_root().get_node("map"), "_on_Spawn_Enemy")
-	self.connect("Spawn_Building", get_tree().get_root().get_node("map"), "_on_Spawn_Building")
+	map = get_tree().get_root().get_node("map")
+	self.connect("Spawn_Enemy", map , "_on_Spawn_Enemy")
+	self.connect("Spawn_Building", map , "_on_Spawn_Building")
 	
 	
 func add_spawn_on_kill(var _building):
@@ -51,6 +52,9 @@ func spawn_enemys(var ebene):
 	for e in enemys:
 		e.speed = e.speed * rand_range(0.9, 1.1)
 		e.add_spawner(self)
+		var effects = map.get_enemy_effects(level_cor)
+		for eff in effects:
+			e.add_Status(eff.duplicate())
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)
 		
 

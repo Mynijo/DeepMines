@@ -52,6 +52,10 @@ func _ready():
 	Global_AStar.ini_astar()
 	change_game_state(e_GAMESTATE.build_phase)
 	
+	var eff = load("res://effects/StatusEffectShield.tscn").instance()
+	add_enemy_effect_global(eff)
+	
+	
 func add_heart(var _heart_cor, var _level_cor):
 	if heart == null:
 		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()
@@ -211,23 +215,23 @@ var enemy_effects_per_level = {}
 var enemy_effects_global = []
 
 func get_enemy_effects(var _level_id):
-	var run = []
+	var eff = []
 	if enemy_effects_per_level.has (String(_level_id)):
 		for r in enemy_effects_per_level[String(_level_id)]:
-			run.append(r)
+			eff.append(r)
 	for r in enemy_effects_global:
-		run.append(r)
-	return run
+		eff.append(r)
+	return eff
 	
-func add_enemy_effect_global( _rune):
-	enemy_effects_global.append(_rune)
+func add_enemy_effect_global( _effect):
+	enemy_effects_global.append(_effect)
 	
-func add_enemy_effect_per_level(_level_id, _rune):
+func add_enemy_effect_per_level(_level_id, _effect):
 	if enemy_effects_per_level.has (String(_level_id)):
-		enemy_effects_per_level[String(_level_id)].append(_rune)
+		enemy_effects_per_level[String(_level_id)].append(_effect)
 	else:
 		enemy_effects_per_level[String(_level_id)] = []
-		enemy_effects_per_level[String(_level_id)].append(_rune)
+		enemy_effects_per_level[String(_level_id)].append(_effect)
 	
 	
 func level_id_to_floor_number(_ebene):
