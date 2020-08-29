@@ -4,7 +4,6 @@ signal Spawn_Enemy
 signal Spawn_Building
 
 var enemys = []
-var map
 var buliding_on_death = null
 
 func _ready():

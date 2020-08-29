@@ -74,33 +74,37 @@ func _on_Area2D2Right_mouse_entered():
 func _on_Area2D2Right_mouse_exited():
 	velocity += Vector2(-1, 0)
 
-func enable_Mode_Button():
+func enable_Mode_Buttons():
 	$UI/Cursor_Mode_None.disabled = false
 	$UI/Cursor_Mode_Pickaxe.disabled = false
 	$UI/Cursor_Mode_Shovel.disabled = false
 	$UI/Cursor_Mode_Barricade.disabled = false
 
-
+func disable_Mode_Buttons():
+	$UI/Cursor_Mode_None.disabled = true
+	$UI/Cursor_Mode_Pickaxe.disabled = true
+	$UI/Cursor_Mode_Shovel.disabled = true
+	$UI/Cursor_Mode_Barricade.disabled = true	
 
 func _on_Cursor_Mode_None_pressed():
 	current_cursor_mode = e_CURSOR_MODE.none
-	enable_Mode_Button()
+	enable_Mode_Buttons()
 	$UI/Cursor_Mode_None.disabled = true
 
 func _on_Cursor_Mode_Pickaxe_pressed():
 	current_cursor_mode = e_CURSOR_MODE.Pickaxe
-	enable_Mode_Button()
+	enable_Mode_Buttons()
 	$UI/Cursor_Mode_Pickaxe.disabled = true
 
 
 func _on_Cursor_Mode_Shovel_pressed():
 	current_cursor_mode = e_CURSOR_MODE.Shovel
-	enable_Mode_Button()
+	enable_Mode_Buttons()
 	$UI/Cursor_Mode_Shovel.disabled = true
 
 
 func _on_Cursor_Mode_Barricade_pressed():
 	current_cursor_mode = e_CURSOR_MODE.Barricade
-	enable_Mode_Button()
+	enable_Mode_Buttons()
 	$UI/Cursor_Mode_Barricade.disabled = true
 

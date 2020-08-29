@@ -9,9 +9,11 @@ export (bool) var solid = true
 var pos
 var cor
 var level_cor
+var map
+
 
 func _ready():
-	pass
+	map = get_tree().get_root().get_node("map")
 	
 func take_damage(_damage):
 	health -= _damage

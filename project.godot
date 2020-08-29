@@ -25,6 +25,7 @@ Global_AStar="*res://global/AStar.gd"
 Global_Block="*res://terrain/Block.gd"
 Player="*res://player/player.tscn"
 Global_EggManager="*res://global/EggManager.gd"
+Global_GameStateManager="*res://global/GameStateManager.gd"
 
 [display]
 

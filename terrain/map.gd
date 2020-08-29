@@ -14,11 +14,6 @@ var levels = []
 
 var level_entries = {}
 
-enum e_GAMESTATE{
-	none,
-	build_phase,
-	battel_phase
-}
 
 enum e_LEVELTYPE {
 	none,
@@ -38,7 +33,6 @@ var map_as_bi = {}
 
 signal Runes_Changed
 
-var game_stat = e_GAMESTATE.none
 
 func _init():
 	Global_AStar.set_map_size(map_size)
@@ -50,7 +44,7 @@ func _ready():
 	gen_level(Vector2(0,0))
 	fill_blocks(Vector2(0,0))	
 	Global_AStar.ini_astar()
-	change_game_state(e_GAMESTATE.build_phase)
+	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.build_phase)
 	
 	var eff = load("res://effects/StatusEffectShield.tscn").instance()
 	add_enemy_effect_global(eff)
@@ -62,16 +56,7 @@ func add_heart(var _heart_cor, var _level_cor):
 		add_building(heart, _heart_cor,  _level_cor)
 		Global_AStar.set_heart(_heart_cor, _level_cor)
 		
-func change_game_state(var _new_stat):
-	if game_stat == _new_stat:
-		return
-	game_stat = _new_stat
-	match game_stat:
-		e_GAMESTATE.battel_phase:
-			hide_gen_buttons()
-		e_GAMESTATE.build_phase:
-			show_gen_buttons()
-			
+
 
 func fill_blocks(_level_cor):
 	var dirt_block = load("res://terrain/blocks/Dirt.tscn")
@@ -146,12 +131,12 @@ func _on_Spawn_Enemy(_Enemy, _pos, _cor, _level_cor):
 	$enemys.add_child(_Enemy)
 	enemys.append(_Enemy)
 	_Enemy.spawn(_pos, _cor, _level_cor)
-	change_game_state(e_GAMESTATE.battel_phase)
+	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.battel_phase)
 
 func remove_enemy(_enemy):
 	enemys.erase(_enemy)
 	if enemys.empty():
-		change_game_state(e_GAMESTATE.build_phase)
+		Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.build_phase)
 	
 	
 func _on_Spawn_Building(_building, _cor, _level_cor):

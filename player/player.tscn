@@ -18,17 +18,17 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 640, 208, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 672, 79, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 640, 48, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 688, 80, 16, 16 )
@@ -126,7 +126,7 @@ margin_left = 105.0
 margin_top = 140.0
 margin_right = 135.0
 margin_bottom = 170.0
-icon = SubResource( 6 )
+icon = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -136,7 +136,7 @@ margin_left = 105.0
 margin_top = 180.0
 margin_right = 135.0
 margin_bottom = 210.0
-icon = SubResource( 7 )
+icon = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,7 +146,7 @@ margin_left = 105.0
 margin_top = 100.0
 margin_right = 135.0
 margin_bottom = 130.0
-icon = SubResource( 5 )
+icon = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

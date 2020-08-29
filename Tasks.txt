@@ -13,7 +13,6 @@ Hidden rooms?
 Play/Stop Button
 Save and load game
 Rune/Relict shoot on kill
-Disable Building actions while battle state
 Camera Control with arrow buttons
 Relict Heal play on death
 Map Mods bar

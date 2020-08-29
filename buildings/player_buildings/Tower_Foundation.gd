@@ -18,11 +18,12 @@ func spawn_tower():
 
 
 func _on_Building_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			if !accTower:
-				if Player.money -50 < 0:
-					return
-				Player.add_money(-50)
-				spawn_tower()
+	if Global_GameStateManager.game_stat == Global_GameStateManager.e_GAMESTATE.build_phase:
+		if event is InputEventMouseButton and event.pressed:
+			if event.button_index == BUTTON_LEFT and event.pressed:
+				if !accTower:
+					if Player.money -50 < 0:
+						return
+					Player.add_money(-50)
+					spawn_tower()
 
