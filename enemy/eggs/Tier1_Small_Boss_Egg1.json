@@ -1,8 +1,8 @@
 {
-"eggName" : "   " ,
+"eggName" : "    " ,
 "tier" : 1 ,
-"small_boss" : false ,
-"boss" : true ,
+"small_boss" : true ,
+"boss" : false ,
 "enemeys" : [
 {
 "packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
