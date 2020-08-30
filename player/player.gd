@@ -66,7 +66,9 @@ func get_shovel():
 func add_money(value):
 	Inventory.money += value
 	$UI/Money.text = "Money:" + String(Inventory.money)
-	
+
+func get_money():
+	return Inventory.money
 	
 func take_damage(damage):
 	health -= damage
