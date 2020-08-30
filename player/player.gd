@@ -1,9 +1,15 @@
 extends Node2D
 
-export (int) var health = 100
-export (int) var money = 120
+class class_Inventory:
+	var money = 100
+	var pickaxe = 100
+	var shovel = 100
+	
+	
 
+export (int) var health = 100
 export (int) var camera_spped = 500
+
 
 var velocity = Vector2(0, 0)
 
@@ -16,17 +22,50 @@ enum e_CURSOR_MODE{
 	Barricade
 }
 
+var Inventory
+
 var current_cursor_mode = e_CURSOR_MODE.none
 
 func _ready():
 	map = get_tree().get_root().get_node("map")
+	Inventory = class_Inventory.new()
 	$UI/Live.text = "Health:" + String(health)
 	$UI/Wave.text = "Wave:"
-	$UI/Money.text = "Money:" + String(money)
+	$UI/Money.text = "Money:" + String(Inventory.money)
+	$UI/Pickaxe.text = String(Inventory.pickaxe)
+	$UI/Shovel.text  = String(Inventory.shovel)
+	
+func add_pickaxe(_pickaxe):
+	Inventory.pickaxe += _pickaxe
+	$UI/Pickaxe.text = String(Inventory.pickaxe)
+	
+func remove_pickaxe(_pickaxe):
+	if Inventory.pickaxe - _pickaxe < 0:
+		Inventory.pickaxe = 0
+	else:
+		Inventory.pickaxe -= _pickaxe
+	$UI/Pickaxe.text = String(Inventory.pickaxe)
+
+func get_pickaxe():
+	return Inventory.pickaxe
+	
+func add_shovel(_shovel):
+	Inventory.shovel + _shovel
+	$UI/Shovel.text  = String(Inventory.shovel)
+	
+func remove_shovel(_shovel):
+	if Inventory.shovel - _shovel < 0:
+		Inventory.shovel = 0
+	else:
+		Inventory.shovel -= _shovel
+	$UI/Shovel.text  = String(Inventory.shovel)
+	
+func get_shovel():
+	return Inventory.shovel
 	
 func add_money(value):
-	money += value
-	$UI/Money.text = "Money:" + String(money)
+	Inventory.money += value
+	$UI/Money.text = "Money:" + String(Inventory.money)
 	
 	
 func take_damage(damage):
@@ -84,7 +123,7 @@ func disable_Mode_Buttons():
 	$UI/Cursor_Mode_None.disabled = true
 	$UI/Cursor_Mode_Pickaxe.disabled = true
 	$UI/Cursor_Mode_Shovel.disabled = true
-	$UI/Cursor_Mode_Barricade.disabled = true	
+	$UI/Cursor_Mode_Barricade.disabled = true
 
 func _on_Cursor_Mode_None_pressed():
 	current_cursor_mode = e_CURSOR_MODE.none

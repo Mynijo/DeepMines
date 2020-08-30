@@ -42,16 +42,20 @@ func _on_Block_input_event(_viewport, _event, _shape_idx):
 				return
 			Player.e_CURSOR_MODE.Pickaxe:
 				if Mineable:
-					var air_block = load("res://terrain/blocks/air.tscn").instance()
-					map.replace_block(self, air_block)
+					if Player.get_pickaxe() >= 1:
+						var air_block = load("res://terrain/blocks/air.tscn").instance()
+						map.replace_block(self, air_block)
+						Player.remove_pickaxe(1)
 			Player.e_CURSOR_MODE.Shovel:
 				if Buildable and BlockType != e_BLOCKS.pit:
-					var pit_block = load("res://terrain/blocks/pit.tscn").instance()
-					if Global_AStar.is_replacement_valid(self, pit_block):
-						map.replace_block(self, pit_block)
-						queue_free()
-					else:
-						pit_block.queue_free()
+					if Player.get_shovel() >= 1:
+						var pit_block = load("res://terrain/blocks/pit.tscn").instance()
+						if Global_AStar.is_replacement_valid(self, pit_block):
+							map.replace_block(self, pit_block)
+							queue_free()
+							Player.remove_shovel(1)
+						else:
+							pit_block.queue_free()
 
 			Player.e_CURSOR_MODE.Barricade:
 				if Buildable:
