@@ -3,11 +3,11 @@ extends KinematicBody2D
 signal health_changed
 signal dead
 
-export (int) var speed
+export (int) var speed = 200
 export (int) var experience
-export (int) var damage
-export (int) var gold_value = 5
-export (int) var max_health
+export (int) var damage = 10
+export (int) var gold_value = 20
+export (int) var max_health = 200
 var health
 
 var last_tower_hit = null

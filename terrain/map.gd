@@ -46,9 +46,6 @@ func _ready():
 	Global_AStar.ini_astar()
 	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.build_phase)
 	
-	var eff = load("res://effects/StatusEffectShield.tscn").instance()
-	add_enemy_effect_global(eff)
-	
 	
 func add_heart(var _heart_cor, var _level_cor):
 	if heart == null:
