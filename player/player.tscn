@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
 [ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://relic/Relics.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/RelicStatusBar.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 800, 20 )
@@ -176,6 +177,13 @@ margin_left = 1258.99
 margin_top = 664.005
 margin_right = 1498.99
 margin_bottom = 799.005
+
+[node name="RelicStatusBar" parent="UI" instance=ExtResource( 5 )]
+margin_left = 250.0
+margin_top = 50.0
+margin_right = 290.0
+margin_bottom = 90.0
+Relics_Path = NodePath("../../Relics")
 
 [node name="Relics" parent="." instance=ExtResource( 4 )]
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]

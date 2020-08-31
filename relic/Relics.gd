@@ -1,7 +1,5 @@
 extends Node
 
-
-
 signal pick_up_relic
 
 # Called when the node enters the scene tree for the first time.
@@ -10,8 +8,8 @@ func _ready():
 
 
 func add_relic(_Relic):
-	_Relic.activate()
 	add_child(_Relic)
+	_Relic.activate()
 	emit_signal('pick_up_relic', _Relic)
 
 

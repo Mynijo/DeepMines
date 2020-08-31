@@ -54,7 +54,3 @@ BUTTON_WHEEL_DOWN={
 2d_physics/layer_3="enemys"
 2d_physics/layer_4="bullets"
 2d_physics/layer_5="camera"
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

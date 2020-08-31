@@ -1,5 +1,5 @@
 {
-"eggName" : " " ,
+"eggName" : "  " ,
 "tier" : 1 ,
 "small_boss" : false ,
 "boss" : false ,
@@ -11,24 +11,15 @@
 },
 "effects" : 
 [
-],
-},
 {
-"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"packed_scene" : "res://Effects/StatusEffectCharge.tscn" ,
 "not_default_values" : 
 {
 },
-"effects" : 
+"conditions" : 
 [
 ],
 },
-{
-"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
-"not_default_values" : 
-{
-},
-"effects" : 
-[
 ],
 },
 ]

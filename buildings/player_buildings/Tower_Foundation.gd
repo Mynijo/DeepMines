@@ -27,3 +27,7 @@ func _on_Building_input_event(viewport, event, shape_idx):
 					Player.add_money(-50)
 					spawn_tower()
 
+
+
+func _on_Building_body_entered(body):
+	pass # Replace with function body.

@@ -1,7 +1,50 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://relic/Relic.tscn" type="PackedScene" id=1]
 [ext_resource path="res://relic/Divine_Shield_Relic.gd" type="Script" id=2]
+[ext_resource path="res://media/relics/ShieldOff.png" type="Texture" id=3]
+[ext_resource path="res://media/relics/Shield1.png" type="Texture" id=4]
+[ext_resource path="res://media/relics/Shield3.png" type="Texture" id=5]
+[ext_resource path="res://media/relics/Shield2.png" type="Texture" id=6]
 
 [node name="Divine_Shield_Relic" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+
+[node name="Icon" parent="." index="0"]
+visible = false
+
+[node name="Charge3" type="TextureRect" parent="." index="2"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Charge2" type="TextureRect" parent="." index="3"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Charge1" type="TextureRect" parent="." index="4"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChargeOff" type="TextureRect" parent="." index="5"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

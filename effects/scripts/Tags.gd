@@ -31,7 +31,8 @@ enum e_relic{
 	pick_up_relic,
 	pick_up_me,
 	game_stat_change,
-	player_take_damage
+	player_take_damage,
+	player_took_damage
 }
 
 

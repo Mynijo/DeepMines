@@ -23,6 +23,7 @@ enum e_CURSOR_MODE{
 }
 
 signal player_take_damage
+signal player_took_damage
 
 var Inventory
 
@@ -37,8 +38,13 @@ func _ready():
 	$UI/Pickaxe.text = String(Inventory.pickaxe)
 	$UI/Shovel.text  = String(Inventory.shovel)
 	
-	var relic = load("res://relic/Divine_Shield_Relic.tscn").instance()
-	$Relics.add_relic(relic)
+	var relics = []
+	relics.append(load("res://relic/Divine_Shield_Relic.tscn").instance())
+	relics.append(load("res://relic/Gold_Bars_Relic.tscn").instance())
+	relics.append(load("res://relic/BloodyCoin.tscn").instance())
+	
+	for relic in relics:
+		$Relics.add_relic(relic)
 	
 func add_pickaxe(_pickaxe):
 	Inventory.pickaxe += _pickaxe
@@ -83,6 +89,7 @@ func take_damage(_damage):
 	$UI/Live.text = "Health:" + String(health)
 	if health <= 0:
 		pass 
+	emit_signal('player_took_damage', take_dame)
 
 func get_health():
 	return health
