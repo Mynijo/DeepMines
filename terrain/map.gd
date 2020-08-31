@@ -128,7 +128,7 @@ func _on_Spawn_Enemy(_Enemy, _pos, _cor, _level_cor):
 	$enemys.add_child(_Enemy)
 	enemys.append(_Enemy)
 	_Enemy.spawn(_pos, _cor, _level_cor)
-	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.battel_phase)
+	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.battle_phase)
 
 func remove_enemy(_enemy):
 	enemys.erase(_enemy)

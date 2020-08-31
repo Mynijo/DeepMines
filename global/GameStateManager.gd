@@ -5,7 +5,7 @@ extends Node2D
 enum e_GAMESTATE{
 	none,
 	build_phase,
-	battel_phase
+	battle_phase
 }
 
 var game_stat = e_GAMESTATE.none
@@ -23,7 +23,7 @@ func change_game_state(var _new_stat):
 		return
 	game_stat = _new_stat
 	match game_stat:
-		e_GAMESTATE.battel_phase:
+		e_GAMESTATE.battle_phase:
 			map.hide_gen_buttons()
 			Player._on_Cursor_Mode_None_pressed()
 			Player.disable_Mode_Buttons()
