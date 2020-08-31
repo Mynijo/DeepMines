@@ -1,6 +1,7 @@
 extends Node2D
 
 
+signal gameState_changed
 
 enum e_GAMESTATE{
 	none,
@@ -30,3 +31,7 @@ func change_game_state(var _new_stat):
 		e_GAMESTATE.build_phase:
 			map.show_gen_buttons()
 			Player.enable_Mode_Buttons()
+	emit_signal('gameState_changed', game_stat)
+
+func get_game_stat():
+	return game_stat

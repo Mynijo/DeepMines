@@ -22,6 +22,8 @@ enum e_CURSOR_MODE{
 	Barricade
 }
 
+signal player_take_damage
+
 var Inventory
 
 var current_cursor_mode = e_CURSOR_MODE.none
@@ -34,6 +36,9 @@ func _ready():
 	$UI/Money.text = "Money:" + String(Inventory.money)
 	$UI/Pickaxe.text = String(Inventory.pickaxe)
 	$UI/Shovel.text  = String(Inventory.shovel)
+	
+	var relic = load("res://relic/Divine_Shield_Relic.tscn").instance()
+	$Relics.add_relic(relic)
 	
 func add_pickaxe(_pickaxe):
 	Inventory.pickaxe += _pickaxe
@@ -69,9 +74,12 @@ func add_money(value):
 
 func get_money():
 	return Inventory.money
-	
-func take_damage(damage):
-	health -= damage
+
+var take_dame = 0
+func take_damage(_damage):
+	take_dame = _damage
+	emit_signal('player_take_damage', self)
+	health -= take_dame
 	$UI/Live.text = "Health:" + String(health)
 	if health <= 0:
 		pass 

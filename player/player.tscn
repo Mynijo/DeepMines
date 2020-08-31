@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
 [ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://relic/Relics.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 800, 20 )
@@ -175,6 +176,8 @@ margin_left = 1258.99
 margin_top = 664.005
 margin_right = 1498.99
 margin_bottom = 799.005
+
+[node name="Relics" parent="." instance=ExtResource( 4 )]
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]

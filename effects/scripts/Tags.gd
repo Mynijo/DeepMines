@@ -27,6 +27,14 @@ enum e_effect{
 	took_dmg
 }
 
+enum e_relic{
+	pick_up_relic,
+	pick_up_me,
+	game_stat_change,
+	player_take_damage
+}
+
+
 var tags = []
 
 
