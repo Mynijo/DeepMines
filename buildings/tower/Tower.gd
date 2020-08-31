@@ -31,7 +31,8 @@ enum e_rule{
 }
 
 func _ready():
-	self.connect("Runes_Changed", self, "runes_changed")
+	var _rc
+	_rc = self.connect("Runes_Changed", self, "runes_changed")
 	
 	map = get_tree().get_root().get_node("map")
 	
@@ -93,14 +94,14 @@ func _process(delta):
 		
 func spawn(_position):
 	position = _position
-	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
-	self.get_tree().get_current_scene().connect("Runes_Changed", self , "runes_changed")
+	var _rc
+	_rc = self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
+	_rc = self.get_tree().get_current_scene().connect("Runes_Changed", self , "runes_changed")
 
 
 func order_by(order_by):
 	if target.size() <= 0:
 		return
-	var temp = target.front()
 	if order_by == e_rule.closest_first:
 		var closest = null
 		for t in target:

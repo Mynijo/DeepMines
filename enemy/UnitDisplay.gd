@@ -7,7 +7,7 @@ func _ready():
 		node.hide()
 	pass
 	
-func _process(delta):
+func _process(_delta):
 	global_rotation = 0
 	
 func update_healthbar(_value):

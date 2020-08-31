@@ -8,8 +8,9 @@ var buliding_on_death = null
 
 func _ready():
 	map = get_tree().get_root().get_node("map")
-	self.connect("Spawn_Enemy", map , "_on_Spawn_Enemy")
-	self.connect("Spawn_Building", map , "_on_Spawn_Building")
+	var _rc
+	_rc = self.connect("Spawn_Enemy", map , "_on_Spawn_Enemy")
+	_rc = self.connect("Spawn_Building", map , "_on_Spawn_Building")
 	
 	
 func add_spawn_on_kill(var _building):

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 signal health_changed
-signal dead
+#signal dead
 
 export (int) var speed = 200
 export (int) var experience
@@ -110,7 +110,8 @@ func _physics_process(delta):
 		if dead:
 			return
 		control(delta)
-		move_and_slide(velocity)
+		var _rc 
+		_rc = move_and_slide(velocity)
 		
 func get_velocity():
 	return velocity

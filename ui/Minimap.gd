@@ -16,7 +16,7 @@ func _ready():
 	Camera =  Player.get_node("Camera")
 	zoom_default = zoom
 	
-func _process(delta):
+func _process(_delta):
 	for item in  get_tree().get_nodes_in_group("minimap_icons"):
 		item.show()
 		var local_pos = item.get_parent().global_position - Camera.global_position
@@ -37,7 +37,6 @@ func _process(delta):
 		obj_pos.x = clamp(obj_pos.x, 0, grid.rect_size.x)
 		obj_pos.y = clamp(obj_pos.y, 0, grid.rect_size.y)
 		
-		var temp = obj_pos +  self.rect_global_position
 		item.global_position = obj_pos +  Player.global_position +grid.rect_global_position
 		
 		item.set_scale(grid_scale)

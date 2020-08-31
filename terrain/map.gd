@@ -36,7 +36,8 @@ signal Runes_Changed
 
 func _init():
 	Global_AStar.set_map_size(map_size)
-	rand_seed(420)
+	var _rc
+	_rc = rand_seed(420)
 	randomize ( )
 
 # Called when the node enters the scene tree for the first time.
@@ -56,9 +57,9 @@ func add_heart(var _heart_cor, var _level_cor):
 
 
 func fill_blocks(_level_cor):
-	var dirt_block = load("res://terrain/blocks/Dirt.tscn")
-	var air_block = load("res://terrain/blocks/Air.tscn")
-	var pit_block = load("res://terrain/blocks/Pit.tscn")
+	var dirt_block = load("res://terrain/blocks/dirt.tscn")
+	var air_block = load("res://terrain/blocks/air.tscn")
+	var pit_block = load("res://terrain/blocks/pit.tscn")
 	var none_block = load("res://terrain/blocks/none.tscn")
 	var block_inst
 	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
@@ -165,7 +166,7 @@ func add_building(_building, _cor, _level_cor):
 						block.queue_free()
 			else:
 				var level = map_as_bi[String(levle_cor)]
-				level[x][y] = Global_Block.e_BLOCKS.pit
+				level[x][y] = Global_Block.e_BLOCKS.none
 
 	
 var runes_per_level = {}

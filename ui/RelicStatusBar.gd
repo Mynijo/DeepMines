@@ -5,8 +5,8 @@ export (NodePath) var Relics_Path
 
 var Relics_Node
 
-signal pick_up_relic
-signal update_icon
+#signal pick_up_relic
+#signal update_icon
 
 var relics = {}
 

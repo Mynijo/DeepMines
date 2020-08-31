@@ -45,7 +45,6 @@ func _process(delta):
 
 func explode():
 	for r in runes:
-		var temp = r.get_tags()
 		if r.has_tag($Tags.e_rune.explode):
 			if !r.effect(self, $Tags.e_rune.explode):
 				return
@@ -60,8 +59,7 @@ func _on_Attack_body_entered(body):
 		for r in runes:
 			if r.has_tag($Tags.e_rune.enemy_was_dmg):
 				r.effect(body,$Tags.e_rune.enemy_was_dmg)
-	
-	var result 
+
 	if "last_tower_hit" in body:
 		body.last_tower_hit = tower
 	for r in runes:

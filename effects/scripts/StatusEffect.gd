@@ -18,7 +18,7 @@ func _init():
 	pass
 
 	
-func effekt(value, tag):
+func effekt(_value, _tag):
 	pass
 
 func _on_Duration_timeout():

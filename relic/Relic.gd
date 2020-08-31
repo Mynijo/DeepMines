@@ -16,7 +16,7 @@ func _ready():
 	map = get_tree().get_root().get_node("map")
 
 
-func effect(value, tag):
+func effect(_value, _tag):
 	pass
 
 func update_icon():
@@ -35,16 +35,17 @@ func get_icon():
 	return null
 
 func activate():
+	var _rc
 	if $Tags.has_tag($Tags.e_relic.pick_up_relic):
-		get_parent().connect("pick_up_relic", self, "call_on_pick_up_relic")
+		_rc = get_parent().connect("pick_up_relic", self, "call_on_pick_up_relic")
 	if $Tags.has_tag($Tags.e_relic.pick_up_me):
-		get_parent().connect("pick_up_relic", self, "call_on_pick_up_me_calc")
+		_rc = get_parent().connect("pick_up_relic", self, "call_on_pick_up_me_calc")
 	if $Tags.has_tag($Tags.e_relic.player_take_damage):
-		Player.connect("player_take_damage", self, "call_on_player_take_damage")
+		_rc = Player.connect("player_take_damage", self, "call_on_player_take_damage")
 	if $Tags.has_tag($Tags.e_relic.player_took_damage):
-		Player.connect("player_took_damage", self, "call_on_player_took_damage")
+		_rc = Player.connect("player_took_damage", self, "call_on_player_took_damage")
 	if $Tags.has_tag($Tags.e_relic.game_stat_change):
-		Global_GameStateManager.connect("gameState_changed", self, "call_on_gamestate_changed")
+		_rc = Global_GameStateManager.connect("gameState_changed", self, "call_on_gamestate_changed")
 		
 func deactivate():
 	if $Tags.has_tag($Tags.e_relic.pick_up_relic):

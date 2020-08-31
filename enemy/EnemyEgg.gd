@@ -29,7 +29,6 @@ func is_boss():
 func incubate_egg():
 	var enemys = []
 	for enemy_values in egg_values["enemeys"]:
-		var test = enemy_values["packed_scene"]
 		var enemy = load(enemy_values["packed_scene"]).instance()
 		enemy.load_settings(enemy_values["not_default_values"])
 		for effect_values in enemy_values["effects"]:
