@@ -149,8 +149,9 @@ func get_gun_cooldown():
 	
 func effect_gun_cooldown(_gun_cooldown):
 	gun_cooldown_effected = _gun_cooldown
-	$GunCooldown.wait_time = gun_cooldown_effected
-	$GunCooldown.start()
+	if gun_cooldown_effected > 0:
+		$GunCooldown.wait_time = gun_cooldown_effected
+		$GunCooldown.start()
 	
 func get_detect_radius():
 	if detect_radius_effected:
@@ -159,8 +160,9 @@ func get_detect_radius():
 	
 func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
-	$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
-	$RayCastAnchor/RayCast2D.cast_to.y = detect_radius_effected
+	if detect_radius_effected > 0:
+		$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
+		$RayCastAnchor/RayCast2D.cast_to.y = detect_radius_effected
 	
 func runes_changed():
 	reset_tower()

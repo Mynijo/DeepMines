@@ -10,9 +10,9 @@ position = Vector2( 200, 50 )
 
 [node name="buildings" type="Node" parent="."]
 
-[node name="NodesTemp" type="Node" parent="."]
-
 [node name="enemys" type="Node" parent="."]
+
+[node name="NodesTemp" type="Node" parent="."]
 
 [node name="Buttons" type="Node" parent="."]
 
