@@ -26,3 +26,12 @@ func _process(_delta):
 
 func delete_me():
 	queue_free()
+
+
+
+func _on_Trap_input_event(_viewport, _event, _shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == BUTTON_WHEEL_UP:
+			rotation += PI/2
+		if _event.button_index == BUTTON_WHEEL_DOWN:
+			rotation -= PI/2

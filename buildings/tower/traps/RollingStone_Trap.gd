@@ -11,7 +11,8 @@ func build_me():
 	var run = load("res://rune/RunePierce.tscn").instance()
 	run.set_max_pierce(50)
 	runes_attached.append(run)
-	emit_signal('Runes_Changed')
+	emit_signal('Runes_Changed')	
+	deactivate_preview()
 
 func _process(_delta):
 	if ray.is_colliding():
@@ -21,3 +22,10 @@ func _process(_delta):
 				charges -= 1
 				if charges <= 0:
 					delete_me()
+
+
+func activate_preview():
+	$RayCastAnchor/DirIcon.show()
+
+func deactivate_preview():
+	$RayCastAnchor/DirIcon.hide()

@@ -52,7 +52,8 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneWhirl.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
-	emit_signal('Runes_Changed')
+	emit_signal('Runes_Changed')	
+	deactivate_preview()
 
 func connect_signals():
 	var _rc
@@ -196,3 +197,9 @@ func is_Tower():
 
 func add_exp(_exp):
 	experience += _exp
+	
+func activate_preview():
+	pass
+
+func deactivate_preview():
+	pass

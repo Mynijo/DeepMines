@@ -99,6 +99,7 @@ func _on_Block_mouse_entered():
 						trap.get_parent().remove_child(trap)
 					add_child(trap)
 					trap.global_position = global_position
+					trap.activate_preview()
 
 
 func _on_Block_mouse_exited():

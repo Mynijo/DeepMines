@@ -8,3 +8,4 @@ script = ExtResource( 2 )
 gun_cooldown = 0.0
 detect_radius = 0
 turret_speed = 1.0
+[connection signal="input_event" from="." to="." method="_on_Trap_input_event"]
