@@ -30,13 +30,10 @@ enum e_rule{
 }
 
 func _ready():
-	build_me()
-
-func build_me():
-	var _rc
-	_rc = self.connect("Runes_Changed", self, "runes_changed")	
 	map = get_tree().get_root().get_node("map")
-	
+	connect_signals()
+
+func build_me():	
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
@@ -56,6 +53,12 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
 	emit_signal('Runes_Changed')
+
+func connect_signals():
+	var _rc
+	_rc = self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
+	_rc = self.get_tree().get_current_scene().connect("Runes_Changed", self , "runes_changed")
+	_rc = self.connect("Runes_Changed", self, "runes_changed")
 
 func add_rune(_rune):
 	runes_attached.append(_rune)
@@ -95,9 +98,6 @@ func _process(delta):
 		
 func spawn(_position):
 	position = _position
-	var _rc
-	_rc = self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
-	_rc = self.get_tree().get_current_scene().connect("Runes_Changed", self , "runes_changed")
 
 
 func order_by(order_by):

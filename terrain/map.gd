@@ -159,11 +159,9 @@ func add_building(_building, _cor, _level_cor):
 			var levle_cor = String(Global_AStar.level_cor_to_id(_level_cor))
 			if Global_AStar.map_level_block.has(levle_cor):
 				var map_level = Global_AStar.map_level_block[levle_cor]
-				if map_level.has(x):
-					if map_level[x].has(y):
-						var block = map_level[x][y]
-						replace_block(block, load("res://terrain/blocks/None.tscn").instance())
-						block.queue_free()
+				var block = map_level[x][y]
+				replace_block(block, load("res://terrain/blocks/None.tscn").instance())
+				block.queue_free()
 			else:
 				var level = map_as_bi[String(levle_cor)]
 				level[x][y] = Global_Block.e_BLOCKS.none

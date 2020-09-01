@@ -3,12 +3,7 @@ extends "res://buildings/tower/Tower.gd"
 
 export (int) var charges = 1
 
-func _ready():
-	pass
-
 func build_me():
-	map = get_tree().get_root().get_node("map")
-	
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
