@@ -16,7 +16,6 @@ region = Rect2( 454.421, 134.673, 50, 50 )
 [node name="Building" instance=ExtResource( 1 )]
 scale = Vector2( 0.8, 0.8 )
 script = ExtResource( 2 )
-size = Vector2( 1, 1 )
 tower = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="." index="0"]

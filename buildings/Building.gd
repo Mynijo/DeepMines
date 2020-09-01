@@ -1,7 +1,7 @@
 extends Node2D
 
 
-export (Vector2) var size
+export (Vector2) var size = Vector2(1,1)
 
 export (int) var health = 1000
 export (bool) var solid = true

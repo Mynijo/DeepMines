@@ -144,9 +144,9 @@ func _on_Spawn_Building(_building, _cor, _level_cor):
 func add_building(_building, _cor, _level_cor):
 	var size = _building.get_size()
 	var temp_pos = get_pos_on_map_mid(_cor, _level_cor) + (((size - Vector2(1,1)) * (block_size_pix /2)))
+	$buildings.add_child(_building)
 	_building.set_pos(temp_pos)
 	_building.set_cor(_cor, _level_cor)
-	$buildings.add_child(_building)
 	
 	if !map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
 		return
