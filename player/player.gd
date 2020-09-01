@@ -19,7 +19,8 @@ enum e_CURSOR_MODE{
 	none,
 	Pickaxe,
 	Shovel,
-	Barricade
+	Barricade,
+	BuildTrap
 }
 
 signal player_take_damage
@@ -135,12 +136,14 @@ func enable_Mode_Buttons():
 	$UI/Cursor_Mode_Pickaxe.disabled = false
 	$UI/Cursor_Mode_Shovel.disabled = false
 	$UI/Cursor_Mode_Barricade.disabled = false
+	$UI/Cursor_Mode_BuildTrap.disabled = false
 
 func disable_Mode_Buttons():
 	$UI/Cursor_Mode_None.disabled = true
 	$UI/Cursor_Mode_Pickaxe.disabled = true
 	$UI/Cursor_Mode_Shovel.disabled = true
 	$UI/Cursor_Mode_Barricade.disabled = true
+	$UI/Cursor_Mode_BuildTrap.disabled = true
 
 func _on_Cursor_Mode_None_pressed():
 	current_cursor_mode = e_CURSOR_MODE.none
@@ -164,3 +167,8 @@ func _on_Cursor_Mode_Barricade_pressed():
 	enable_Mode_Buttons()
 	$UI/Cursor_Mode_Barricade.disabled = true
 
+
+func _on_Cursor_Mode_BuildTrap_pressed():
+	current_cursor_mode = e_CURSOR_MODE.BuildTrap
+	enable_Mode_Buttons()
+	$UI/Cursor_Mode_BuildTrap.disabled = true

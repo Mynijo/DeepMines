@@ -11,7 +11,7 @@ export (float) var turret_speed = 1.0
 var runes_attached = []
 var runes_active = []
 
-var Attack
+export (PackedScene) var Attack
 
 signal shoot
 
@@ -32,8 +32,7 @@ enum e_rule{
 
 func _ready():
 	var _rc
-	_rc = self.connect("Runes_Changed", self, "runes_changed")
-	
+	_rc = self.connect("Runes_Changed", self, "runes_changed")	
 	map = get_tree().get_root().get_node("map")
 	
 	$GunCooldown.wait_time = get_gun_cooldown()
@@ -45,7 +44,7 @@ func _ready():
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddCharme.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
-	runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
+	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
 	#runes_attached.append(load("res://rune/RuneBoomerang.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneChain.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreasedAps.tscn").instance())
@@ -79,7 +78,7 @@ func _process(delta):
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		
 		if target_dir.dot(current_dir) > 0.9999:
-			$Node.look_at(target.front().global_position)
+			$RayCastAnchor.look_at(target.front().global_position)
 			ray.force_raycast_update()
 			if ray.is_colliding():
 				if ray.get_collider().is_in_group("enemys"):

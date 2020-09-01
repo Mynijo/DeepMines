@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
@@ -28,12 +28,17 @@ region = Rect2( 672, 79, 16, 16 )
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 2 )
-region = Rect2( 640, 48, 16, 16 )
+region = Rect2( 720, 144, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 688, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 736, 144.008, 16, 16 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -133,9 +138,9 @@ __meta__ = {
 
 [node name="Cursor_Mode_None" type="Button" parent="UI"]
 margin_left = 50.0
-margin_top = 220.0
+margin_top = 260.0
 margin_right = 80.0
-margin_bottom = 250.0
+margin_bottom = 290.0
 icon = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -153,9 +158,9 @@ __meta__ = {
 
 [node name="Cursor_Mode_Barricade" type="Button" parent="UI"]
 margin_left = 50.0
-margin_top = 180.0
+margin_top = 178.586
 margin_right = 80.0
-margin_bottom = 210.0
+margin_bottom = 208.586
 icon = SubResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -167,6 +172,16 @@ margin_top = 100.0
 margin_right = 80.0
 margin_bottom = 130.0
 icon = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cursor_Mode_BuildTrap" type="Button" parent="UI"]
+margin_left = 50.7071
+margin_top = 220.0
+margin_right = 80.7071
+margin_bottom = 250.0
+icon = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -198,3 +213,4 @@ Relics_Path = NodePath("../../Relics")
 [connection signal="pressed" from="UI/Cursor_Mode_Shovel" to="." method="_on_Cursor_Mode_Shovel_pressed"]
 [connection signal="pressed" from="UI/Cursor_Mode_Barricade" to="." method="_on_Cursor_Mode_Barricade_pressed"]
 [connection signal="pressed" from="UI/Cursor_Mode_Pickaxe" to="." method="_on_Cursor_Mode_Pickaxe_pressed"]
+[connection signal="pressed" from="UI/Cursor_Mode_BuildTrap" to="." method="_on_Cursor_Mode_BuildTrap_pressed"]

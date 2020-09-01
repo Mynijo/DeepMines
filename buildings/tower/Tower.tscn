@@ -6,7 +6,7 @@
 [ext_resource path="res://ui/MapIcon.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 21.2798 )
+extents = Vector2( 18.3751, 15.4499 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
@@ -41,9 +41,9 @@ collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
 
-[node name="Node" type="Node2D" parent="."]
+[node name="RayCastAnchor" type="Node2D" parent="."]
 
-[node name="RayCast2D" type="RayCast2D" parent="Node"]
+[node name="RayCast2D" type="RayCast2D" parent="RayCastAnchor"]
 rotation = -1.5708
 enabled = true
 cast_to = Vector2( 0, 500 )
