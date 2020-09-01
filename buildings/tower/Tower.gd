@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "res://buildings/Building.gd"
 
 export (float) var gun_cooldown
 var gun_cooldown_effected
@@ -21,9 +21,8 @@ var experience = 0
 
 signal Runes_Changed
 var can_shoot = true
-var map
 
-onready var ray := $Node/RayCast2D
+onready var ray := $RayCastAnchor/RayCast2D
 
 
 enum e_rule{
@@ -31,6 +30,9 @@ enum e_rule{
 }
 
 func _ready():
+	build_me()
+
+func build_me():
 	var _rc
 	_rc = self.connect("Runes_Changed", self, "runes_changed")	
 	map = get_tree().get_root().get_node("map")
@@ -38,7 +40,7 @@ func _ready():
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
-	$Node/RayCast2D.cast_to.y = get_detect_radius()
+	$RayCastAnchor/RayCast2D.cast_to.y = get_detect_radius()
 	#runes_attached.append(load("res://rune/RuneBurst.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneScatterShot.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
@@ -104,7 +106,7 @@ func order_by(order_by):
 	if order_by == e_rule.closest_first:
 		var closest = null
 		for t in target:
-			$Node.look_at(t.global_position)
+			$RayCastAnchor.look_at(t.global_position)
 			ray.force_raycast_update()
 			if ray.is_colliding():
 				if ray.get_collider().is_in_group("enemys"):
@@ -158,7 +160,7 @@ func get_detect_radius():
 func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
-	$Node/RayCast2D.cast_to.y = detect_radius_effected
+	$RayCastAnchor/RayCast2D.cast_to.y = detect_radius_effected
 	
 func runes_changed():
 	reset_tower()

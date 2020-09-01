@@ -25,3 +25,4 @@ shape = SubResource( 1 )
 [node name="Sprite" parent="." index="1"]
 texture = SubResource( 2 )
 [connection signal="input_event" from="." to="." method="_on_Building_input_event"]
+[connection signal="mouse_exited" from="." to="." method="_on_Building_mouse_exited"]

@@ -4,6 +4,9 @@ extends "res://buildings/tower/Tower.gd"
 export (int) var charges = 1
 
 func _ready():
+	pass
+
+func build_me():
 	map = get_tree().get_root().get_node("map")
 	
 	$GunCooldown.wait_time = get_gun_cooldown()
@@ -12,7 +15,7 @@ func _ready():
 	$Node/RayCast2D.cast_to.y = get_detect_radius()
 
 
-func _process(delta):	
+func _process(_delta):	
 	if target.size() != 0:
 		order_by(e_rule.closest_first)
 

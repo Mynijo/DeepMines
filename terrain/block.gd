@@ -56,12 +56,57 @@ func _on_Block_input_event(_viewport, _event, _shape_idx):
 							Player.remove_shovel(1)
 						else:
 							pit_block.queue_free()
-
-			Player.e_CURSOR_MODE.Barricade:
-				if Buildable:
+			Player.e_CURSOR_MODE.Spillage:
+				if Buildable or BlockType == e_BLOCKS.pit:
 					var dirt_block = load("res://terrain/blocks/Dirt.tscn").instance()
 					if Global_AStar.is_replacement_valid(self, dirt_block):
 						map.replace_block(self, dirt_block)
 						queue_free()
 					else:
 						dirt_block.queue_free()
+			Player.e_CURSOR_MODE.BuildTrap:
+				var trap = Player.get_selected_trap()
+				if trap:
+					if trap.solid:
+						var none_block = load("res://terrain/blocks/None.tscn").instance()
+						if Global_AStar.is_replacement_valid(self, none_block):
+							build_trap(trap)
+						none_block.queue_free()
+					else:
+						if Buildable:
+							build_trap(trap)
+
+func build_trap(_trap):
+	if preview_trap:
+		preview_trap = null
+	if _trap.get_parent():
+		_trap.get_parent().remove_child(_trap)
+	Player.remove_trap(_trap)
+	map.add_building(_trap, Cor, Level_cor)
+	_trap.build_me()
+
+var preview_trap
+func _on_Block_mouse_entered():
+	match Player.current_cursor_mode:
+		Player.e_CURSOR_MODE.none:
+			return
+		Player.e_CURSOR_MODE.BuildTrap:
+			if Buildable:
+				var trap = Player.get_selected_trap()
+				if trap:
+					preview_trap = trap
+					if trap.get_parent():
+						trap.get_parent().remove_child(trap)
+					add_child(trap)
+					trap.global_position = global_position
+
+
+func _on_Block_mouse_exited():
+	match Player.current_cursor_mode:
+		Player.e_CURSOR_MODE.none:
+			return
+		Player.e_CURSOR_MODE.BuildTrap:
+			if preview_trap:
+				if preview_trap.get_parent() == self:
+					remove_child(preview_trap)
+				preview_trap = null

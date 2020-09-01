@@ -31,3 +31,7 @@ func _on_Building_input_event(_viewport, _event, _shape_idx):
 
 func _on_Building_body_entered(_body):
 	pass # Replace with function body.
+
+
+func _on_Building_mouse_exited():
+	pass # Replace with function body.

@@ -4,12 +4,13 @@ class class_Inventory:
 	var money = 100
 	var pickaxe = 100
 	var shovel = 100
-	
+	var traps = []
 	
 
 export (int) var health = 100
 export (int) var camera_spped = 500
 
+var selected_trap
 
 var velocity = Vector2(0, 0)
 
@@ -19,7 +20,7 @@ enum e_CURSOR_MODE{
 	none,
 	Pickaxe,
 	Shovel,
-	Barricade,
+	Spillage,
 	BuildTrap
 }
 
@@ -46,7 +47,16 @@ func _ready():
 	
 	for relic in relics:
 		$Relics.add_relic(relic)
+
+	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone.tscn").instance())
+
+func get_selected_trap():
+	return selected_trap
 	
+func remove_trap(_trap):
+	Inventory.traps.erase(_trap)
+	select_trap()
+
 func add_pickaxe(_pickaxe):
 	Inventory.pickaxe += _pickaxe
 	$UI/Pickaxe.text = String(Inventory.pickaxe)
@@ -62,7 +72,7 @@ func get_pickaxe():
 	return Inventory.pickaxe
 	
 func add_shovel(_shovel):
-	Inventory.shovel + _shovel
+	Inventory.shovel += _shovel
 	$UI/Shovel.text  = String(Inventory.shovel)
 	
 func remove_shovel(_shovel):
@@ -135,14 +145,14 @@ func enable_Mode_Buttons():
 	$UI/Cursor_Mode_None.disabled = false
 	$UI/Cursor_Mode_Pickaxe.disabled = false
 	$UI/Cursor_Mode_Shovel.disabled = false
-	$UI/Cursor_Mode_Barricade.disabled = false
+	$UI/Cursor_Mode_Spillage.disabled = false
 	$UI/Cursor_Mode_BuildTrap.disabled = false
 
 func disable_Mode_Buttons():
 	$UI/Cursor_Mode_None.disabled = true
 	$UI/Cursor_Mode_Pickaxe.disabled = true
 	$UI/Cursor_Mode_Shovel.disabled = true
-	$UI/Cursor_Mode_Barricade.disabled = true
+	$UI/Cursor_Mode_Spillage.disabled = true
 	$UI/Cursor_Mode_BuildTrap.disabled = true
 
 func _on_Cursor_Mode_None_pressed():
@@ -162,13 +172,20 @@ func _on_Cursor_Mode_Shovel_pressed():
 	$UI/Cursor_Mode_Shovel.disabled = true
 
 
-func _on_Cursor_Mode_Barricade_pressed():
-	current_cursor_mode = e_CURSOR_MODE.Barricade
+func _on_Cursor_Mode_Spillage_pressed():
+	current_cursor_mode = e_CURSOR_MODE.Spillage
 	enable_Mode_Buttons()
-	$UI/Cursor_Mode_Barricade.disabled = true
+	$UI/Cursor_Mode_Spillage.disabled = true
 
 
 func _on_Cursor_Mode_BuildTrap_pressed():
 	current_cursor_mode = e_CURSOR_MODE.BuildTrap
 	enable_Mode_Buttons()
 	$UI/Cursor_Mode_BuildTrap.disabled = true
+	select_trap()
+
+func select_trap():
+	if Inventory.traps.empty():
+		selected_trap = null
+	else:
+		selected_trap = Inventory.traps.front()
