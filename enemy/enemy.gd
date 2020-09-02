@@ -4,7 +4,6 @@ signal health_changed
 #signal dead
 
 export (int) var speed = 200
-export (int) var experience
 export (int) var damage = 10
 export (int) var gold_value = 20
 export (int) var max_health = 200
@@ -95,8 +94,6 @@ func die():
 	
 	if player:
 		player.add_money(gold_value)
-	if last_tower_hit:
-		last_tower_hit.add_exp(experience)
 	kill()
 		
 func kill():
