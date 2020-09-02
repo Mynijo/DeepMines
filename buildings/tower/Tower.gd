@@ -99,6 +99,7 @@ func _process(delta):
 		
 func spawn(_position):
 	position = _position
+	build_me()
 
 
 func order_by(order_by):

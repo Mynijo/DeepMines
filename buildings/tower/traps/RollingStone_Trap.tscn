@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://media/attacks/Stone.png" type="Texture" id=1]
 [ext_resource path="res://attack/RollingStone.tscn" type="PackedScene" id=2]
 [ext_resource path="res://buildings/tower/traps/Trap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://buildings/tower/traps/RollingStone_Trap.gd" type="Script" id=4]
 [ext_resource path="res://media/button_0.png" type="Texture" id=5]
+[ext_resource path="res://media/attacks/Stone_Icon.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -25,3 +26,6 @@ region_enabled = false
 visible = false
 texture = SubResource( 1 )
 offset = Vector2( 30, 0 )
+
+[node name="MapIcon" parent="." index="6"]
+texture = ExtResource( 6 )
