@@ -23,7 +23,6 @@ var move_direction = Vector2(0, 0)
 var velocity = Vector2()
 
 var start_pos_as_cor = Vector2(0, 0)
-var target_pos_as_cor = Vector2(0, 0)
 
 var spawner = null
 
@@ -150,8 +149,8 @@ func load_settings(_settings):
 
 func calc_move_direction():
 	if way_points.size() >= 1:
-		move_direction = (position - way_points[0]).normalized()
-		if position.distance_to(way_points[0]) < 10:
+		move_direction = (position - way_points[0][0]).normalized()
+		if position.distance_to(way_points[0][0]) < 10:
 			way_points.erase(way_points[0])		
 	else:
 		move_direction = Vector2(0, 0)
@@ -184,7 +183,7 @@ func find_way(_target, _level_cor):
 		var cor = Vector2(point.x, point.y)
 		if level_cor != Vector2(0,0):
 			pass
-		way_points.append(map.get_pos_on_map_mid(cor, level_cor))
+		way_points.append([map.get_pos_on_map_mid(cor, level_cor),cor, level_cor])
 
 
 

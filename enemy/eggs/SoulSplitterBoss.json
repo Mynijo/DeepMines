@@ -1,0 +1,29 @@
+{
+"eggName" : " " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/demon.tscn" ,
+"not_default_values" : 
+{
+"max_health" :1500,
+"gold_value" :250,
+"damage" :100,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectSpawnSoulSplitter.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+]
+}

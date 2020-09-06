@@ -4,9 +4,5 @@
 [ext_resource path="res://effects/scripts/StatusEffectMiniMe.gd" type="Script" id=2]
 
 [node name="StatusEffectMiniMe" instance=ExtResource( 1 )]
-
 script = ExtResource( 2 )
-duration = null
-MiniMePath = "res://Enemy/EnemyBlue.tscn"
-
-
+duration = 0.0

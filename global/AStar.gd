@@ -97,6 +97,7 @@ func id_to_cor(_id):
 	var y = stepify(_id /10000, 1)
 	return Vector2(x, y)
 	
+	
 func get_id_of_point(var _vector):
 	var id = astar.get_closest_point(_vector)
 	var temp_pos = astar.get_point_position(id)
