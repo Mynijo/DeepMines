@@ -22,6 +22,8 @@ var experience = 0
 signal Runes_Changed
 var can_shoot = true
 
+var recalc_target = true
+
 onready var ray := $RayCastAnchor/RayCast2D
 
 
@@ -42,7 +44,7 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneScatterShot.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddCharme.tscn").instance())
-	#runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
+	runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
 	#runes_attached.append(load("res://rune/RuneBoomerang.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneChain.tscn").instance())
@@ -72,7 +74,10 @@ func remove_rune(_rune):
 		
 func _process(delta):	
 	if target.size() != 0:
-		order_by(e_rule.closest_first)
+		if recalc_target:
+			order_by(e_rule.closest_first)
+			$TargetSelectionColldown.start()
+			recalc_target = false
 		var distance = (target.front().global_position - global_position).length()
 		var attack = Attack.instance()
 		var _time = (distance / (attack.get_speed()))
@@ -83,7 +88,7 @@ func _process(delta):
 		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		
-		if target_dir.dot(current_dir) > 0.9999:
+		if target_dir.dot(current_dir) > 0.999:
 			$RayCastAnchor.look_at(target.front().global_position)
 			ray.force_raycast_update()
 			if ray.is_colliding():
@@ -204,3 +209,6 @@ func activate_preview():
 
 func deactivate_preview():
 	pass
+
+func _on_TargetSelectionColldown_timeout():
+	recalc_target = true

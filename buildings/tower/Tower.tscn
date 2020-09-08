@@ -20,7 +20,7 @@ collision_mask = 2147483648
 script = ExtResource( 1 )
 gun_cooldown = 1.0
 detect_radius = 250
-turret_speed = 100.0
+turret_speed = 20.0
 
 [node name="Body" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -51,7 +51,12 @@ collision_mask = 2147483653
 
 [node name="MapIcon" parent="." instance=ExtResource( 4 )]
 texture = SubResource( 2 )
+
+[node name="TargetSelectionColldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
 [connection signal="timeout" from="GunCooldown" to="." method="_on_GunCooldown_timeout"]
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 [connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
 [connection signal="mouse_entered" from="DetectRadius" to="." method="_on_DetectRadius_mouse_entered"]
+[connection signal="timeout" from="TargetSelectionColldown" to="." method="_on_TargetSelectionColldown_timeout"]
