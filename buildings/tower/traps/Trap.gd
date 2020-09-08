@@ -13,7 +13,6 @@ func build_me():
 func _process(_delta):	
 	if target.size() != 0:
 		order_by(e_rule.closest_first)
-
 		$RayCastAnchor.look_at(target.front().global_position)
 		ray.force_raycast_update()
 		if ray.is_colliding():

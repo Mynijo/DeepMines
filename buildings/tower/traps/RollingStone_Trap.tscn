@@ -15,12 +15,16 @@ region = Rect2( 387, 322, 10, 12 )
 [node name="RollingStone" instance=ExtResource( 3 )]
 script = ExtResource( 4 )
 solid = false
+cost = 0
 Attack = ExtResource( 2 )
 
 [node name="Body" parent="." index="0"]
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 1 )
 region_enabled = false
+
+[node name="GunCooldown" parent="." index="1"]
+wait_time = 0.2
 
 [node name="DirIcon" type="Sprite" parent="RayCastAnchor" index="1"]
 visible = false

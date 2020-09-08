@@ -48,7 +48,7 @@ func _ready():
 	for relic in relics:
 		$Relics.add_relic(relic)
 
-	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
+	Inventory.traps.append(load("res://buildings/tower/traps/FreezField_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
