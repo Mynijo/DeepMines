@@ -122,10 +122,19 @@ func add_Status(_status):
 	
 
 func add_Status_Icon(_status):
+	if _status.has_tag($Tags.e_effect.dont_stack) and has_Status_Icon(_status):
+		return
 	var icon = _status.get_icon().duplicate()
 	icon.visible = true
 	$StatusLeiste.add_child(icon)
-	
+
+func has_Status_Icon(_status):
+	for icon in $StatusLeiste.get_children():
+		var _status_icon = _status.get_icon()
+		if icon.texture == _status_icon.texture:
+			return true
+	return false
+			
 func remove_Status_Icon(_status):
 	for icon in $StatusLeiste.get_children():
 		var _status_icon = _status.get_icon()
