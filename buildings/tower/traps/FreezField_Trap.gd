@@ -1,5 +1,8 @@
 extends "res://buildings/tower/traps/Trap.gd"
 
+func get_icon():
+	return $MapIcon.texture
+
 func build_me():
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()

@@ -5,7 +5,8 @@
 [ext_resource path="res://buildings/tower/traps/Trap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://buildings/tower/traps/RollingStone_Trap.gd" type="Script" id=4]
 [ext_resource path="res://media/button_0.png" type="Texture" id=5]
-[ext_resource path="res://media/attacks/Stone_Icon.png" type="Texture" id=6]
+[ext_resource path="res://media/buildings/traps/Stone_Icon.png" type="Texture" id=6]
+
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4

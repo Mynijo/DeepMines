@@ -57,6 +57,9 @@ func build_me():
 	emit_signal('Runes_Changed')	
 	deactivate_preview()
 
+func get_icon():
+	return $Body.texture
+	
 func connect_signals():
 	var _rc
 	_rc = self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")

@@ -21,6 +21,9 @@ func take_damage(_damage):
 		die()
 
 
+func get_icon():
+	return $Sprite.texture
+
 func die():
 	pass
 

@@ -110,18 +110,18 @@ __meta__ = {
 }
 
 [node name="Pickaxe" type="Label" parent="UI"]
-margin_left = 85.0
+margin_left = 105.0
 margin_top = 110.0
-margin_right = 125.0
+margin_right = 145.0
 margin_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Shovel" type="Label" parent="UI"]
-margin_left = 85.0
+margin_left = 105.0
 margin_top = 150.0
-margin_right = 125.0
+margin_right = 145.0
 margin_bottom = 164.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -137,19 +137,19 @@ __meta__ = {
 }
 
 [node name="Cursor_Mode_None" type="Button" parent="UI"]
-margin_left = 50.0
-margin_top = 260.0
-margin_right = 80.0
-margin_bottom = 290.0
+margin_left = 71.3348
+margin_top = 267.0
+margin_right = 101.335
+margin_bottom = 297.0
 icon = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Cursor_Mode_Shovel" type="Button" parent="UI"]
-margin_left = 50.0
+margin_left = 70.0
 margin_top = 140.0
-margin_right = 80.0
+margin_right = 100.0
 margin_bottom = 170.0
 icon = SubResource( 5 )
 __meta__ = {
@@ -157,9 +157,9 @@ __meta__ = {
 }
 
 [node name="Cursor_Mode_Spillage" type="Button" parent="UI"]
-margin_left = 50.0
+margin_left = 70.0
 margin_top = 178.586
-margin_right = 80.0
+margin_right = 100.0
 margin_bottom = 208.586
 icon = SubResource( 6 )
 __meta__ = {
@@ -167,9 +167,9 @@ __meta__ = {
 }
 
 [node name="Cursor_Mode_Pickaxe" type="Button" parent="UI"]
-margin_left = 50.0
+margin_left = 70.0
 margin_top = 100.0
-margin_right = 80.0
+margin_right = 100.0
 margin_bottom = 130.0
 icon = SubResource( 7 )
 __meta__ = {
@@ -177,10 +177,10 @@ __meta__ = {
 }
 
 [node name="Cursor_Mode_BuildTrap" type="Button" parent="UI"]
-margin_left = 50.7071
+margin_left = 65.0
 margin_top = 220.0
-margin_right = 80.7071
-margin_bottom = 250.0
+margin_right = 105.0
+margin_bottom = 260.0
 icon = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -200,6 +200,24 @@ margin_right = 290.0
 margin_bottom = 90.0
 Relics_Path = NodePath("../../Relics")
 
+[node name="Cursor_Mode_BuildTrap_UP" type="Button" parent="UI"]
+margin_left = 31.043
+margin_top = 223.0
+margin_right = 61.043
+margin_bottom = 253.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cursor_Mode_BuildTrap_DOWN" type="Button" parent="UI"]
+margin_left = 109.117
+margin_top = 223.0
+margin_right = 139.117
+margin_bottom = 253.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Relics" parent="." instance=ExtResource( 4 )]
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
@@ -214,3 +232,5 @@ Relics_Path = NodePath("../../Relics")
 [connection signal="pressed" from="UI/Cursor_Mode_Spillage" to="." method="_on_Cursor_Mode_Spillage_pressed"]
 [connection signal="pressed" from="UI/Cursor_Mode_Pickaxe" to="." method="_on_Cursor_Mode_Pickaxe_pressed"]
 [connection signal="pressed" from="UI/Cursor_Mode_BuildTrap" to="." method="_on_Cursor_Mode_BuildTrap_pressed"]
+[connection signal="pressed" from="UI/Cursor_Mode_BuildTrap_UP" to="." method="_on_Cursor_Mode_BuildTrap_UP_pressed"]
+[connection signal="pressed" from="UI/Cursor_Mode_BuildTrap_DOWN" to="." method="_on_Cursor_Mode_BuildTrap_DOWN_pressed"]

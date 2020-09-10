@@ -40,6 +40,7 @@ func _ready():
 	$UI/Pickaxe.text = String(Inventory.pickaxe)
 	$UI/Shovel.text  = String(Inventory.shovel)
 	
+	
 	var relics = []
 	relics.append(load("res://relic/Divine_Shield_Relic.tscn").instance())
 	relics.append(load("res://relic/Gold_Bars_Relic.tscn").instance())
@@ -52,13 +53,14 @@ func _ready():
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
+	_on_Cursor_Mode_BuildTrap_UP_pressed()
 
 func get_selected_trap():
 	return selected_trap
 	
 func remove_trap(_trap):
 	Inventory.traps.erase(_trap)
-	select_trap()
+	_on_Cursor_Mode_BuildTrap_UP_pressed()
 
 func add_pickaxe(_pickaxe):
 	Inventory.pickaxe += _pickaxe
@@ -185,10 +187,29 @@ func _on_Cursor_Mode_BuildTrap_pressed():
 	current_cursor_mode = e_CURSOR_MODE.BuildTrap
 	enable_Mode_Buttons()
 	$UI/Cursor_Mode_BuildTrap.disabled = true
-	select_trap()
 
-func select_trap():
-	if Inventory.traps.empty():
-		selected_trap = null
+
+func _on_Cursor_Mode_BuildTrap_UP_pressed():
+	if not Inventory.traps.empty():
+		var selected_trap_id = Inventory.traps.find(selected_trap)
+		if Inventory.traps.size() > selected_trap_id +1:
+			selected_trap = Inventory.traps[selected_trap_id +1]
+		else:
+			selected_trap = Inventory.traps[0]
+		$UI/Cursor_Mode_BuildTrap.icon = selected_trap.get_icon().duplicate()
 	else:
-		selected_trap = Inventory.traps.front()
+		selected_trap = null
+		$UI/Cursor_Mode_BuildTrap.icon = null
+
+
+func _on_Cursor_Mode_BuildTrap_DOWN_pressed():
+	if not Inventory.traps.empty():
+		var selected_trap_id = Inventory.traps.find(selected_trap)
+		if Inventory.traps.size() > selected_trap_id -1:
+			selected_trap = Inventory.traps[selected_trap_id -1]
+		else:
+			selected_trap = Inventory.traps[Inventory.traps.size() -1]
+		$UI/Cursor_Mode_BuildTrap.icon = selected_trap.get_icon().duplicate()
+	else:
+		selected_trap = null
+		$UI/Cursor_Mode_BuildTrap.icon = null
