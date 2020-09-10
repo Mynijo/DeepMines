@@ -1,5 +1,5 @@
 {
-"eggName" : "  " ,
+"eggName" : "   " ,
 "tier" : 1 ,
 "small_boss" : false ,
 "boss" : false ,
@@ -12,12 +12,75 @@
 "effects" : 
 [
 {
-"packed_scene" : "res://Effects/StatusEffectCharge.tscn" ,
+"packed_scene" : "res://Effects/StatusEffectHoT.tscn" ,
 "not_default_values" : 
 {
+"tick_rate" :1,
+"heal_value" :10,
 },
 "conditions" : 
 [
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :0.5,
+}
+},
+],
+},
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectHoT.tscn" ,
+"not_default_values" : 
+{
+"tick_rate" :1,
+"heal_value" :10,
+},
+"conditions" : 
+[
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :0.5,
+}
+},
+],
+},
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectHoT.tscn" ,
+"not_default_values" : 
+{
+"heal_value" :10,
+"tick_rate" :1,
+},
+"conditions" : 
+[
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :0.5,
+}
+},
 ],
 },
 ],
