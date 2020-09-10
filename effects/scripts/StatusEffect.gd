@@ -22,9 +22,9 @@ func effekt(_value, _tag):
 	pass
 
 func _on_Duration_timeout():
-	delteYou()
+	delteMe()
 	
-func delteYou():
+func delteMe():
 	if get_parent().has_method('remove_Status'):
 		get_parent().remove_Status(self)
 	if parent.has_method('remove_Status'):

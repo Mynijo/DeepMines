@@ -160,7 +160,7 @@ func calc_move_direction():
 	if way_points.size() >= 1:
 		move_direction = (position - way_points[0][0]).normalized()
 		if position.distance_to(way_points[0][0]) < 5:
-			way_points.erase(way_points[0])		
+			way_points.pop_front()
 	else:
 		move_direction = Vector2(0, 0)
 		var heart = map.get_heart()

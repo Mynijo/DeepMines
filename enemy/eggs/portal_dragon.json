@@ -1,0 +1,27 @@
+{
+"eggName" : " " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/small_dragon.tscn" ,
+"not_default_values" : 
+{
+"max_health" :1000,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectSpawnPortal.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+]
+}

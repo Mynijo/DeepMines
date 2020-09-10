@@ -48,3 +48,14 @@ func get_level_cor():
 func calcDmg(_body):
 	var dmg = _body.hit_building_get_dmg()
 	return dmg
+	
+func activate_preview():
+	pass
+
+func deactivate_preview():
+	pass
+
+
+
+func _on_Building_body_entered(body):
+	pass # Replace with function body.

@@ -204,11 +204,5 @@ func is_Tower():
 func add_exp(_exp):
 	experience += _exp
 	
-func activate_preview():
-	pass
-
-func deactivate_preview():
-	pass
-
 func _on_TargetSelectionColldown_timeout():
 	recalc_target = true
