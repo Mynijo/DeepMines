@@ -1,14 +1,16 @@
 {
-"eggName" : " " ,
+"eggName" : "  " ,
 "tier" : 1 ,
-"small_boss" : false ,
+"small_boss" : true ,
 "boss" : false ,
 "enemeys" : [
 {
-"packed_scene" : "res://Enemy/Enemys/small_dragon.tscn" ,
+"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
 "not_default_values" : 
 {
 "max_health" :1000,
+"damage" :25,
+"gold_value" :20,
 },
 "effects" : 
 [

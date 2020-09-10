@@ -1,8 +1,8 @@
 {
-"eggName" : " " ,
+"eggName" : "  " ,
 "tier" : 1 ,
 "small_boss" : false ,
-"boss" : false ,
+"boss" : true ,
 "enemeys" : [
 {
 "packed_scene" : "res://Enemy/Enemys/demon.tscn" ,

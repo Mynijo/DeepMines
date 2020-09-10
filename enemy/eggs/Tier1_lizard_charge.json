@@ -1,0 +1,29 @@
+{
+"eggName" : "  " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/lizard.tscn" ,
+"not_default_values" : 
+{
+"max_health" :100,
+"gold_value" :20,
+"damage" :10,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectCharge.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+]
+}
