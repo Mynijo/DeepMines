@@ -61,6 +61,7 @@ func fill_blocks(_level_cor):
 	var air_block = load("res://terrain/blocks/air.tscn")
 	var pit_block = load("res://terrain/blocks/pit.tscn")
 	var none_block = load("res://terrain/blocks/none.tscn")
+	var built_on_air = load("res://terrain/blocks/built_on_air.tscn")
 	var block_inst
 	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
 	Global_AStar.map_level_block[String(Global_AStar.level_cor_to_id(_level_cor))] = []
@@ -76,6 +77,8 @@ func fill_blocks(_level_cor):
 				block_inst = none_block.instance()
 			else: if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.pit:
 				block_inst = pit_block.instance()
+			else: if map_as_bi_lvl[x][y] == Global_Block.e_BLOCKS.built_on_air:
+				block_inst = built_on_air.instance()
 				
 			$blocks.add_child(block_inst)
 			block_inst.set_pos(Vector2(x,y) ,_level_cor,get_pos_on_map_mid(Vector2(x,y), _level_cor))
@@ -151,8 +154,6 @@ func add_building(_building, _cor, _level_cor):
 	if !map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
 		return
 	
-	if !_building.solid:
-		return
 	
 	for x in range(_cor.x, _cor.x + size.x):
 		for y in range(_cor.y, _cor.y + size.y):
@@ -160,11 +161,17 @@ func add_building(_building, _cor, _level_cor):
 			if Global_AStar.map_level_block.has(levle_cor):
 				var map_level = Global_AStar.map_level_block[levle_cor]
 				var block = map_level[x][y]
-				replace_block(block, load("res://terrain/blocks/None.tscn").instance())
+				if !_building.solid:
+					replace_block(block, load("res://terrain/blocks/built_on_air.tscn").instance())
+				else:
+					replace_block(block, load("res://terrain/blocks/None.tscn").instance())
 				block.queue_free()
 			else:
 				var level = map_as_bi[String(levle_cor)]
-				level[x][y] = Global_Block.e_BLOCKS.none
+				if !_building.solid:
+					level[x][y] = Global_Block.e_BLOCKS.built_on_air
+				else:
+					level[x][y] = Global_Block.e_BLOCKS.none
 
 	
 var runes_per_level = {}

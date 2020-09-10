@@ -12,7 +12,8 @@ enum e_BLOCKS{
 	none,
 	dirt,
 	air,
-	pit
+	pit,
+	built_on_air
 }
 
 export (e_BLOCKS) var BlockType = e_BLOCKS.none
