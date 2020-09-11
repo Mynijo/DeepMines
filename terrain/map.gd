@@ -394,6 +394,7 @@ func show_gen_buttons():
 	new_level = levels.back() + Vector2(-1,0)
 	if levels.find(new_level) == -1:
 		var pos =  get_pos_on_map_mid(Vector2(0,int((map_size.y -1) / 2)), levels.back())
+		pos += Vector2(-100,0)
 		$Buttons/Gen_Level_Left.set_global_position(pos)
 		$Buttons/Gen_Level_Left.disabled = false
 		$Buttons/Gen_Level_Left.visible = true
@@ -401,6 +402,7 @@ func show_gen_buttons():
 	new_level = levels.back() + Vector2(0,1)
 	if levels.find(new_level) == -1:
 		var pos =  get_pos_on_map_mid(Vector2(int((map_size.x -1) / 2),int((map_size.y -1))), levels.back())
+		pos += Vector2(0,50)
 		$Buttons/Gen_Level_Down.set_global_position(pos)
 		$Buttons/Gen_Level_Down.disabled = false
 		$Buttons/Gen_Level_Down.visible = true
@@ -408,6 +410,7 @@ func show_gen_buttons():
 	new_level = levels.back() + Vector2(1,0)
 	if levels.find(new_level) == -1:
 		var pos =  get_pos_on_map_mid(Vector2(map_size.x -1,int((map_size.y -1) / 2)), levels.back())
+		pos += Vector2(50,0)
 		$Buttons/Gen_Level_Right.set_global_position(pos)
 		$Buttons/Gen_Level_Right.disabled = false
 		$Buttons/Gen_Level_Right.visible = true

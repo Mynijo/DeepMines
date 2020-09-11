@@ -1,0 +1,31 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/scripts/StatusEffectStickyBomb.gd" type="Script" id=2]
+[ext_resource path="res://media/effects/explosion/row-1-col-6.png" type="Texture" id=3]
+[ext_resource path="res://media/effects/explosion/row-1-col-3.png" type="Texture" id=4]
+[ext_resource path="res://media/effects/explosion/row-1-col-1.png" type="Texture" id=5]
+[ext_resource path="res://media/effects/explosion/row-1-col-8.png" type="Texture" id=6]
+[ext_resource path="res://media/effects/explosion/row-1-col-5.png" type="Texture" id=7]
+[ext_resource path="res://media/effects/explosion/row-1-col-2.png" type="Texture" id=8]
+[ext_resource path="res://media/effects/explosion/row-1-col-7.png" type="Texture" id=9]
+[ext_resource path="res://media/effects/explosion/row-1-col-4.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "explosion",
+"speed": 8.0
+} ]
+
+[node name="StatusEffectStickyBomb" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+duration = 2.0
+
+[node name="Animation" type="AnimatedSprite" parent="." index="4"]
+visible = false
+frames = SubResource( 1 )
+animation = "explosion"
+frame = 6
+[connection signal="timeout" from="Duration" to="." method="_on_Duration_timeout_Explode"]

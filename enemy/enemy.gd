@@ -117,8 +117,7 @@ func add_Status(_status):
 	if _status.has_icon():
 		add_Status_Icon(_status)
 	
-	if spawned and _status.has_tag($Tags.e_effect.init):
-		_status.effekt(self, $Tags.e_effect.init)
+	
 	
 
 func add_Status_Icon(_status):

@@ -13,7 +13,6 @@
 [ext_resource path="res://media/effects/Shock03.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
-
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
@@ -25,10 +24,8 @@ animations = [ {
 "name": "shock",
 "speed": 5.0
 } ]
-_sections_unfolded = [ "Resource" ]
 
-[node name="StatusEffektShock" index="0" instance=ExtResource( 1 )]
-
+[node name="StatusEffektShock" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 duration = 2.0
 iniDamage = 10.0
@@ -36,9 +33,5 @@ explodeDamage = 50.0
 explodeRadius = 100.0
 
 [node name="Animation" type="AnimatedSprite" parent="." index="2"]
-
 frames = SubResource( 1 )
 animation = "shock"
-_sections_unfolded = [ "Transform" ]
-
-
