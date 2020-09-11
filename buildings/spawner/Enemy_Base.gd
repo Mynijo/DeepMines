@@ -51,6 +51,7 @@ func spawn_enemys(var ebene):
 		
 	for e in enemys:
 		e.speed = e.speed * rand_range(0.9, 1.1)
+		e.max_health = e.max_health * (1 + ebene * 0.1)
 		e.add_spawner(self)
 		var effects = map.get_enemy_effects(level_cor)
 		for eff in effects:

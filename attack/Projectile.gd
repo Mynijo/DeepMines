@@ -16,6 +16,7 @@ export (int) var max_target = 1
 var velocity = Vector2()
 var runes = []
 
+var ignor_target
 
 
 var tower
@@ -53,6 +54,10 @@ func explode():
 var target_counter = max_target
 
 func _on_Attack_body_entered(body):	
+	if ignor_target:
+		if ignor_target == body:
+			return
+			
 	if body.has_method('take_damage') and target_counter > 0:
 		target_counter -= 1
 		body.take_damage(calcDmg(body))
