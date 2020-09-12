@@ -15,7 +15,7 @@ extents = Vector2( 20, 450 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 20, 450 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 688, 80, 16, 16 )
@@ -30,12 +30,12 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 720, 144, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 736, 144.008, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 640, 208, 16, 16 )
@@ -150,7 +150,7 @@ margin_left = 70.0
 margin_top = 100.0
 margin_right = 100.0
 margin_bottom = 130.0
-icon = SubResource( 7 )
+icon = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -180,7 +180,7 @@ margin_left = 65.0
 margin_top = 220.0
 margin_right = 105.0
 margin_bottom = 260.0
-icon = SubResource( 8 )
+icon = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -190,7 +190,7 @@ margin_left = 71.3348
 margin_top = 267.0
 margin_right = 101.335
 margin_bottom = 297.0
-icon = SubResource( 4 )
+icon = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -233,6 +233,9 @@ margin_top = 96.0
 margin_right = 129.0
 margin_bottom = 116.0
 text = "5g"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Buy_Shovel" type="Button" parent="UI"]
 margin_left = 103.0

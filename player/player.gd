@@ -247,7 +247,7 @@ func _on_Cursor_Mode_BuildTrap_DOWN_pressed():
 func _on_Buy_Pickaxe_pressed():
 	if Player.get_money() >= 5:
 		Player.remove_money(5)
-		Player.add_shovel(1)
+		Player.add_pickaxe(1)
 
 
 func _on_Buy_Shovel_pressed():
