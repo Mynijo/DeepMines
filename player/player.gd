@@ -1,9 +1,10 @@
 extends Node2D
 
 class class_Inventory:
-	var money = 100
-	var pickaxe = 100
-	var shovel = 100
+	var money = 250
+	var pickaxe = 10
+	var shovel = 5
+	var bombs = 10
 	var traps = []
 	
 
@@ -35,16 +36,16 @@ func _ready():
 	map = get_tree().get_root().get_node("map")
 	Inventory = class_Inventory.new()
 	$UI/Live.text = "Health:" + String(health)
-	$UI/Wave.text = "Wave:"
+	$UI/Wave.text = "Level: 1"
 	$UI/Money.text = "Money:" + String(Inventory.money)
 	$UI/Pickaxe.text = String(Inventory.pickaxe)
 	$UI/Shovel.text  = String(Inventory.shovel)
-	
+	$UI/Bombs.text  = String(Inventory.bombs)
 	
 	var relics = []
-	relics.append(load("res://relic/Divine_Shield_Relic.tscn").instance())
-	relics.append(load("res://relic/Gold_Bars_Relic.tscn").instance())
-	relics.append(load("res://relic/BloodyCoin.tscn").instance())
+	#relics.append(load("res://relic/Divine_Shield_Relic.tscn").instance())
+	#relics.append(load("res://relic/Gold_Bars_Relic.tscn").instance())
+	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
 	
 	for relic in relics:
 		$Relics.add_relic(relic)
@@ -55,12 +56,30 @@ func _ready():
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
 	_on_Cursor_Mode_BuildTrap_UP_pressed()
 
+
+func set_new_wave_counter(_wave):
+	$UI/Wave.text = "Level: " + String(_wave)
+
 func get_selected_trap():
 	return selected_trap
 	
 func remove_trap(_trap):
 	Inventory.traps.erase(_trap)
 	_on_Cursor_Mode_BuildTrap_UP_pressed()
+
+func add_bombs(_bombs):
+	Inventory.bombs += _bombs
+	$UI/Bombs.text = String(Inventory.bombs)
+	
+func remove_bombs(_bombs):
+	if Inventory.bombs - _bombs < 0:
+		Inventory.bombs = 0
+	else:
+		Inventory.bombs -= _bombs
+	$UI/Bombs.text = String(Inventory.bombs)
+
+func get_bombs():
+	return Inventory.bombs
 
 func add_pickaxe(_pickaxe):
 	Inventory.pickaxe += _pickaxe
@@ -92,6 +111,10 @@ func get_shovel():
 	
 func add_money(value):
 	Inventory.money += value
+	$UI/Money.text = "Money:" + String(Inventory.money)
+
+func remove_money(value):
+	Inventory.money -= value
 	$UI/Money.text = "Money:" + String(Inventory.money)
 
 func get_money():
@@ -152,6 +175,9 @@ func enable_Mode_Buttons():
 	$UI/Cursor_Mode_Shovel.disabled = false
 	$UI/Cursor_Mode_Spillage.disabled = false
 	$UI/Cursor_Mode_BuildTrap.disabled = false
+	$UI/Buy_Pickaxe.disabled = false
+	$UI/Buy_Shovel.disabled = false
+	$UI/Buy_Bombs.disabled = false
 
 func disable_Mode_Buttons():
 	$UI/Cursor_Mode_None.disabled = true
@@ -159,6 +185,9 @@ func disable_Mode_Buttons():
 	$UI/Cursor_Mode_Shovel.disabled = true
 	$UI/Cursor_Mode_Spillage.disabled = true
 	$UI/Cursor_Mode_BuildTrap.disabled = true
+	$UI/Buy_Pickaxe.disabled = true
+	$UI/Buy_Shovel.disabled = true
+	$UI/Buy_Bombs.disabled = true
 
 func _on_Cursor_Mode_None_pressed():
 	current_cursor_mode = e_CURSOR_MODE.none
@@ -213,3 +242,21 @@ func _on_Cursor_Mode_BuildTrap_DOWN_pressed():
 	else:
 		selected_trap = null
 		$UI/Cursor_Mode_BuildTrap.icon = null
+
+
+func _on_Buy_Pickaxe_pressed():
+	if Player.get_money() >= 5:
+		Player.remove_money(5)
+		Player.add_shovel(1)
+
+
+func _on_Buy_Shovel_pressed():
+	if Player.get_money() >= 10:
+		Player.remove_money(10)
+		Player.add_shovel(1)
+
+
+func _on_Buy_Bombs_pressed():
+	if Player.get_money() >= 5:
+		Player.remove_money(5)
+		Player.add_bombs(1)

@@ -22,10 +22,13 @@ var experience = 0
 signal Runes_Changed
 var can_shoot = true
 
+var possible_upgrades = []
+
 var recalc_target = true
 
 onready var ray := $RayCastAnchor/RayCast2D
 
+var is_ini_possible_upgrades = false
 
 enum e_rule{
 	closest_first
@@ -53,11 +56,48 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneIncreaseTurretDetectRadius.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneWhirl.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
-	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
-	runes_attached.append(load("res://rune/RuneAddStickyBomb.tscn").instance())
-	runes_attached.append(load("res://rune/RuneSplitShot.tscn").instance())
-	emit_signal('Runes_Changed')	
+	#runes_attached.append(load("res://rune/RuneAddStickyBomb.tscn").instance())
+	#runes_attached.append(load("res://rune/RuneSplitShot.tscn").instance())
+	#emit_signal('Runes_Changed')	
+	ini_possible_upgrades()
 	deactivate_preview()
+	
+func create_upgrade(var path):
+	var upgrade = load("res://buildings/tower/upgrades/TowerUpgrade.tscn").instance()
+	upgrade.rune = load(path)
+	upgrade.hint_tooltip = path + " Cost: 100G"
+	return upgrade
+	
+
+func ini_possible_upgrades():
+	if is_ini_possible_upgrades:
+		return
+	possible_upgrades.append(create_upgrade("res://rune/RuneBurst.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneScatterShot.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneFollowing.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneAddCharme.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneAddIgnite.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneAddShock.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneBoomerang.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneChain.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneIncreasedAps.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RunePierce.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneIncreaseTurretDetectRadius.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneWhirl.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneFollowing.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneAddStickyBomb.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneSplitShot.tscn"))
+	is_ini_possible_upgrades = true
+
+
+func clear_possible_upgrades():
+	for upgrades in possible_upgrades:
+		upgrades.queue_free()
+	possible_upgrades.clear()
+
+
+func get_possible_upgrades():
+	return possible_upgrades
 
 func get_icon():
 	return $Body.texture
@@ -211,3 +251,10 @@ func add_exp(_exp):
 	
 func _on_TargetSelectionColldown_timeout():
 	recalc_target = true
+
+
+func _on_Tower_input_event(_viewport, _event, _shape_idx):
+	if Global_GameStateManager.game_stat == Global_GameStateManager.e_GAMESTATE.build_phase:
+		if _event is InputEventMouseButton and _event.pressed:
+			if _event.button_index == BUTTON_LEFT and _event.pressed:
+				$TowerUpgradesUI.show()

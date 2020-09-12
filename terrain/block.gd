@@ -59,12 +59,14 @@ func _on_Block_input_event(_viewport, _event, _shape_idx):
 							pit_block.queue_free()
 			Player.e_CURSOR_MODE.Spillage:
 				if Buildable or BlockType == e_BLOCKS.pit:
-					var dirt_block = load("res://terrain/blocks/Dirt.tscn").instance()
-					if Global_AStar.is_replacement_valid(self, dirt_block):
-						map.replace_block(self, dirt_block)
-						queue_free()
-					else:
-						dirt_block.queue_free()
+					if Player.get_bombs() >= 1:
+						var dirt_block = load("res://terrain/blocks/Dirt.tscn").instance()
+						if Global_AStar.is_replacement_valid(self, dirt_block):
+							map.replace_block(self, dirt_block)
+							queue_free()
+							Player.remove_bombs(1)
+						else:
+							dirt_block.queue_free()
 			Player.e_CURSOR_MODE.BuildTrap:
 				var trap = Player.get_selected_trap()
 				if trap:

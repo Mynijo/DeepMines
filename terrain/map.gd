@@ -355,6 +355,7 @@ func gen_level(_level_cor):
 				map_as_bi_lvl[_x][_y] = Global_Block.e_BLOCKS.air
 	
 	add_buildings_level(_level_cor, rand_pos, rand_pos_2)
+	Player.set_new_wave_counter(levels.size())
 
 func gen_empty_lvl(_level_cor):
 	if map_as_bi.has(String(Global_AStar.level_cor_to_id(_level_cor))):
