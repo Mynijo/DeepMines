@@ -54,7 +54,7 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneWhirl.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneTornadoShot.tscn").instance())
-	#runes_attached.append(load("res://rune/RuneAddStickyBomb.tscn").instance())
+	runes_attached.append(load("res://rune/RuneAddStickyBomb.tscn").instance())
 	runes_attached.append(load("res://rune/RuneSplitShot.tscn").instance())
 	emit_signal('Runes_Changed')	
 	deactivate_preview()

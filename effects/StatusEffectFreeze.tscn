@@ -21,6 +21,7 @@ duration = 2.0
 attack = ExtResource( 3 )
 
 [node name="Ice" type="Sprite" parent="." index="1"]
+visible = false
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 region_rect = Rect2( 132, 148.397, 34.5, 19.3109 )

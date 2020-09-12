@@ -1,5 +1,5 @@
 {
-"eggName" : "  " ,
+"eggName" : "   " ,
 "tier" : 1 ,
 "small_boss" : false ,
 "boss" : true ,
@@ -9,8 +9,8 @@
 "not_default_values" : 
 {
 "max_health" :1500,
-"gold_value" :250,
 "damage" :100,
+"gold_value" :200,
 },
 "effects" : 
 [

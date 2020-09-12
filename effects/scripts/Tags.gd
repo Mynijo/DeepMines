@@ -24,7 +24,8 @@ enum e_effect{
 	animation,
 	debuff,
 	buff,
-	took_dmg
+	took_dmg,
+	has_icon
 }
 
 enum e_relic{

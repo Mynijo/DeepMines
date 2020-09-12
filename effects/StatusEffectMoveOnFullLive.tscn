@@ -7,15 +7,15 @@
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 3 )
-region = Rect2( 608, 64.5, 15, 15 )
+region = Rect2( 595, 66, 10, 10 )
 
 [node name="StatusEffectMoveOnFullLive" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 duration = 0.0
 
 [node name="Icon" parent="." index="2"]
-margin_right = 25.0
-margin_bottom = 25.0
+margin_right = 15.0
+margin_bottom = 15.0
 rect_scale = Vector2( 0.6, 0.6 )
 texture = SubResource( 1 )
 

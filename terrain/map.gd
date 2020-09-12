@@ -48,6 +48,10 @@ func _ready():
 	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.build_phase)
 	
 	
+	#var buff = load("res://effects/StatusEffectSelfPort.tscn").instance()
+	#add_enemy_effect_per_level(Global_AStar.level_cor_to_id(Vector2(0,1)), buff)
+	
+	
 func add_heart(var _heart_cor, var _level_cor):
 	if heart == null:
 		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()

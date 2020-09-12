@@ -7,22 +7,7 @@
 [ext_resource path="res://media/effects/charme02.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "charme02",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "charme01",
-"speed": 1.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "charme03",
-"speed": 5.0
-} ]
+animations = [  ]
 
 [node name="StatusEffectCharme" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -32,3 +17,30 @@ duration = 10.0
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "charme01"
+
+[node name="Icon" parent="." index="3"]
+texture = ExtResource( 3 )
+
+[node name="Icon01" type="TextureRect" parent="." index="5"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon02" type="TextureRect" parent="." index="6"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon03" type="TextureRect" parent="." index="7"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

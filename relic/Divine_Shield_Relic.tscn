@@ -10,9 +10,6 @@
 [node name="Divine_Shield_Relic" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
-[node name="Icon" parent="." index="0"]
-visible = false
-
 [node name="Charge3" type="TextureRect" parent="." index="2"]
 visible = false
 margin_right = 40.0

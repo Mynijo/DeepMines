@@ -86,3 +86,7 @@ func rewrite_tags():
 		for t in removed_tags:
 			removed_tags.erase(t)
 			$Tags.add_tag(t)
+
+func update_icon(var _new_icon):
+	parent.update_icon($Icon,_new_icon)
+	$Icon.texture = _new_icon.texture

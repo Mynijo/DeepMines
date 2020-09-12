@@ -12,7 +12,10 @@ func add_Status(_status):
 				if x.has_tag($Tags.e_effect.dont_stack):
 					x.refresh(_status) 
 					_status.queue_free()
-					return	
+					return
+	
+	if _status.has_tag($Tags.e_effect.has_icon):
+		get_parent().add_Status_Icon(_status)
 	
 	if _status.has_tag($Tags.e_effect.buff):
 		$Buffs.add_child(_status)

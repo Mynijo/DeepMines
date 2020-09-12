@@ -74,11 +74,11 @@ func control(delta):
 		
 func take_damage(_damage):
 	if dead or _damage == null:
-		return	
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
-		_damage = x.effekt(_damage, $Tags.e_effect.took_dmg)
+		return
 	if _damage == 0:
 		return
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
+		_damage = x.effekt(_damage, $Tags.e_effect.took_dmg)
 	health = health - _damage
 	if health > max_health:
 		health = max_health	
@@ -114,15 +114,8 @@ func get_velocity():
 	
 func add_Status(_status):
 	$StatusEffects.add_Status(_status)
-	if _status.has_icon():
-		add_Status_Icon(_status)
-	
-	
-	
 
 func add_Status_Icon(_status):
-	if _status.has_tag($Tags.e_effect.dont_stack) and has_Status_Icon(_status):
-		return
 	var icon = _status.get_icon().duplicate()
 	icon.visible = true
 	$StatusLeiste.add_child(icon)
@@ -140,6 +133,19 @@ func remove_Status_Icon(_status):
 		if icon.texture == _status_icon.texture:
 			$StatusLeiste.remove_child(icon)
 			return
+			
+
+func update_icon(var _old_icon, var _new_icon):
+	for icon in $StatusLeiste.get_children():
+		if icon.texture == _old_icon.texture:
+			var pos_of_old_icon = icon.get_position_in_parent()
+			var new_icon = _new_icon.duplicate()			
+			$StatusLeiste.remove_child(icon)
+			icon.free()
+			$StatusLeiste.add_child(new_icon)
+			$StatusLeiste.move_child(new_icon, pos_of_old_icon)
+			new_icon.visible = true
+
 
 func remove_Status(_status):
 	$StatusEffects.remove_Status(_status)

@@ -1,5 +1,5 @@
 {
-"eggName" : "   " ,
+"eggName" : "    " ,
 "tier" : 1 ,
 "small_boss" : false ,
 "boss" : true ,
@@ -8,9 +8,9 @@
 "packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
 "not_default_values" : 
 {
-"max_health" :1000,
-"gold_value" :1000,
 "damage" :50,
+"max_health" :1500,
+"gold_value" :200,
 },
 "effects" : 
 [

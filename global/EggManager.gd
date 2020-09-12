@@ -40,10 +40,16 @@ func get_egg(var tier, var small_boss, var boss):
 	else:
 		egg_type = "nomal_egg"
 	
-	if tier_eggs[egg_type][tier -1].size() -1 <= 0:
+	if tier_eggs[egg_type][tier -1].size() <= 1:
 		random_num = 0
 	else:
-		random_num = randi() % (tier_eggs[egg_type][tier -1].size() -1)
+		random_num = randi() % tier_eggs[egg_type][tier -1].size()
+		print(random_num)
+
+		
+		
+	if not tier_eggs[egg_type][tier-1][random_num]:
+		return tier_eggs["nomal_egg"][0][0]
 	return tier_eggs[egg_type][tier-1][random_num]
 
 

@@ -7,7 +7,7 @@
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 3 )
-region = Rect2( 384.5, 192, 15, 15 )
+region = Rect2( 387, 193, 10, 10 )
 
 [node name="StatusEffectCharge" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

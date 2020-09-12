@@ -5,7 +5,8 @@ func _init():
 	$Tags.add_tag($Tags.e_effect.buff)
 	$Tags.add_tag($Tags.e_effect.init)
 	$Tags.add_tag($Tags.e_effect.health)
-	$Tags.add_tag($Tags.e_effect.took_dmg)
+	$Tags.add_tag($Tags.e_effect.took_dmg)	
+	$Tags.add_tag($Tags.e_effect.has_icon)
 
 var time_to_run = true
 var full_live = true

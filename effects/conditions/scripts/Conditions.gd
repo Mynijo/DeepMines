@@ -10,11 +10,13 @@ func add_condition(_condition):
 	if self.get_child_count() == 0:
 		get_parent().remove_tags()
 	add_child(_condition)
+	
 		
 func remove_condition(_condition):
 	remove_child(_condition)
 	if get_child_count() == 0:
 		get_parent().rewrite_tags()
+		get_parent().get_target().add_Status_Icon(get_parent())
 
 
 

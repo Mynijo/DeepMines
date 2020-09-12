@@ -53,7 +53,7 @@ func spawn_enemys(var ebene):
 		e.speed = e.speed * rand_range(0.9, 1.1)
 		e.max_health = e.max_health * (1 + ebene * 0.1)
 		e.add_spawner(self)
-		var effects = map.get_enemy_effects(level_cor)
+		var effects = map.get_enemy_effects(Global_AStar.level_cor_to_id(level_cor))
 		for eff in effects:
 			e.add_Status(eff.duplicate())
 		emit_signal('Spawn_Enemy', e, pos, cor, level_cor)

@@ -1,21 +1,21 @@
 {
-"eggName" : "   " ,
+"eggName" : "  " ,
 "tier" : 1 ,
-"small_boss" : true ,
+"small_boss" : false ,
 "boss" : false ,
 "enemeys" : [
 {
 "packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
 "not_default_values" : 
 {
-"max_health" :1000,
-"damage" :25,
-"gold_value" :50,
+"damage" :20,
+"max_health" :200,
+"gold_value" :20,
 },
 "effects" : 
 [
 {
-"packed_scene" : "res://Effects/StatusEffectSpawnPortal.tscn" ,
+"packed_scene" : "res://Effects/StatusEffectSelfPort.tscn" ,
 "not_default_values" : 
 {
 },
@@ -29,14 +29,14 @@
 "packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
 "not_default_values" : 
 {
-"max_health" :1000,
-"gold_value" :50,
-"damage" :25,
+"max_health" :200,
+"damage" :20,
+"gold_value" :20,
 },
 "effects" : 
 [
 {
-"packed_scene" : "res://Effects/StatusEffectSpawnPortal.tscn" ,
+"packed_scene" : "res://Effects/StatusEffectSelfPort.tscn" ,
 "not_default_values" : 
 {
 },
