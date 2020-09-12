@@ -91,8 +91,7 @@ func die():
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.cast_on_death):
 			x.effekt(self,$Tags.e_effect.cast_on_death)
 	
-	if player:
-		player.add_money(gold_value)
+	Player.add_money(gold_value)
 	kill()
 		
 func kill():

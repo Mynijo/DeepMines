@@ -77,6 +77,7 @@ func ini_possible_upgrades():
 	possible_upgrades.append(create_upgrade("res://rune/RuneFollowing.tscn"))
 	possible_upgrades.append(create_upgrade("res://rune/RuneAddCharme.tscn"))
 	possible_upgrades.append(create_upgrade("res://rune/RuneAddIgnite.tscn"))
+	possible_upgrades.append(create_upgrade("res://rune/RuneAddSlow.tscn"))
 	possible_upgrades.append(create_upgrade("res://rune/RuneAddShock.tscn"))
 	possible_upgrades.append(create_upgrade("res://rune/RuneBoomerang.tscn"))
 	possible_upgrades.append(create_upgrade("res://rune/RuneChain.tscn"))
