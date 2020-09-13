@@ -146,13 +146,13 @@ func get_neighbour(_pos):
 		
 	
 func is_replacement_valid(_block_old, _block_new):
-	if _block_old.Cor.x == 0  or _block_old.Cor.y == 0 or _block_old.Cor.x == map_size.x -1  or _block_old.Cor.y == map_size.y -1:
-		return false
 	if _block_new.Walkable:
 		return true
 	var rc = true
 	var node_id = get_id_of_point(Vector3(_block_old.Cor.x, _block_old.Cor.y, level_cor_to_id(_block_old.Level_cor)))
 	var neighbours = get_neighbours(node_id)
+	if neighbours.size() <= 3:
+		return false
 	for n in neighbours:
 		astar.disconnect_points(node_id, n)
 	var n_pos
