@@ -3,7 +3,7 @@
 [ext_resource path="res://ui/TowerUpgradesUI.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 640, 208, 16, 16 )
@@ -23,7 +23,7 @@ margin_left = -29.7351
 margin_top = 9.0
 margin_right = -1.73514
 margin_bottom = 31.0
-icon = SubResource( 2 )
+icon = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -15,6 +15,7 @@ func build_me():
 	runes_attached.append(run)
 	emit_signal('Runes_Changed')	
 	deactivate_preview()
+	builded = true
 
 func _process(_delta):
 	if ray.is_colliding():

@@ -21,6 +21,7 @@ func build_me():
 	
 	emit_signal('Runes_Changed')
 	deactivate_preview()
+	builded = true
 	
 var triggerd = false
 func _process(_delta):

@@ -11,7 +11,6 @@ signal gameState_changed
 func _ready():
 	map = get_tree().get_root().get_node("map")
 	tower = get_parent()
-	refresh_upgrades()
 	Global_GameStateManager.connect("gameState_changed", self, "on_gameState_changed")
 
 func on_gameState_changed(_dummy):
@@ -30,6 +29,9 @@ func refresh_upgrades():
 		upgrade.set_tower(tower)
 		upgrade.set_UI(self)
 		$HBoxContainer.add_child(upgrade)
+	
+	if $HBoxContainer.get_children().empty():
+		hide()
 
 
 func _on_Button_pressed():

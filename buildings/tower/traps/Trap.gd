@@ -4,6 +4,7 @@ extends "res://buildings/tower/Tower.gd"
 export (int) var charges = 1
 
 func build_me():
+	builded = true
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
@@ -29,8 +30,9 @@ func delete_me():
 
 
 func _on_Trap_input_event(_viewport, _event, _shape_idx):
-	if _event is InputEventMouseButton and _event.pressed:
-		if _event.button_index == BUTTON_WHEEL_UP:
-			rotation += PI/2
-		if _event.button_index == BUTTON_WHEEL_DOWN:
-			rotation -= PI/2
+	if not builded:
+		if _event is InputEventMouseButton and _event.pressed:
+			if _event.button_index == BUTTON_WHEEL_UP:
+				rotation += PI/2
+			if _event.button_index == BUTTON_WHEEL_DOWN:
+				rotation -= PI/2

@@ -25,6 +25,7 @@ var can_shoot = true
 var possible_upgrades = []
 
 var recalc_target = true
+var builded = false
 
 onready var ray := $RayCastAnchor/RayCast2D
 
@@ -61,6 +62,7 @@ func build_me():
 	#emit_signal('Runes_Changed')	
 	ini_possible_upgrades()
 	deactivate_preview()
+	builded = true
 	
 func create_upgrade(var path):
 	var upgrade = load("res://buildings/tower/upgrades/TowerUpgrade.tscn").instance()
@@ -255,7 +257,8 @@ func _on_TargetSelectionColldown_timeout():
 
 
 func _on_Tower_input_event(_viewport, _event, _shape_idx):
-	if Global_GameStateManager.game_stat == Global_GameStateManager.e_GAMESTATE.build_phase:
-		if _event is InputEventMouseButton and _event.pressed:
-			if _event.button_index == BUTTON_LEFT and _event.pressed:
-				$TowerUpgradesUI.show()
+	if builded:
+		if Global_GameStateManager.game_stat == Global_GameStateManager.e_GAMESTATE.build_phase:
+			if _event is InputEventMouseButton and _event.pressed:
+				if _event.button_index == BUTTON_LEFT and _event.pressed:
+					$TowerUpgradesUI.show()
