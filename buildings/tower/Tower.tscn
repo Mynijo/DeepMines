@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://buildings/tower/Tower.gd" type="Script" id=1]
+[ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=2]
+[ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/MapIcon.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/TowerUpgradesUI.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 27.3956, 21.1426 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 131.75, 1226.82, 55.75, 42.5 )
+
+[node name="Tower" type="Area2D"]
+collision_layer = 2
+collision_mask = 2147483648
+script = ExtResource( 1 )
+gun_cooldown = 1.0
+detect_radius = 250
+turret_speed = 20.0
+
+[node name="Body" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 131.75, 1226.82, 55.75, 42.5 )
+
+[node name="GunCooldown" type="Timer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.69931, -0.874126 )
+shape = SubResource( 1 )
+
+[node name="Tags" parent="." instance=ExtResource( 3 )]
+
+[node name="DetectRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius"]
+
+[node name="RayCastAnchor" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="RayCastAnchor"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 500 )
+collision_mask = 2147483653
+
+[node name="MapIcon" parent="." instance=ExtResource( 4 )]
+texture = SubResource( 2 )
+
+[node name="TargetSelectionColldown" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="TowerUpgradesUI" parent="." instance=ExtResource( 5 )]
+visible = false
+position = Vector2( -50, -50 )
+[connection signal="input_event" from="." to="." method="_on_Tower_input_event"]
+[connection signal="timeout" from="GunCooldown" to="." method="_on_GunCooldown_timeout"]
+[connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
+[connection signal="body_exited" from="DetectRadius" to="." method="_on_DetectRadius_body_exited"]
+[connection signal="timeout" from="TargetSelectionColldown" to="." method="_on_TargetSelectionColldown_timeout"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/scripts/StatusEffectCharme.gd" type="Script" id=2]
+[ext_resource path="res://media/effects/charme01.png" type="Texture" id=3]
+[ext_resource path="res://media/effects/charme03.png" type="Texture" id=4]
+[ext_resource path="res://media/effects/charme02.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [  ]
+
+[node name="StatusEffectCharme" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+duration = 10.0
+
+[node name="Animation" type="AnimatedSprite" parent="." index="2"]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "charme01"
+
+[node name="Icon" parent="." index="3"]
+texture = ExtResource( 3 )
+
+[node name="Icon01" type="TextureRect" parent="." index="5"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon02" type="TextureRect" parent="." index="6"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon03" type="TextureRect" parent="." index="7"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

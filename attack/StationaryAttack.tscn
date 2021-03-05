@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Attack/StationaryAttack.gd" type="Script" id=1]
+[ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=2]
+
+[node name="StationaryAttack" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="Lifetime" type="Timer" parent="."]
+
+[node name="Tags" parent="." instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://media/attacks/Stone.png" type="Texture" id=1]
+[ext_resource path="res://attack/Projectile.tscn" type="PackedScene" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 19.8996
+
+[node name="RollingStone" instance=ExtResource( 2 )]
+speed = 100
+damage = 200.0
+lifetime = 20.0
+crit_chance = 0.0
+max_target = 50
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 1 )
+region_enabled = false
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 1 )
