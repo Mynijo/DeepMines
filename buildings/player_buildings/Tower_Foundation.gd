@@ -26,6 +26,7 @@ func _on_Building_input_event(_viewport, _event, _shape_idx):
 						return
 					Player.add_money(-50)
 					spawn_tower()
+					$Cost.hide()
 
 
 

@@ -8,6 +8,8 @@ var detect_radius_effected
 export (int) var cost = 50
 export (float) var turret_speed = 1.0
 
+var UpgradeTowerUI = preload("res://ui/UpgradeTowerUI.tscn").instance()
+
 var runes_attached = []
 var runes_active = []
 
@@ -38,6 +40,12 @@ enum e_rule{
 func _ready():
 	map = get_tree().get_root().get_node("map")
 	connect_signals()
+	UpgradeTowerUI.hide()
+	get_tree().get_root().add_child(UpgradeTowerUI)
+	UpgradeTowerUI.set_global_position(global_position)
+	print(global_position)
+	print(UpgradeTowerUI.get_global_position())
+	UpgradeTowerUI.set_tower(self)
 
 func build_me():	
 	$GunCooldown.wait_time = get_gun_cooldown()
@@ -64,32 +72,13 @@ func build_me():
 	deactivate_preview()
 	builded = true
 	
-func create_upgrade(var path):
-	var upgrade = load("res://buildings/tower/upgrades/TowerUpgrade.tscn").instance()
-	upgrade.rune = load(path)
-	upgrade.hint_tooltip = path + " Cost: 100G"
-	return upgrade
-	
 
 func ini_possible_upgrades():
 	if is_ini_possible_upgrades:
 		return
-	possible_upgrades.append(create_upgrade("res://rune/RuneBurst.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneScatterShot.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneFollowing.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneAddCharme.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneAddIgnite.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneAddSlow.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneAddShock.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneBoomerang.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneChain.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneIncreasedAps.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RunePierce.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneIncreaseTurretDetectRadius.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneWhirl.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneFollowing.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneAddStickyBomb.tscn"))
-	possible_upgrades.append(create_upgrade("res://rune/RuneSplitShot.tscn"))
+	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeBurst.tscn").instance())
+	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeSnipe.tscn").instance())
+	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeSplitShot.tscn").instance())
 	is_ini_possible_upgrades = true
 
 
@@ -261,4 +250,4 @@ func _on_Tower_input_event(_viewport, _event, _shape_idx):
 		if Global_GameStateManager.game_stat == Global_GameStateManager.e_GAMESTATE.build_phase:
 			if _event is InputEventMouseButton and _event.pressed:
 				if _event.button_index == BUTTON_LEFT and _event.pressed:
-					$TowerUpgradesUI.show()
+					UpgradeTowerUI.show()

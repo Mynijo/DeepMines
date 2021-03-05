@@ -144,6 +144,7 @@ func _physics_process(delta):
 	if(new_pos.y < $Camera.limit_top or new_pos.y >  $Camera.limit_bottom):
 		return
 	position = new_pos
+	$UI/Pos.text = str($Camera.get_global_mouse_position())
 	
 func _on_Area2DTop_mouse_entered():
 	velocity += Vector2(0, -1)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
 [ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://relic/Relics.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/RelicStatusBar.tscn" type="PackedScene" id=5]
+[ext_resource path="res://media/fonts/Kenney_Future_21.tres" type="DynamicFont" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 800, 20 )
@@ -16,27 +17,22 @@ extents = Vector2( 20, 450 )
 extents = Vector2( 20, 450 )
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 688, 80, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 672, 79, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 720, 144, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=7]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 736, 144.008, 16, 16 )
 
 [sub_resource type="AtlasTexture" id=8]
-flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 640, 208, 16, 16 )
 
@@ -253,6 +249,20 @@ margin_top = 174.586
 margin_right = 129.333
 margin_bottom = 194.586
 text = "5g"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pos" type="Label" parent="UI"]
+anchor_left = 0.135
+anchor_top = 0.046
+anchor_right = 0.135
+anchor_bottom = 0.046
+margin_left = 0.162399
+margin_top = -0.0651627
+margin_right = 110.162
+margin_bottom = 13.9348
+custom_fonts/font = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

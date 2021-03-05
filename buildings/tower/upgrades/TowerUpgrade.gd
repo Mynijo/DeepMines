@@ -2,6 +2,8 @@ extends TextureRect
 
 
 export (PackedScene) var rune
+export (String) var upgrade_name
+export (int) var price = 100
 
 var tower
 var UI
@@ -19,6 +21,7 @@ func set_UI(_UI):
 
 func aktivate_me():
 	tower.add_rune(rune.instance())
+	
 
 func _on_TowerUpgrade_gui_input(_event):
 	if Global_GameStateManager.game_stat == Global_GameStateManager.e_GAMESTATE.build_phase:
@@ -29,3 +32,13 @@ func _on_TowerUpgrade_gui_input(_event):
 					tower.clear_possible_upgrades()
 					aktivate_me()
 					UI.hide()
+
+func get_Texture():
+	return self.texture
+
+func get_Price():
+	return price
+	
+
+func get_Name():
+	return upgrade_name

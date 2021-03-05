@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://buildings/Building.tscn" type="PackedScene" id=1]
+[ext_resource path="res://media/fonts/Kenney_Future_13.tres" type="DynamicFont" id=1]
 [ext_resource path="res://buildings/player_buildings/Tower_Foundation.gd" type="Script" id=2]
 [ext_resource path="res://media/towerDefense_tilesheet180.png" type="Texture" id=3]
 [ext_resource path="res://buildings/tower/Tower.tscn" type="PackedScene" id=4]
@@ -13,15 +13,32 @@ flags = 4
 atlas = ExtResource( 3 )
 region = Rect2( 454.421, 134.673, 50, 50 )
 
-[node name="Building" instance=ExtResource( 1 )]
-scale = Vector2( 0.8, 0.8 )
+[node name="Root" type="Node2D" groups=[
+"buildings",
+]]
 script = ExtResource( 2 )
 tower = ExtResource( 4 )
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="Building" type="Area2D" parent="."]
+scale = Vector2( 0.8, 0.8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Building"]
 shape = SubResource( 1 )
 
-[node name="Sprite" parent="." index="1"]
+[node name="Sprite" type="Sprite" parent="Building"]
+position = Vector2( 0.131388, 0 )
+scale = Vector2( 1, 1 )
 texture = SubResource( 2 )
-[connection signal="input_event" from="." to="." method="_on_Building_input_event"]
-[connection signal="mouse_exited" from="." to="." method="_on_Building_mouse_exited"]
+
+[node name="Cost" type="Label" parent="."]
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 28.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "50g"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="input_event" from="Building" to="." method="_on_Building_input_event"]
