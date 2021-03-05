@@ -39,7 +39,7 @@ func set_pos(_cor, _level_cor, _global_position):
 func _on_Block_input_event(_viewport, _event, _shape_idx):
 	if (_event is InputEventMouseButton and _event.pressed and _event.button_index == BUTTON_LEFT):
 		match Player.current_cursor_mode:
-			Player.e_CURSOR_MODE.none:
+			Player.e_CURSOR_MODE.None:
 				return
 			Player.e_CURSOR_MODE.Pickaxe:
 				if Mineable:
@@ -91,7 +91,7 @@ func build_trap(_trap):
 var preview_trap
 func _on_Block_mouse_entered():
 	match Player.current_cursor_mode:
-		Player.e_CURSOR_MODE.none:
+		Player.e_CURSOR_MODE.None:
 			return
 		Player.e_CURSOR_MODE.BuildTrap:
 			if Buildable:
@@ -107,7 +107,7 @@ func _on_Block_mouse_entered():
 
 func _on_Block_mouse_exited():
 	match Player.current_cursor_mode:
-		Player.e_CURSOR_MODE.none:
+		Player.e_CURSOR_MODE.None:
 			return
 		Player.e_CURSOR_MODE.BuildTrap:
 			if preview_trap:

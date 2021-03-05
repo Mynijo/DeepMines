@@ -77,6 +77,7 @@ func ini_possible_upgrades():
 	if is_ini_possible_upgrades:
 		return
 	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeBurst.tscn").instance())
+	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeBurst.tscn").instance())
 	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeSnipe.tscn").instance())
 	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeSplitShot.tscn").instance())
 	is_ini_possible_upgrades = true

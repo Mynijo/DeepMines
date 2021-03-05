@@ -18,7 +18,7 @@ var velocity = Vector2(0, 0)
 var map
 
 enum e_CURSOR_MODE{
-	none,
+	None,
 	Pickaxe,
 	Shovel,
 	Spillage,
@@ -30,7 +30,7 @@ signal player_took_damage
 
 var Inventory
 
-var current_cursor_mode = e_CURSOR_MODE.none
+var current_cursor_mode = e_CURSOR_MODE.None
 
 func _ready():
 	map = get_tree().get_root().get_node("map")
@@ -56,6 +56,27 @@ func _ready():
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
 	_on_Cursor_Mode_BuildTrap_UP_pressed()
 
+
+func _unhandled_key_input(event):
+	velocity = Vector2(0, 0)
+	if(Input.is_action_pressed("move_left")):
+		velocity += Vector2(-1, 0)
+	if(Input.is_action_pressed("move_right")):
+		velocity += Vector2(1, 0)
+	if(Input.is_action_pressed("move_up")):
+		velocity += Vector2(0, -1)
+	if(Input.is_action_pressed("move_down")):
+		velocity += Vector2(0, +1)
+			
+	if(Input.is_action_pressed("change_cursor_mode_none")):
+		change_Cursor_Mode(e_CURSOR_MODE.None)
+	if(Input.is_action_pressed("change_cursor_mode_pickaxe")):
+		change_Cursor_Mode(e_CURSOR_MODE.Pickaxe)
+	if(Input.is_action_pressed("change_cursor_mode_shovel")):
+		change_Cursor_Mode(e_CURSOR_MODE.Shovel)
+	if(Input.is_action_pressed("change_cursor_mode_spillage")):
+		change_Cursor_Mode(e_CURSOR_MODE.Spillage)
+				
 
 func set_new_wave_counter(_wave):
 	$UI/Wave.text = "Level: " + String(_wave)
@@ -150,25 +171,25 @@ func _on_Area2DTop_mouse_entered():
 	velocity += Vector2(0, -1)
 
 func _on_Area2DTop_mouse_exited():
-	velocity += Vector2(0, +1)
+	velocity = Vector2(0, 0)
 
 func _on_Area2DBottom_mouse_entered():
 	velocity += Vector2(0, +1)
 
 func _on_Area2DBottom_mouse_exited():
-	velocity += Vector2(0, -1)
+	velocity = Vector2(0, 0)
 
 func _on_Area2DLeft_mouse_entered():
 	velocity += Vector2(-1, 0)
 
 func _on_Area2DLeft_mouse_exited():
-	velocity += Vector2(1, 0)
+	velocity = Vector2(0, 0)
 
 func _on_Area2D2Right_mouse_entered():
 	velocity += Vector2(1, 0)
 
 func _on_Area2D2Right_mouse_exited():
-	velocity += Vector2(-1, 0)
+	velocity = Vector2(0, 0)
 
 func enable_Mode_Buttons():
 	$UI/Cursor_Mode_None.disabled = false
@@ -189,34 +210,42 @@ func disable_Mode_Buttons():
 	$UI/Buy_Pickaxe.disabled = true
 	$UI/Buy_Shovel.disabled = true
 	$UI/Buy_Bombs.disabled = true
+	
+func change_Cursor_Mode(var mode):
+	current_cursor_mode = mode
+	enable_Mode_Buttons()
+	if(mode == e_CURSOR_MODE.None):
+		$UI/Cursor_Mode_None.disabled = true
+	else:
+		$UI/Cursor_Mode_None.disabled = false
+		
+	if(mode == e_CURSOR_MODE.Pickaxe):
+		$UI/Cursor_Mode_Pickaxe.disabled = true
+	if(mode == e_CURSOR_MODE.Shovel):
+		$UI/Cursor_Mode_Shovel.disabled = true
+	if(mode == e_CURSOR_MODE.Spillage):
+		$UI/Cursor_Mode_Spillage.disabled = true
+	if(mode == e_CURSOR_MODE.BuildTrap):
+		$UI/Cursor_Mode_BuildTrap.disabled = true
 
 func _on_Cursor_Mode_None_pressed():
-	current_cursor_mode = e_CURSOR_MODE.none
-	enable_Mode_Buttons()
-	$UI/Cursor_Mode_None.disabled = true
+	change_Cursor_Mode(e_CURSOR_MODE.None)
+	
 
 func _on_Cursor_Mode_Pickaxe_pressed():
-	current_cursor_mode = e_CURSOR_MODE.Pickaxe
-	enable_Mode_Buttons()
-	$UI/Cursor_Mode_Pickaxe.disabled = true
+	change_Cursor_Mode(e_CURSOR_MODE.Pickaxe)
 
 
 func _on_Cursor_Mode_Shovel_pressed():
-	current_cursor_mode = e_CURSOR_MODE.Shovel
-	enable_Mode_Buttons()
-	$UI/Cursor_Mode_Shovel.disabled = true
+	change_Cursor_Mode(e_CURSOR_MODE.Shovel)
 
 
 func _on_Cursor_Mode_Spillage_pressed():
-	current_cursor_mode = e_CURSOR_MODE.Spillage
-	enable_Mode_Buttons()
-	$UI/Cursor_Mode_Spillage.disabled = true
+	change_Cursor_Mode(e_CURSOR_MODE.Spillage)
 
 
 func _on_Cursor_Mode_BuildTrap_pressed():
-	current_cursor_mode = e_CURSOR_MODE.BuildTrap
-	enable_Mode_Buttons()
-	$UI/Cursor_Mode_BuildTrap.disabled = true
+	change_Cursor_Mode(e_CURSOR_MODE.BuildTrap)
 
 
 func _on_Cursor_Mode_BuildTrap_UP_pressed():
