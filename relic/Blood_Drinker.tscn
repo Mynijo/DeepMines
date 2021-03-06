@@ -12,5 +12,4 @@ region = Rect2( 544, 320, 16, 16 )
 script = ExtResource( 2 )
 
 [node name="Icon" parent="." index="0"]
-visible = true
 texture = SubResource( 1 )
