@@ -5,12 +5,10 @@ Monster Tool tip
 Rooms Only Heal fundation
 Gold Room
 Display Monster Route button (maybe relict)
-Relict add random traps
 Shop
 Relict new Tower Upgrade option
 Hidden rooms?
 Play/Stop Button
 Save and load game
 Rune/Relict shoot on kill
-Relict Heal play on death
 Map Mods bar
