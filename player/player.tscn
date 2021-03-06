@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
 [ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://relic/Relics.tscn" type="PackedScene" id=4]
@@ -254,14 +254,13 @@ __meta__ = {
 }
 
 [node name="Pos" type="Label" parent="UI"]
-anchor_left = 0.135
+anchor_left = 0.795
 anchor_top = 0.046
-anchor_right = 0.135
+anchor_right = 0.795
 anchor_bottom = 0.046
-margin_left = 0.162399
-margin_top = -0.0651627
-margin_right = 110.162
-margin_bottom = 13.9348
+margin_top = -0.400002
+margin_right = 287.0
+margin_bottom = 26.6
 custom_fonts/font = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -46,6 +46,7 @@ func _ready():
 	#relics.append(load("res://relic/Divine_Shield_Relic.tscn").instance())
 	#relics.append(load("res://relic/Gold_Bars_Relic.tscn").instance())
 	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
+	relics.append(load("res://relic/Blood_Drinker.tscn").instance())
 	
 	for relic in relics:
 		$Relics.add_relic(relic)
@@ -153,7 +154,11 @@ func take_damage(_damage):
 
 func get_health():
 	return health
-		
+	
+func heal(value):
+	health += value
+	$UI/Live.text = "Health:" + String(health)
+
 func wave_changed(_wave):
 	$UI/Wave.text = "Wave:" + String(_wave)
 

@@ -3,3 +3,6 @@
 /media/*.import
 *.import
 *.bak
+/Deep.exe
+/Deep.pck
+/export_presets.cfg
