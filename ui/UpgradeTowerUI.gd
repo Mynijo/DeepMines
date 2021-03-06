@@ -40,7 +40,8 @@ func refresh_upgrades():
 		child.free()
 	
 	var upgrades = tower.get_possible_upgrades()
-	for upgrade in upgrades:
+	for temp_upgrade in upgrades:
+		var upgrade = temp_upgrade.duplicate()
 		upgrade.set_tower(tower)
 		upgrade.set_UI(self)
 		self.add_upgrade(upgrade)
