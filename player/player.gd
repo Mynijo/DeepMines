@@ -47,7 +47,7 @@ func _ready():
 	#relics.append(load("res://relic/Gold_Bars_Relic.tscn").instance())
 	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
 	#relics.append(load("res://relic/Blood_Drinker.tscn").instance())
-	relics.append(load("res://relic/Trap_Master.tscn").instance())
+	#relics.append(load("res://relic/Trap_Master.tscn").instance())
 	
 	for relic in relics:
 		$Relics.add_relic(relic)

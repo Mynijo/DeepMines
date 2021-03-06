@@ -43,8 +43,6 @@ func _ready():
 	UpgradeTowerUI.hide()
 	get_tree().get_root().add_child(UpgradeTowerUI)
 	UpgradeTowerUI.set_global_position(global_position)
-	print(global_position)
-	print(UpgradeTowerUI.get_global_position())
 	UpgradeTowerUI.set_tower(self)
 
 func build_me():	
@@ -67,7 +65,8 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddStickyBomb.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneSplitShot.tscn").instance())
-	#emit_signal('Runes_Changed')	
+	#runes_attached.append(load("res://rune/RunePortChance.tscn").instance())
+	emit_signal('Runes_Changed')	
 	ini_possible_upgrades()
 	deactivate_preview()
 	builded = true

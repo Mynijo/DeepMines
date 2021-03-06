@@ -119,6 +119,7 @@ func add_Status_Icon(_status):
 	icon.visible = true
 	$StatusLeiste.add_child(icon)
 
+
 func has_Status_Icon(_status):
 	for icon in $StatusLeiste.get_children():
 		var _status_icon = _status.get_icon()
@@ -210,3 +211,6 @@ func is_Enemy():
 	
 func add_spawner(_spawner):
 	spawner = _spawner
+	
+func get_spawner():
+	return spawner
