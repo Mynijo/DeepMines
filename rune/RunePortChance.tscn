@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://rune/RuneEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://rune/RunePortChance.gd" type="Script" id=2]
+[ext_resource path="res://effects/StatusEffectPortEmun.tscn" type="PackedScene" id=3]
+
+[node name="RunePortChance" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+port_chance = 5.0
+emun_status = ExtResource( 3 )

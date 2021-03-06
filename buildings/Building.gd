@@ -37,7 +37,9 @@ func set_pos(_pos):
 	pos = _pos
 	global_position = _pos
 
-
+func get_pos():
+	return pos
+	
 func set_cor(_cor, _level_cor):
 	cor = _cor
 	level_cor = _level_cor
