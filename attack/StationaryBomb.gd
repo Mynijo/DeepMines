@@ -1,4 +1,4 @@
-extends "res://Attack/StationaryAttack.gd"
+extends "res://attack/StationaryAttack.gd"
 
 func explode():
 	var tages = self.get_overlapping_bodies()
@@ -36,6 +36,9 @@ func set_explode_animation_scale(_scale):
 	
 func set_explode_animation_frames(_explode_animation_frames):
 	$ExplodeAnimation.frames = _explode_animation_frames
+	
+func set_explode_animation_speed_scale(_speed_scale):
+	$ExplodeAnimation.speed_scale = _speed_scale
 
 func _on_ExplodeAnimation_animation_finished():
 	queue_free()
