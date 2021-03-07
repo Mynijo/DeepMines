@@ -54,7 +54,7 @@ func _ready():
 
 func add_heart(var _heart_cor, var _level_cor):
 	if heart == null:
-		heart = load("res://buildings/player_buildings/Dungeon_Heart.tscn").instance()
+		heart = load("res://buildings/playerBuildings/DungeonHeart.tscn").instance()
 		add_building(heart, _heart_cor,  _level_cor)
 		Global_AStar.set_heart(_heart_cor, _level_cor)
 
@@ -65,7 +65,7 @@ func fill_blocks(_level_cor):
 	var air_block = load("res://terrain/blocks/air.tscn")
 	var pit_block = load("res://terrain/blocks/pit.tscn")
 	var none_block = load("res://terrain/blocks/none.tscn")
-	var built_on_air = load("res://terrain/blocks/built_on_air.tscn")
+	var built_on_air = load("res://terrain/blocks/builtOnAir.tscn")
 	var block_inst
 	var map_as_bi_lvl = map_as_bi[String(Global_AStar.level_cor_to_id(_level_cor))]
 	Global_AStar.map_level_block[String(Global_AStar.level_cor_to_id(_level_cor))] = []
@@ -166,7 +166,7 @@ func add_building(_building, _cor, _level_cor):
 				var map_level = Global_AStar.map_level_block[levle_cor]
 				var block = map_level[x][y]
 				if !_building.solid:
-					replace_block(block, load("res://terrain/blocks/built_on_air.tscn").instance())
+					replace_block(block, load("res://terrain/blocks/builtOnAir.tscn").instance())
 				else:
 					replace_block(block, load("res://terrain/blocks/None.tscn").instance())
 				block.queue_free()
@@ -381,23 +381,23 @@ func gen_empty_lvl(_level_cor):
 func add_buildings_level(_level_cor, rand_pos, rand_pos_2):
 
 	if !_level_cor == Vector2(0,0):
-		var base1 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
+		var base1 = load("res://buildings/spawner/EnemyBaseSmall.tscn").instance()
 		add_building(base1,rand_pos , _level_cor)
 		base1.spawn_enemys(level_id_to_floor_number(_level_cor))
-		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
+		var tf = load("res://buildings/playerBuildings/TowerFoundation.tscn")
 		base1.add_spawn_on_kill(tf.instance())
 	else:
-		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
+		var tf = load("res://buildings/playerBuildings/TowerFoundation.tscn")
 		add_building(tf.instance(),rand_pos , _level_cor)
 
 	if !_level_cor == Vector2(0,0):
-		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
-		var base2 = load("res://buildings/spawner/Enemy_Base_Small.tscn").instance()
+		var tf = load("res://buildings/playerBuildings/TowerFoundation.tscn")
+		var base2 = load("res://buildings/spawner/EnemyBaseSmall.tscn").instance()
 		add_building(base2,rand_pos_2 , _level_cor)
 		base2.spawn_enemys(level_id_to_floor_number(_level_cor))
 		base2.add_spawn_on_kill(tf.instance())
 	else:
-		var tf = load("res://buildings/player_buildings/Tower_Foundation.tscn")
+		var tf = load("res://buildings/playerBuildings/TowerFoundation.tscn")
 		add_building(tf.instance(),rand_pos_2 , _level_cor)
 
 func show_gen_buttons():

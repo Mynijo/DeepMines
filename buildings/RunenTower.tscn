@@ -2,8 +2,9 @@
 
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=1]
 [ext_resource path="res://buildings/Building.tscn" type="PackedScene" id=2]
-[ext_resource path="res://buildings/Runen_Tower.gd" type="Script" id=3]
+[ext_resource path="res://buildings/RunenTower.gd" type="Script" id=3]
 [ext_resource path="res://ui/MapIcon.tscn" type="PackedScene" id=4]
+
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4

@@ -2,7 +2,7 @@ extends "res://effects/scripts/StatusEffect.gd"
 
 signal spawn_SoulSplitter
 
-export (String) var EnemyPath = "res://enemy/enemys/Soul_Splitter.tscn"
+export (String) var EnemyPath = "res://enemy/enemys/SoulSplitter.tscn"
 var enemy
 var max_health = 200
 

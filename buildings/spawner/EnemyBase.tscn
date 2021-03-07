@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://buildings/Building.tscn" type="PackedScene" id=2]
-[ext_resource path="res://buildings/spawner/Enemy_Base.gd" type="Script" id=3]
+[ext_resource path="res://buildings/spawner/EnemyBase.gd" type="Script" id=3]
+
 
 [node name="Enemy_Base" instance=ExtResource( 2 )]
 script = ExtResource( 3 )

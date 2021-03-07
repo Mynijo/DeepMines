@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://buildings/playerBuildings/DungeonHeart.gd" type="Script" id=1]
+[ext_resource path="res://media/playerBuildings/Lebenskristall.png" type="Texture" id=2]
+[ext_resource path="res://ui/MapIcon.tscn" type="PackedScene" id=3]
+[ext_resource path="res://buildings/Building.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="Dungeon_Heart" instance=ExtResource( 4 )]
+scale = Vector2( 2.5, 2.5 )
+collision_layer = 2147483651
+collision_mask = 4
+script = ExtResource( 1 )
+size = Vector2( 2, 2 )
+solid = false
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+texture = ExtResource( 2 )
+
+[node name="MapIcon" parent="." index="2" instance=ExtResource( 3 )]
+texture = ExtResource( 2 )
