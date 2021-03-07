@@ -8,8 +8,8 @@
 [ext_resource path="res://media/buildings/traps/Stone_Icon.png" type="Texture" id=6]
 
 
+
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 387, 322, 10, 12 )
 

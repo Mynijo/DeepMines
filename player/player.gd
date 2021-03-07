@@ -48,10 +48,12 @@ func _ready():
 	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
 	#relics.append(load("res://relic/Blood_Drinker.tscn").instance())
 	#relics.append(load("res://relic/Trap_Master.tscn").instance())
+	#relics.append(load("res://relic/Trap_Master.tscn").instance())
 	
 	for relic in relics:
 		$Relics.add_relic(relic)
 
+	Inventory.traps.append(load("res://buildings/tower/traps/Port_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/FreezField_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
 	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())

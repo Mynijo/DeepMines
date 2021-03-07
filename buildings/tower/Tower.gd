@@ -111,33 +111,35 @@ func remove_rune(_rune):
 		
 func _process(delta):	
 	if target.size() != 0:
-		if recalc_target:
-			order_by(e_rule.closest_first)
-			$TargetSelectionColldown.start()
-			recalc_target = false
-		var distance = (target.front().global_position - global_position).length()
-		var attack = Attack.instance()
-		var _time = (distance / (attack.get_speed()))
-		attack.free()
-		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
-		var target_dir = (predicted_position - global_position).normalized()
-		
-		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
-		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
-		
-		if target_dir.dot(current_dir) > 0.999:
-			$RayCastAnchor.look_at(target.front().global_position)
-			ray.force_raycast_update()
-			if ray.is_colliding():
-				if ray.get_collider().is_in_group("enemys"):
-					if can_shoot:
-						shoot()
-				else:
-					pass
-	else:
-		#var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
-		#$Body.global_rotation = current_dir.linear_interpolate(Vector2(1,0), turret_speed * delta).angle()
-		pass
+		if Attack != null:
+			if recalc_target:
+				order_by(e_rule.closest_first)
+				$TargetSelectionColldown.start()
+				recalc_target = false
+			var distance = (target.front().global_position - global_position).length()
+			var attack = Attack.instance()
+			var _time
+			_time = (distance / (attack.get_speed()))
+			attack.free()
+			var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
+			var target_dir = (predicted_position - global_position).normalized()
+			
+			var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
+			$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
+			
+			if target_dir.dot(current_dir) > 0.999:
+				$RayCastAnchor.look_at(target.front().global_position)
+				ray.force_raycast_update()
+				if ray.is_colliding():
+					if ray.get_collider().is_in_group("enemys"):
+						if can_shoot:
+							shoot()
+					else:
+						pass
+		else:
+			#var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
+			#$Body.global_rotation = current_dir.linear_interpolate(Vector2(1,0), turret_speed * delta).angle()
+			pass
 		
 func spawn(_position):
 	position = _position
