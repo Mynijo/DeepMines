@@ -1,9 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://media/fonts/Kenney_Future_13.tres" type="DynamicFont" id=1]
-[ext_resource path="res://buildings/player_buildings/Tower_Foundation.gd" type="Script" id=2]
+[ext_resource path="res://buildings/playerBuildings/TowerFoundation.gd" type="Script" id=2]
 [ext_resource path="res://media/towerDefense_tilesheet180.png" type="Texture" id=3]
 [ext_resource path="res://buildings/tower/Tower.tscn" type="PackedScene" id=4]
+
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 18.9492

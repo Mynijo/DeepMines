@@ -43,21 +43,20 @@ func _ready():
 	$UI/Bombs.text  = String(Inventory.bombs)
 	
 	var relics = []
-	#relics.append(load("res://relic/Divine_Shield_Relic.tscn").instance())
-	#relics.append(load("res://relic/Gold_Bars_Relic.tscn").instance())
+	#relics.append(load("res://relic/DivineShieldRelic.tscn").instance())
+	#relics.append(load("res://relic/GoldBarsRelic.tscn").instance())
 	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
-	#relics.append(load("res://relic/Blood_Drinker.tscn").instance())
-	#relics.append(load("res://relic/Trap_Master.tscn").instance())
-	#relics.append(load("res://relic/Trap_Master.tscn").instance())
+	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	#relics.append(load("res://relic/TrapMaster.tscn").instance())
 	
 	for relic in relics:
 		$Relics.add_relic(relic)
 
-	Inventory.traps.append(load("res://buildings/tower/traps/Port_Trap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/FreezField_Trap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/RollingStone_Trap.tscn").instance())
+	Inventory.traps.append(load("res://buildings/tower/traps/PortTrap.tscn").instance())
+	Inventory.traps.append(load("res://buildings/tower/traps/FreezFieldTrap.tscn").instance())
+	Inventory.traps.append(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
+	Inventory.traps.append(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
+	Inventory.traps.append(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
 	_on_Cursor_Mode_BuildTrap_UP_pressed()
 
 
