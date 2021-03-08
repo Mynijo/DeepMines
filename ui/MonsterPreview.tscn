@@ -1,0 +1,189 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://media/Fonts/KenneyFuture10.tres" type="DynamicFont" id=1]
+[ext_resource path="res://media/Fonts/KennyFutureNarrow16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://media/button_0.png" type="Texture" id=3]
+[ext_resource path="res://media/effects/charme03.png" type="Texture" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 400, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 624, 160, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 576, 96, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 640, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 352, 64, 16, 16 )
+
+[node name="Control" type="PanelContainer"]
+anchor_left = 1.0
+anchor_top = 0.477
+anchor_right = 1.0
+anchor_bottom = 0.477
+margin_left = -100.0
+margin_top = -58.3
+margin_bottom = 58.7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 93.0
+margin_bottom = 110.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="MonsterName" type="Label" parent="VBoxContainer"]
+margin_right = 86.0
+margin_bottom = 18.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Gobo"
+align = 1
+autowrap = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 18.0
+margin_right = 86.0
+margin_bottom = 96.0
+
+[node name="CenterContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 79.0
+margin_bottom = 71.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/CenterContainer"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 32, 32 )
+size_flags_vertical = 4
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer/PanelContainer/CenterContainer"]
+margin_left = 32.0
+margin_right = 68.0
+margin_bottom = 64.0
+size_flags_vertical = 4
+custom_constants/separation = 0
+
+[node name="Health" type="HBoxContainer" parent="VBoxContainer/PanelContainer/CenterContainer/Stats"]
+margin_right = 36.0
+margin_bottom = 16.0
+custom_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Health"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 2 )
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Health"]
+margin_left = 16.0
+margin_top = 2.0
+margin_right = 36.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "100"
+align = 2
+
+[node name="Damage" type="HBoxContainer" parent="VBoxContainer/PanelContainer/CenterContainer/Stats"]
+margin_top = 16.0
+margin_right = 36.0
+margin_bottom = 32.0
+custom_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Damage"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 3 )
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Damage"]
+margin_left = 16.0
+margin_top = 2.0
+margin_right = 36.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "10"
+align = 2
+
+[node name="Speed" type="HBoxContainer" parent="VBoxContainer/PanelContainer/CenterContainer/Stats"]
+margin_top = 32.0
+margin_right = 36.0
+margin_bottom = 48.0
+custom_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Speed"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 4 )
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Speed"]
+margin_left = 16.0
+margin_top = 2.0
+margin_right = 36.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "100"
+align = 2
+
+[node name="Reward" type="HBoxContainer" parent="VBoxContainer/PanelContainer/CenterContainer/Stats"]
+margin_top = 48.0
+margin_right = 36.0
+margin_bottom = 64.0
+custom_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Reward"]
+margin_right = 16.0
+margin_bottom = 16.0
+texture = SubResource( 5 )
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer/CenterContainer/Stats/Reward"]
+margin_left = 16.0
+margin_top = 2.0
+margin_right = 36.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "5"
+align = 2
+
+[node name="Effects" type="GridContainer" parent="VBoxContainer"]
+margin_top = 96.0
+margin_right = 86.0
+margin_bottom = 103.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 12
+
+[node name="Effect" type="TextureRect" parent="VBoxContainer/Effects"]
+margin_right = 7.0
+margin_bottom = 7.0
+texture = ExtResource( 4 )

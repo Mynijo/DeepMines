@@ -74,6 +74,7 @@ margin_bottom = 96.0
 [node name="CenterContainer" parent="VBoxContainer/SlotContainer/TowerUpgradeSlot/PanelContainer/VBoxContainer" index="1"]
 margin_top = 100.0
 margin_bottom = 120.0
+
 [connection signal="pressed" from="VBoxContainer/Header/CloseButton" to="." method="_on_CloseButton_pressed"]
 
 [editable path="VBoxContainer/SlotContainer/TowerUpgradeSlot"]
