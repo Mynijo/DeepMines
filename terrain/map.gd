@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var map_size = Vector2(20, 20)
+var map_size = Vector2(10, 10)
 var width
 var height
 

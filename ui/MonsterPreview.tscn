@@ -30,8 +30,9 @@ anchor_left = 1.0
 anchor_top = 0.477
 anchor_right = 1.0
 anchor_bottom = 0.477
-margin_left = -100.0
+margin_left = -99.5278
 margin_top = -58.3
+margin_right = 0.472168
 margin_bottom = 58.7
 __meta__ = {
 "_edit_use_anchors_": false
@@ -41,7 +42,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 93.0
-margin_bottom = 110.0
+margin_bottom = 124.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -187,3 +188,8 @@ columns = 12
 margin_right = 7.0
 margin_bottom = 7.0
 texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_top = 103.0
+margin_right = 86.0
+margin_bottom = 117.0
