@@ -8,6 +8,7 @@ var height
 var block_size_pix = Vector2(40,40)
 
 var heart
+var heart_pos = Vector2(4, 0)
 
 
 var levels = []
@@ -115,7 +116,7 @@ func get_pos_on_map_mid(_cor, _level_cor):
 	return (_cor * block_size_pix) + (_level_cor*block_size_pix*map_size) +  get_root_offset()
 
 func get_heart():
-	add_heart(Vector2(9, 0), Vector2(0, 0))
+	add_heart(heart_pos, Vector2(0, 0))
 	return heart
 
 func _on_Tower_shoot(attack, _position, _direction, _tower):
@@ -262,7 +263,6 @@ func gen_level(_level_cor):
 	var used_pos = []
 	levels.append(_level_cor)
 	if _level_cor == Vector2(0,0):
-		var heart_pos = Vector2(9, 0)
 		add_heart(heart_pos, Vector2(0, 0))
 		used_pos.append(heart_pos)
 		used_pos.append(heart_pos + Vector2(0, 1))
