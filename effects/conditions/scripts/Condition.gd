@@ -23,3 +23,6 @@ func load_settings(_settings):
 		return
 	for k in _settings.keys():
 		set(k ,_settings[k])
+
+func get_condition_text():
+	return "Default Text"

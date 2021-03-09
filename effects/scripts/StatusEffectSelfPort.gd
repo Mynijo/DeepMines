@@ -15,3 +15,6 @@ func effekt(value, tag):
 		return value
 	
 
+func get_effect_text():
+	var text = "Port unit 1 field on dmg taken"
+	return  text

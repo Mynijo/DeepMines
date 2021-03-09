@@ -23,6 +23,7 @@ animations = [ {
 scale = Vector2( 0.7, 0.8 )
 speed = 30
 gold_value = 30
+enemy_name = "Lizard"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -2.18729, 2.25415 )

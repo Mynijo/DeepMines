@@ -15,3 +15,5 @@ func effekt(value, tag):
 		Player.heal(heal_value)
 	return value
 	
+func get_effect_text():
+	return "Heal Player " + String(heal_value) + " on death"

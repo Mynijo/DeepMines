@@ -21,6 +21,7 @@ animations = [ {
 speed = 30
 gold_value = 30
 max_health = 100
+enemy_name = "Dragi"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -5.04443, 1.00415 )

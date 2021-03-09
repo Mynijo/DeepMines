@@ -23,6 +23,7 @@ animations = [ {
 scale = Vector2( 0.6, 0.6 )
 speed = 40
 gold_value = 30
+enemy_name = "Gobo"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -0.187286, 2.25415 )

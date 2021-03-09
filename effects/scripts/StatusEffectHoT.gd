@@ -29,3 +29,12 @@ func effekt(value, tag):
 
 func _on_Ticker_timeout():
 	ready = true
+
+func get_effect_text():
+	var text = "Heal " + String(heal_value) + " Every "+ String(tick_rate) + " Sec"
+	if duration != 0:
+		text = text + " Duration "+ String(duration)
+	if $Conditions.get_child_count() > 0:
+		for condition in $Conditions.get_children():
+			text = text + " "+ condition.get_condition_text()
+	return  text

@@ -24,6 +24,7 @@ scale = Vector2( 0.7, 0.8 )
 speed = 50
 damage = 1
 gold_value = 1
+enemy_name = "Soul Splitter"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -4.18728, 2.25415 )
