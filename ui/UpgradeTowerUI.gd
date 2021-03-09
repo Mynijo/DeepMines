@@ -32,7 +32,7 @@ func add_upgrade(var upgrade):
 	
 func align():
 	self.rect_global_position.x = -1 * ($VBoxContainer.rect_size.x + 15)/ 2 + tower.global_position.x
-	self.rect_global_position.y += 25
+	self.rect_global_position.y = tower.global_position.y + 25
 
 func refresh_upgrades():
 	for child in $VBoxContainer/SlotContainer.get_children():
@@ -50,6 +50,3 @@ func refresh_upgrades():
 	
 	if $VBoxContainer/SlotContainer.get_children().empty():
 		self.hide()
-
-func _on_CloseButton_pressed():
-	self.hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://effects/StatusEffects.tscn" type="PackedScene" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://enemy/UnitDisplay.tscn" type="PackedScene" id=4]
 [ext_resource path="res://media/monster/monsterIcons.png" type="Texture" id=5]
 [ext_resource path="res://ui/MapIcon.tscn" type="PackedScene" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 63.4176
 
 [node name="enemy" type="KinematicBody2D" groups=[
 "enemys",
@@ -42,4 +45,12 @@ centered = false
 visible = true
 texture = ExtResource( 5 )
 region_rect = Rect2( 576.75, 336.156, 14.5219, 15.1644 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
 [connection signal="health_changed" from="." to="UnitDisplay" method="update_healthbar"]
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

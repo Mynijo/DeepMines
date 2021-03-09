@@ -46,7 +46,11 @@ func _ready():
 	#relics.append(load("res://relic/DivineShieldRelic.tscn").instance())
 	#relics.append(load("res://relic/GoldBarsRelic.tscn").instance())
 	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
-	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/TrapMaster.tscn").instance())
 	
 	for relic in relics:
@@ -297,3 +301,20 @@ func _on_Buy_Bombs_pressed():
 	if Player.get_money() >= 5:
 		Player.remove_money(5)
 		Player.add_bombs(1)
+
+func show_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list):
+	$UI/Preview.reset()
+	$UI/Preview.set_Health(max_Health)
+	$UI/Preview.set_Damage(damage)
+	$UI/Preview.set_Speed(speed)
+	$UI/Preview.set_Reward(reward)
+	$UI/Preview.set_Enemy_Textur(tex)	
+	$UI/Preview.set_Enemy_Name(name)	
+	$UI/Preview.set_Status_List(status_list)
+	$UI/Preview.show()
+
+
+func _on_Area2D_input_event(viewport, _event, shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == BUTTON_RIGHT and _event.pressed:
+			$UI/Preview.hide()

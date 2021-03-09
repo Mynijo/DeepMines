@@ -5,9 +5,8 @@
 [ext_resource path="res://media/button_0.png" type="Texture" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 3 )
-region = Rect2( 387, 193, 10, 10 )
+region = Rect2( 384, 192, 16, 16 )
 
 [node name="StatusEffectCharge" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

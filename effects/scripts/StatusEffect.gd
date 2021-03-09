@@ -68,7 +68,10 @@ func has_icon():
 		return true
 	else:
 		return false
-	
+
+func get_description():
+	return "description"
+
 func get_icon():
 	if $Icon.texture:
 		return  $Icon
@@ -90,3 +93,6 @@ func rewrite_tags():
 func update_icon(var _new_icon):
 	parent.update_icon($Icon,_new_icon)
 	$Icon.texture = _new_icon.texture
+	
+func get_effect_text():
+	return String(randi())

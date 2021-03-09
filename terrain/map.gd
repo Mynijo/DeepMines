@@ -1,14 +1,14 @@
 extends Node2D
 
 
-var map_size = Vector2(10, 10)
+var map_size = Vector2(11, 11)
 var width
 var height
 
 var block_size_pix = Vector2(40,40)
 
 var heart
-var heart_pos = Vector2(4, 0)
+var heart_pos = Vector2(5, 0)
 
 
 var levels = []
