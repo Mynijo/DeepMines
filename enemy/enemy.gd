@@ -220,8 +220,7 @@ func add_spawner(_spawner):
 func get_spawner():
 	return spawner
 
-func _on_Area2D_input_event(viewport, _event, shape_idx):	
-	Player.add_debug(enemy_name + " - "+ str(shape_idx))
+func _on_Area2D_input_event(viewport, _event, shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == BUTTON_LEFT and _event.pressed:
 			Player.show_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list())
