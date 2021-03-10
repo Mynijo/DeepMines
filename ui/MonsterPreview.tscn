@@ -30,14 +30,12 @@ anchor_left = 0.965
 anchor_top = 0.404
 anchor_right = 0.965
 anchor_bottom = 0.404
-margin_left = -114.0
-margin_top = 1.39999
-margin_right = -18.0
-margin_bottom = 125.4
+margin_left = -92.0
+margin_top = -85.6
+margin_right = 4.0
+margin_bottom = 72.4
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 13
-size_flags_vertical = 13
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -47,7 +45,7 @@ __meta__ = {
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 89.0
-margin_bottom = 117.0
+margin_bottom = 151.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
@@ -55,7 +53,7 @@ custom_constants/separation = 0
 [node name="MonsterName" type="Label" parent="VBoxContainer"]
 margin_right = 82.0
 margin_bottom = 18.0
-size_flags_vertical = 3
+size_flags_vertical = 1
 custom_fonts/font = ExtResource( 2 )
 text = "Gobo"
 align = 1
@@ -65,6 +63,8 @@ autowrap = true
 margin_top = 18.0
 margin_right = 82.0
 margin_bottom = 96.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
 
 [node name="CenterContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
 margin_left = 7.0
@@ -183,14 +183,19 @@ align = 2
 margin_top = 96.0
 margin_right = 82.0
 margin_bottom = 96.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 5
 custom_constants/vseparation = 0
 custom_constants/hseparation = 0
-columns = 6
+columns = 5
 
 [node name="Effect_label" type="Label" parent="VBoxContainer"]
 margin_top = 96.0
 margin_right = 82.0
-margin_bottom = 110.0
+margin_bottom = 144.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "hjkhjk
+dfhfdghdfgh
+dfhfdh"
 autowrap = true
