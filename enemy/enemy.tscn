@@ -47,7 +47,7 @@ texture = ExtResource( 5 )
 region_rect = Rect2( 576.75, 336.156, 14.5219, 15.1644 )
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 16
+collision_layer = 31
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

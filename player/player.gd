@@ -46,11 +46,11 @@ func _ready():
 	#relics.append(load("res://relic/DivineShieldRelic.tscn").instance())
 	#relics.append(load("res://relic/GoldBarsRelic.tscn").instance())
 	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
-	relics.append(load("res://relic/BloodDrinker.tscn").instance())
-	relics.append(load("res://relic/BloodDrinker.tscn").instance())
-	relics.append(load("res://relic/BloodDrinker.tscn").instance())
-	relics.append(load("res://relic/BloodDrinker.tscn").instance())
-	relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/TrapMaster.tscn").instance())
 	
 	for relic in relics:
