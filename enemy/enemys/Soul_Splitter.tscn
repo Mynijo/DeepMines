@@ -9,7 +9,7 @@
 [ext_resource path="res://media/monster/soul_splitter/4.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 11.7065
+radius = 8.80501
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -20,7 +20,6 @@ animations = [ {
 } ]
 
 [node name="Soul_Splitter" instance=ExtResource( 1 )]
-scale = Vector2( 0.7, 0.8 )
 speed = 50
 damage = 1
 gold_value = 1
@@ -32,13 +31,13 @@ shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 position = Vector2( 10, -1 )
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.07, 0.08 )
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
 [node name="Animation" parent="." index="6"]
 position = Vector2( -10, -5 )
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.07, 0.08 )
 frames = SubResource( 2 )
 animation = "walk"
 offset = Vector2( -60, -62 )

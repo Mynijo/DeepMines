@@ -323,6 +323,6 @@ func _on_Area2D_input_event(viewport, _event, shape_idx):
 
 var debug_counter = 0
 func add_debug(var text):
-	$UI/Debug.text = $UI/Debug.text + "\n"+ String(debug_counter) + ": "+ String(text)
+	$UI/Debug.text =  String($UI/Debug.text) + "\n"+ String(debug_counter) + ": "+ String(text)
 	debug_counter = debug_counter + 1
 	$UI/Debug.scroll_following = true
