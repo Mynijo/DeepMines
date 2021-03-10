@@ -49,6 +49,7 @@ func reset():
 	$VBoxContainer/PanelContainer/CenterContainer/Stats/Speed/Label.text = ""
 	$VBoxContainer/PanelContainer/CenterContainer/Stats/Reward/Label.text = ""
 	$VBoxContainer/PanelContainer/CenterContainer/TextureRect.texture = null
+	$VBoxContainer/PanelContainer3/Effect_label.text = ""
 	for child in $VBoxContainer/PanelContainer2/Effects.get_children():
 		child.free()
 		

@@ -51,7 +51,7 @@ size_flags_vertical = 3
 custom_constants/separation = 0
 
 [node name="MonsterName" type="Label" parent="VBoxContainer"]
-margin_right = 99.0
+margin_right = 98.0
 margin_bottom = 18.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 2 )
@@ -196,7 +196,7 @@ size_flags_vertical = 0
 [node name="Effects" type="GridContainer" parent="VBoxContainer/PanelContainer2"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 73.0
+margin_right = 78.0
 margin_bottom = 23.0
 rect_min_size = Vector2( 66, 16 )
 size_flags_vertical = 5
