@@ -77,7 +77,7 @@ func ini_possible_upgrades():
 		return
 	possible_upgrades.append(load("res://rune/RuneBurst.tscn").instance())
 	possible_upgrades.append(load("res://rune/RuneSplitShot.tscn").instance())
-	possible_upgrades.append(load("res://rune/RuneScatterShot.tscn").instance())
+	possible_upgrades.append(load("res://rune/RuneMultiShot.tscn").instance())
 	is_ini_possible_upgrades = true
 
 
