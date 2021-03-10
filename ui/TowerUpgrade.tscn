@@ -1,24 +1,29 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://media/button_0.png" type="Texture" id=1]
-[ext_resource path="res://buildings/tower/upgrades/TowerUpgrade.gd" type="Script" id=2]
+[ext_resource path="res://ui/TowerUpgrade.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 624, 80, 16, 16 )
+region = Rect2( 592, 80, 16, 16 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 32, 32 )
 
-[node name="TowerUpgrade" type="TextureRect"]
+[node name="Texture" type="PanelContainer"]
 rect_min_size = Vector2( 64, 64 )
-texture = SubResource( 1 )
-expand = true
-stretch_mode = 6
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TowerUpgrade" type="TextureRect" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 57.0
+margin_bottom = 57.0
+texture = SubResource( 1 )
+expand = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -26,4 +31,3 @@ __meta__ = {
 position = Vector2( 32, 32 )
 shape = SubResource( 2 )
 [connection signal="gui_input" from="." to="." method="_on_TowerUpgrade_gui_input"]
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

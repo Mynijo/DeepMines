@@ -311,6 +311,7 @@ func show_Preview(var name, var max_Health, var damage, var speed, var reward, v
 	$UI/Preview.set_Enemy_Textur(tex)	
 	$UI/Preview.set_Enemy_Name(name)	
 	$UI/Preview.set_Status_List(status_list)
+	$Camera/Area2D/CollisionShape2D.disabled = false
 	$UI/Preview.show()
 
 
@@ -318,3 +319,10 @@ func _on_Area2D_input_event(viewport, _event, shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == BUTTON_RIGHT and _event.pressed:
 			$UI/Preview.hide()
+			$Camera/Area2D/CollisionShape2D.disabled = true
+
+var debug_counter = 0
+func add_debug(var text):
+	$UI/Debug.text = $UI/Debug.text + "\n"+ String(debug_counter) + ": "+ String(text)
+	debug_counter = debug_counter + 1
+	$UI/Debug.scroll_following = true

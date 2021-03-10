@@ -37,7 +37,7 @@ func set_Status_List(status_list):
 			icon.set_preview(self)
 			icon.set_effect_text(status.get_effect_text())
 			icon.set_texture(status.get_icon().texture)
-			$VBoxContainer/Effects.add_child(icon)
+			$VBoxContainer/PanelContainer2/Effects.add_child(icon)
 			if first:
 				first = false
 				set_effect_text(status.get_effect_text())
@@ -49,8 +49,8 @@ func reset():
 	$VBoxContainer/PanelContainer/CenterContainer/Stats/Speed/Label.text = ""
 	$VBoxContainer/PanelContainer/CenterContainer/Stats/Reward/Label.text = ""
 	$VBoxContainer/PanelContainer/CenterContainer/TextureRect.texture = null
-	for child in $VBoxContainer/Effects.get_children():
+	for child in $VBoxContainer/PanelContainer2/Effects.get_children():
 		child.free()
 		
 func set_effect_text(var text):
-	$VBoxContainer/Effect_label.text = text
+	$VBoxContainer/PanelContainer3/Effect_label.text = text

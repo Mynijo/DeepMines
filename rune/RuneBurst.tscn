@@ -1,19 +1,20 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Rune/RuneEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Rune/RuneBurst.gd" type="Script" id=2]
+[ext_resource path="res://media/button_0.png" type="Texture" id=3]
 
-[node name="RuneBurst" index="0" instance=ExtResource( 1 )]
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 672, 96, 16, 16 )
 
+[node name="RuneBurst" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+rune_name = "Burst"
 
 [node name="Timer" type="Timer" parent="." index="2"]
-
-process_mode = 1
 wait_time = 0.15
-one_shot = false
-autostart = false
 
+[node name="Icon" parent="." index="3"]
+texture = SubResource( 1 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-
-
