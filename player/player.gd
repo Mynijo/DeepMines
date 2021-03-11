@@ -321,6 +321,7 @@ func show_relic_preview(var name, var tex, var status_text):
 	$UI/RelictPreview.set_relic_textur(tex)	
 	$UI/RelictPreview.set_relic_name(name)	
 	$UI/RelictPreview.set_relic_label(status_text)
+	$Camera/Area2D/CollisionShape2D.disabled = false
 	$UI/RelictPreview.show()
 
 
@@ -328,6 +329,7 @@ func _on_Area2D_input_event(viewport, _event, shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == BUTTON_RIGHT and _event.pressed:
 			$UI/Preview.hide()
+			$UI/RelictPreview.hide()
 			$Camera/Area2D/CollisionShape2D.disabled = true
 
 var debug_counter = 0
