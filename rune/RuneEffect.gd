@@ -2,6 +2,9 @@ extends Node
 
 var attack
 var tower
+
+export (int) var price
+export (String) var rune_name
 	
 func effect(_obj, _tag):
 	pass
@@ -28,3 +31,12 @@ func sort_Obj(_obj):
 			if _obj.has_method('is_Attack'):
 				attack = _obj
 				return
+
+func get_Icon():
+	return $Icon
+	
+func get_Price():
+	return price
+	
+func get_Name():
+	return rune_name

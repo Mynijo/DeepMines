@@ -10,8 +10,8 @@ atlas = ExtResource( 1 )
 region = Rect2( 640, 224, 16, 16 )
 
 [node name="UpgradeTowerUI" type="PanelContainer"]
-margin_right = 226.0
-margin_bottom = 174.0
+margin_right = 207.0
+margin_bottom = 158.0
 mouse_filter = 1
 script = ExtResource( 4 )
 __meta__ = {
@@ -21,20 +21,20 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 219.0
-margin_bottom = 167.0
+margin_right = 200.0
+margin_bottom = 151.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Header" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 212.0
+margin_right = 193.0
 margin_bottom = 22.0
 
 [node name="WindowTitle" type="Label" parent="VBoxContainer/Header"]
 margin_top = 2.0
-margin_right = 180.0
+margin_right = 161.0
 margin_bottom = 19.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 2 )
@@ -42,8 +42,8 @@ text = "Upgrade Tower"
 align = 1
 
 [node name="CloseButton" type="Button" parent="VBoxContainer/Header"]
-margin_left = 184.0
-margin_right = 212.0
+margin_left = 165.0
+margin_right = 193.0
 margin_bottom = 22.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -53,27 +53,18 @@ flat = true
 
 [node name="SlotContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 26.0
-margin_right = 212.0
-margin_bottom = 160.0
+margin_right = 193.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
 
 [node name="TowerUpgradeSlot" parent="VBoxContainer/SlotContainer" instance=ExtResource( 3 )]
-margin_right = 212.0
+margin_right = 193.0
 
 [node name="PanelContainer" parent="VBoxContainer/SlotContainer/TowerUpgradeSlot" index="0"]
-margin_bottom = 134.0
-
-[node name="VBoxContainer" parent="VBoxContainer/SlotContainer/TowerUpgradeSlot/PanelContainer" index="0"]
-margin_bottom = 127.0
-
-[node name="Name" parent="VBoxContainer/SlotContainer/TowerUpgradeSlot/PanelContainer/VBoxContainer" index="0"]
-margin_bottom = 96.0
-
-[node name="CenterContainer" parent="VBoxContainer/SlotContainer/TowerUpgradeSlot/PanelContainer/VBoxContainer" index="1"]
-margin_top = 100.0
-margin_bottom = 120.0
+margin_left = 57.0
+margin_right = 135.0
 [connection signal="pressed" from="VBoxContainer/Header/CloseButton" to="." method="_on_CloseButton_pressed"]
 
 [editable path="VBoxContainer/SlotContainer/TowerUpgradeSlot"]

@@ -7,7 +7,7 @@
 [ext_resource path="res://media/monster/dragon/Walk5.png" type="Texture" id=5]
 [ext_resource path="res://media/monster/dragon/Walk2.png" type="Texture" id=6]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=1]
 radius = 16.2334
 
 [sub_resource type="SpriteFrames" id=2]
@@ -21,10 +21,11 @@ animations = [ {
 [node name="dragon" instance=ExtResource( 1 )]
 speed = 40
 gold_value = 50
+enemy_name = "Dragon"
 
 [node name="CollisionShape2D" parent="." index="0"]
 position = Vector2( -0.187286, 2.25415 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
 scale = Vector2( 0.4, 0.4 )

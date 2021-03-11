@@ -6,7 +6,7 @@ signal player_take_damage
 signal player_took_damage
 signal gameState_changed
 
-
+export (String) var relict_name = "dummy_name"
 
 signal update_icon
 
@@ -76,3 +76,13 @@ func call_on_player_took_damage(var _damge):
 	
 func call_on_gamestate_changed(var _new_gamestate):
 	pass
+
+
+func _on_Area2D_input_event(viewport, _event, shape_idx):	
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == BUTTON_LEFT and _event.pressed:
+			Player.add_debug("Relict")
+			Player.show_relic_preview(relict_name,get_icon().texture,get_relic_description())
+			
+func get_relic_description():
+	return "test"

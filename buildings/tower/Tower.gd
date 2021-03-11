@@ -75,10 +75,9 @@ func build_me():
 func ini_possible_upgrades():
 	if is_ini_possible_upgrades:
 		return
-	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeBurst.tscn").instance())
-	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeBurst.tscn").instance())
-	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeSnipe.tscn").instance())
-	possible_upgrades.append(load("res://buildings/tower/upgrades/TowerUpgradeSplitShot.tscn").instance())
+	possible_upgrades.append(load("res://rune/RuneBurst.tscn").instance())
+	possible_upgrades.append(load("res://rune/RuneSplitShot.tscn").instance())
+	possible_upgrades.append(load("res://rune/RuneMultiShot.tscn").instance())
 	is_ini_possible_upgrades = true
 
 
@@ -97,6 +96,7 @@ func get_icon():
 func connect_signals():
 	var _rc
 	_rc = self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
+	_rc = self.connect("shoot", Player, "_on_Tower_shoot")
 	_rc = self.get_tree().get_current_scene().connect("Runes_Changed", self , "runes_changed")
 	_rc = self.connect("Runes_Changed", self, "runes_changed")
 

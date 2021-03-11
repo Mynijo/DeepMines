@@ -2,5 +2,8 @@
 
 [ext_resource path="res://relic/Relics.gd" type="Script" id=1]
 
-[node name="Relics" type="Node"]
+[node name="Relics" type="HBoxContainer"]
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

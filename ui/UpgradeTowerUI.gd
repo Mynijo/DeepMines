@@ -24,32 +24,32 @@ func show():
 	.show()
 	refresh_upgrades()
 	
-func add_upgrade(var upgrade):
+func add_upgrade(var _rune):
 	var UpgradeSlot = UpgradeSlotScene.instance()
-	UpgradeSlot.set_Upgrade(upgrade)
+	UpgradeSlot.set_tower(tower)
+	UpgradeSlot.set_rune(_rune)
+	UpgradeSlot.set_UI(self)
 	$VBoxContainer/SlotContainer.add_child(UpgradeSlot)
 	return
 	
 func align():
 	self.rect_global_position.x = -1 * ($VBoxContainer.rect_size.x + 15)/ 2 + tower.global_position.x
-	self.rect_global_position.y += 25
+	self.rect_global_position.y = tower.global_position.y + 25
 
 func refresh_upgrades():
 	for child in $VBoxContainer/SlotContainer.get_children():
 		$VBoxContainer/SlotContainer.remove_child(child)
 		child.free()
 	
-	var upgrades = tower.get_possible_upgrades()
-	for temp_upgrade in upgrades:
-		var upgrade = temp_upgrade.duplicate()
-		upgrade.set_tower(tower)
-		upgrade.set_UI(self)
-		self.add_upgrade(upgrade)
+	var runes = tower.get_possible_upgrades()
+	for rune in runes:
+		self.add_upgrade(rune)
 		
 	call_deferred("align")
 	
 	if $VBoxContainer/SlotContainer.get_children().empty():
 		self.hide()
+
 
 func _on_CloseButton_pressed():
 	self.hide()

@@ -1,17 +1,22 @@
 extends KinematicBody2D
 
 signal health_changed
+signal dmg_taken
 #signal dead
 
 export (int) var speed = 200
 export (int) var damage = 10
 export (int) var gold_value = 20
 export (int) var max_health = 200
+export (String) var enemy_name = "dummy"
 var health
 
 var last_tower_hit = null
 var tags
 var dead = false
+
+var current_speed
+var show_preview = false
 
 var astar
 var map
@@ -30,6 +35,8 @@ var spawned = false
 
 func _ready():
 	map = get_tree().get_root().get_node("map")
+	var _rc
+	_rc = self.connect("dmg_taken", Player, "_enemy_dmg_taken")
 	
 	# find_way(Vector2(7, 0))
 func set_last_tower_hit(_last_tower_hit):
@@ -48,9 +55,9 @@ func spawn(_position, _start_cor, _start_level_cor):
 
 func control(delta):
 	calc_move_direction()
-	var changed_speed = speed
+	current_speed = speed
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.speed):
-		changed_speed = x.effekt(changed_speed, $Tags.e_effect.speed)
+		current_speed = x.effekt(current_speed, $Tags.e_effect.speed)
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.health):
 		take_damage(x.effekt(health, $Tags.e_effect.health))
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
@@ -61,10 +68,10 @@ func control(delta):
 		$Sprite.visible = true
 	else:
 		$Sprite.visible = false
-	if $Animation.is_playing() and speed != changed_speed:
+	if $Animation.is_playing() and speed != current_speed:
 		var farmes_count = $Animation.frames.get_frame_count('walk')
-		$Animation.frames.set_animation_speed('walk', farmes_count*changed_speed/speed)
-	velocity = move_direction * changed_speed * delta * -100	
+		$Animation.frames.set_animation_speed('walk', farmes_count*current_speed/speed)
+	velocity = move_direction * current_speed * delta * -100	
 	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
 		x.effekt(self, $Tags.e_effect.animation)
@@ -73,6 +80,7 @@ func control(delta):
 		die()
 		
 func take_damage(_damage):
+	emit_signal('dmg_taken')
 	if dead or _damage == null:
 		return
 	if _damage == 0:
@@ -84,7 +92,6 @@ func take_damage(_damage):
 		health = max_health	
 	if health < 0:
 		health = 0
-	
 	emit_signal('health_changed',health)	
 		
 func die():
@@ -101,12 +108,13 @@ func kill():
 	map.remove_enemy(self)
 	queue_free()
 	
+	
 func _physics_process(delta):
-		if dead:
-			return
-		control(delta)
-		var _rc 
-		_rc = move_and_slide(velocity)
+	if dead:
+		return
+	control(delta)
+	var _rc 
+	_rc = move_and_slide(velocity)
 		
 func get_velocity():
 	return velocity
@@ -214,3 +222,14 @@ func add_spawner(_spawner):
 	
 func get_spawner():
 	return spawner
+
+func _on_Area2D_input_event(viewport, _event, shape_idx):
+	if _event is InputEventMouseButton and _event.pressed:
+		if _event.button_index == BUTTON_LEFT and _event.pressed:
+			Player.show_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list())
+			
+
+
+
+func _on_enemy_input_event(viewport, _event, shape_idx):
+	_on_Area2D_input_event(viewport, _event, shape_idx)
