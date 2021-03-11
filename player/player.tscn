@@ -81,6 +81,7 @@ shape = SubResource( 3 )
 [node name="Area2D" type="Area2D" parent="Camera"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Area2D"]
+position = Vector2( -1.33484, 1.33484 )
 shape = SubResource( 4 )
 disabled = true
 
@@ -268,9 +269,9 @@ anchor_left = 0.795
 anchor_top = 0.046
 anchor_right = 0.795
 anchor_bottom = 0.046
-margin_top = -0.400002
+margin_top = -32.4
 margin_right = 287.0
-margin_bottom = 26.6
+margin_bottom = -5.4
 custom_fonts/font = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -298,6 +299,57 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+margin_left = 1391.0
+margin_top = 40.0
+margin_right = 1560.0
+margin_bottom = 71.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameSpeed0_5" type="Button" parent="UI/HBoxContainer"]
+margin_right = 32.0
+margin_bottom = 31.0
+text = "0.5"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameSpeed1" type="Button" parent="UI/HBoxContainer"]
+margin_left = 36.0
+margin_right = 56.0
+margin_bottom = 31.0
+text = "1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameSpeed2" type="Button" parent="UI/HBoxContainer"]
+margin_left = 60.0
+margin_right = 80.0
+margin_bottom = 31.0
+text = "2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameSpeed2_Stop" type="Button" parent="UI/HBoxContainer"]
+margin_left = 84.0
+margin_right = 121.0
+margin_bottom = 31.0
+text = "2 >I"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/HBoxContainer"]
+margin_left = 125.0
+margin_right = 169.0
+margin_bottom = 31.0
+text = "Now: 1
+"
+
 [node name="Relics" parent="." instance=ExtResource( 4 )]
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
@@ -318,3 +370,7 @@ __meta__ = {
 [connection signal="pressed" from="UI/Buy_Pickaxe" to="." method="_on_Buy_Pickaxe_pressed"]
 [connection signal="pressed" from="UI/Buy_Shovel" to="." method="_on_Buy_Shovel_pressed"]
 [connection signal="pressed" from="UI/Buy_Bombs" to="." method="_on_Buy_Bombs_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/GameSpeed0_5" to="." method="_on_GameSpeed0_5_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/GameSpeed1" to="." method="_on_GameSpeed1_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/GameSpeed2" to="." method="_on_GameSpeed2_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/GameSpeed2_Stop" to="." method="_on_GameSpeed2_Stop_pressed"]

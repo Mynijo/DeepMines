@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal health_changed
+signal dmg_taken
 #signal dead
 
 export (int) var speed = 200
@@ -34,6 +35,8 @@ var spawned = false
 
 func _ready():
 	map = get_tree().get_root().get_node("map")
+	var _rc
+	_rc = self.connect("dmg_taken", Player, "_enemy_dmg_taken")
 	
 	# find_way(Vector2(7, 0))
 func set_last_tower_hit(_last_tower_hit):
@@ -77,6 +80,7 @@ func control(delta):
 		die()
 		
 func take_damage(_damage):
+	emit_signal('dmg_taken')
 	if dead or _damage == null:
 		return
 	if _damage == 0:
@@ -88,7 +92,6 @@ func take_damage(_damage):
 		health = max_health	
 	if health < 0:
 		health = 0
-	
 	emit_signal('health_changed',health)	
 		
 func die():

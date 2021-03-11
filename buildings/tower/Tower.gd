@@ -96,6 +96,7 @@ func get_icon():
 func connect_signals():
 	var _rc
 	_rc = self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
+	_rc = self.connect("shoot", Player, "_on_Tower_shoot")
 	_rc = self.get_tree().get_current_scene().connect("Runes_Changed", self , "runes_changed")
 	_rc = self.connect("Runes_Changed", self, "runes_changed")
 

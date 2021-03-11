@@ -326,3 +326,32 @@ func add_debug(var text):
 	$UI/Debug.text =  String($UI/Debug.text) + "\n"+ String(debug_counter) + ": "+ String(text)
 	debug_counter = debug_counter + 1
 	$UI/Debug.scroll_following = true
+
+
+var speed_auto_stop = false
+func set_game_speed(var speed):
+	speed_auto_stop = false
+	$UI/HBoxContainer/Label.text = "Now: "+ str(speed)
+	Engine.set_time_scale(speed)
+
+func _on_GameSpeed0_5_pressed():
+	set_game_speed(0.5)
+
+
+func _on_GameSpeed1_pressed():
+	set_game_speed(1)
+
+
+func _on_GameSpeed2_pressed():
+	set_game_speed(2)
+
+
+func _on_GameSpeed2_Stop_pressed():
+	set_game_speed(2)
+	speed_auto_stop = true
+
+func _enemy_dmg_taken():
+	set_game_speed(1)
+	
+func _on_Tower_shoot(attack, _position, _direction, _tower):
+	set_game_speed(1)
