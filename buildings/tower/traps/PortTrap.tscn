@@ -12,16 +12,16 @@
 [ext_resource path="res://media/effects/port/port_07.png" type="Texture" id=11]
 [ext_resource path="res://media/effects/port/port_08.png" type="Texture" id=12]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
 region = Rect2( 528, 160, 16, 16 )
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": false,
 "name": "explosion",
-"speed": 16.0
+"speed": 15.96
 } ]
 
 [node name="Prot_Trap" instance=ExtResource( 1 )]
@@ -41,10 +41,10 @@ position = Vector2( -0.69931, -1.1101 )
 position = Vector2( 0, -0.23597 )
 
 [node name="MapIcon" parent="." index="6"]
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 
 [node name="Animation" type="AnimatedSprite" parent="." index="8"]
 visible = false
 scale = Vector2( 0.8, 0.8 )
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "explosion"

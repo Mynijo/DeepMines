@@ -28,7 +28,7 @@ func shoot():
 	bomb.effect_lifetime(0) 
 	#bomb.set_explode_animation_scale( Vector2(3,3))
 	bomb.set_explode_animation_frames($Animation.frames)
-	bomb.set_explode_animation_speed_scale(2)
+	bomb.set_explode_animation_speed_scale(0.5)
 	emit_signal('spawn_bomb', bomb, global_position, self)
 
 

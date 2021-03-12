@@ -78,11 +78,12 @@ func call_on_gamestate_changed(var _new_gamestate):
 	pass
 
 
-func _on_Area2D_input_event(viewport, _event, shape_idx):	
-	if _event is InputEventMouseButton and _event.pressed:
-		if _event.button_index == BUTTON_LEFT and _event.pressed:
-			Player.add_debug("Relict")
-			Player.show_relic_preview(relict_name,get_icon().texture,get_relic_description())
-			
+
 func get_relic_description():
 	return "test"
+
+func _on_Icon_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			Player.add_debug("Relict")
+			Player.show_relic_preview(relict_name,get_icon().texture,get_relic_description())

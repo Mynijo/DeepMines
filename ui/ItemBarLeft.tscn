@@ -1,0 +1,324 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://media/button_0.png" type="Texture" id=1]
+[ext_resource path="res://media/fonts/KennyFutureNarrow18.tres" type="DynamicFont" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 688, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 576, 192, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 672, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 704, 144, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 384, 320, 16, 16 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -3.45374
+margin_top = -1.78479
+margin_right = -3.45374
+margin_bottom = -1.78479
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -167.5
+margin_right = 277.0
+margin_bottom = 167.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pickaxes" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 78.0
+margin_bottom = 78.0
+size_flags_horizontal = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Pickaxes"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = SubResource( 1 )
+texture_hover = SubResource( 2 )
+expand = true
+stretch_mode = 4
+
+[node name="Amount" type="Label" parent="VBoxContainer/Pickaxes/TextureButton"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -63.37
+margin_top = -64.0
+margin_right = 0.629974
+custom_fonts/font = ExtResource( 2 )
+text = "10"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shovels" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 82.0
+margin_right = 78.0
+margin_bottom = 160.0
+size_flags_horizontal = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Shovels"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = SubResource( 3 )
+expand = true
+stretch_mode = 4
+
+[node name="Amount" type="Label" parent="VBoxContainer/Shovels/TextureButton"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -64.0
+custom_fonts/font = ExtResource( 2 )
+text = "10"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bombs" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 164.0
+margin_right = 78.0
+margin_bottom = 242.0
+size_flags_horizontal = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/Bombs"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = SubResource( 4 )
+expand = true
+
+[node name="Amount" type="Label" parent="VBoxContainer/Bombs/TextureButton"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -64.0
+custom_fonts/font = ExtResource( 2 )
+text = "10"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 246.0
+margin_right = 277.0
+margin_bottom = 335.0
+custom_constants/separation = -3
+
+[node name="Traps" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 78.0
+margin_bottom = 78.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Traps"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Spacer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 75.0
+margin_top = 29.0
+margin_right = 105.0
+margin_bottom = 59.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Spacer" type="TextureButton" parent="VBoxContainer/HBoxContainer/Spacer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 23.0
+margin_bottom = 23.0
+texture_normal = SubResource( 5 )
+stretch_mode = 5
+
+[node name="Grid" type="GridContainer" parent="VBoxContainer/HBoxContainer"]
+margin_left = 102.0
+margin_right = 277.0
+margin_bottom = 89.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/vseparation = -3
+custom_constants/hseparation = -3
+columns = 4
+
+[node name="Traps2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_right = 46.0
+margin_bottom = 46.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Traps3" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_left = 43.0
+margin_right = 89.0
+margin_bottom = 46.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps3"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Traps4" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_left = 86.0
+margin_right = 132.0
+margin_bottom = 46.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps4"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Traps5" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_left = 129.0
+margin_right = 175.0
+margin_bottom = 46.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps5"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Traps6" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_top = 43.0
+margin_right = 46.0
+margin_bottom = 89.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps6"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Traps7" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_left = 43.0
+margin_top = 43.0
+margin_right = 89.0
+margin_bottom = 89.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps7"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Traps8" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_left = 86.0
+margin_top = 43.0
+margin_right = 132.0
+margin_bottom = 89.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps8"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
+
+[node name="Traps9" type="PanelContainer" parent="VBoxContainer/HBoxContainer/Grid"]
+margin_left = 129.0
+margin_top = 43.0
+margin_right = 175.0
+margin_bottom = 89.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer/Grid/Traps9"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 39.0
+margin_bottom = 39.0
+rect_min_size = Vector2( 32, 32 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 4
