@@ -362,7 +362,9 @@ func _on_GameSpeed2_Stop_pressed():
 	speed_auto_stop = true
 
 func _enemy_dmg_taken():
-	set_game_speed(1)
+	if speed_auto_stop:
+		set_game_speed(1)
 	
 func _on_Tower_shoot(attack, _position, _direction, _tower):
-	set_game_speed(1)
+	if speed_auto_stop:
+		set_game_speed(1)
