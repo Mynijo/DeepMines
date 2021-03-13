@@ -5,7 +5,7 @@
 "boss" : true ,
 "enemeys" : [
 {
-"packed_scene" : "res://Enemy/Enemys/demon.tscn" ,
+"packed_scene" : "res://enemy/enemys/demon.tscn" ,
 "not_default_values" : 
 {
 "max_health" :1500,

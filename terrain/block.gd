@@ -18,9 +18,6 @@ enum e_BLOCKS{
 
 export (e_BLOCKS) var BlockType = e_BLOCKS.none
 
-signal current_cursor_mode_changed
-
-
 var Cor
 var Level_cor
 

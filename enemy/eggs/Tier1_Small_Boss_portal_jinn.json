@@ -5,7 +5,7 @@
 "boss" : false ,
 "enemeys" : [
 {
-"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"packed_scene" : "res://enemy/enemys/jinn.tscn" ,
 "not_default_values" : 
 {
 "max_health" :1000,
@@ -26,7 +26,7 @@
 ],
 },
 {
-"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"packed_scene" : "res://enemy/enemys/jinn.tscn" ,
 "not_default_values" : 
 {
 "max_health" :1000,

@@ -5,7 +5,7 @@
 "boss" : true ,
 "enemeys" : [
 {
-"packed_scene" : "res://Enemy/Enemys/dragon.tscn" ,
+"packed_scene" : "res://enemy/enemys/dragon.tscn" ,
 "not_default_values" : 
 {
 "damage" :50,

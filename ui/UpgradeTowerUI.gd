@@ -9,8 +9,10 @@ var open = false
 export (PackedScene) var UpgradeSlotScene = preload("res://ui/TowerUpgradeSlot.tscn")
 
 func _ready():
+	var _rc
 	map = get_tree().get_root().get_node("map")
-	Global_GameStateManager.connect("gameState_changed", self, "on_gameState_changed")
+	_rc = Global_GameStateManager.connect("gameState_changed", self, "on_gameState_changed")
+	_rc = Player.connect("current_cursor_mode_changed", self, "on_current_cursor_mode_changed")
 	
 func set_tower(_tower):
 	tower = _tower
@@ -48,6 +50,5 @@ func refresh_upgrades():
 	if $VBoxContainer/SlotContainer.get_children().empty():
 		self.hide()
 
-
-func _on_CloseButton_pressed():
+func on_current_cursor_mode_changed():
 	self.hide()

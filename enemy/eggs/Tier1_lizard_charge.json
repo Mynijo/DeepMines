@@ -5,7 +5,7 @@
 "boss" : false ,
 "enemeys" : [
 {
-"packed_scene" : "res://Enemy/Enemys/lizard.tscn" ,
+"packed_scene" : "res://enemy/enemys/lizard.tscn" ,
 "not_default_values" : 
 {
 "max_health" :100,
@@ -26,7 +26,7 @@
 ],
 },
 {
-"packed_scene" : "res://Enemy/Enemys/lizard.tscn" ,
+"packed_scene" : "res://enemy/enemys/lizard.tscn" ,
 "not_default_values" : 
 {
 "gold_value" :10,

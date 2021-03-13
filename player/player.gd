@@ -72,7 +72,7 @@ func add_trap(var trap):
 func get_traps():
 	return Inventory.traps
 
-func _unhandled_key_input(event):
+func _unhandled_key_input(_event):
 	velocity = Vector2(0, 0)
 	if(Input.is_action_pressed("move_left")):
 		velocity += Vector2(-1, 0)
@@ -280,7 +280,7 @@ func show_relic_preview(var name, var tex, var status_text):
 	$UI/RelictPreview.show()
 
 
-func _on_Area2D_input_event(viewport, _event, shape_idx):
+func _on_Area2D_input_event(_viewport, _event, _shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == BUTTON_RIGHT and _event.pressed:
 			change_Cursor_Mode(e_CURSOR_MODE.None)
@@ -309,6 +309,6 @@ func _enemy_dmg_taken():
 	if speed_auto_stop:
 		set_game_speed(1)
 	
-func _on_Tower_shoot(attack, _position, _direction, _tower):
+func _on_Tower_shoot(_attack, _position, _direction, _tower):
 	if speed_auto_stop:
 		set_game_speed(1)

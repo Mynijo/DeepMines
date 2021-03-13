@@ -18,7 +18,8 @@ func build_me():
 			
 func shoot():
 	$Body.hide()
-	self.connect("spawn_bomb", self.get_tree().get_current_scene(), "_on_spawn_attack")
+	var _rc
+	_rc = self.connect("spawn_bomb", self.get_tree().get_current_scene(), "_on_spawn_attack")
 	var RunePort = load("res://rune/RunePortChance.tscn").instance()
 	RunePort.port_chance = 100
 	var bomb = load ("res://Attack/StationaryBomb.tscn").instance()

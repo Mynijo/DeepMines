@@ -169,7 +169,7 @@ func add_building(_building, _cor, _level_cor):
 				if !_building.solid:
 					replace_block(block, load("res://terrain/blocks/builtOnAir.tscn").instance())
 				else:
-					replace_block(block, load("res://terrain/blocks/None.tscn").instance())
+					replace_block(block, load("res://terrain/blocks/none.tscn").instance())
 				block.queue_free()
 			else:
 				var level = map_as_bi[String(levle_cor)]
