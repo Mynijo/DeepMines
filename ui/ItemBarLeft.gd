@@ -60,7 +60,6 @@ func open_trap_chooser():
 	$VBoxContainer/HBoxContainer/Spacer.hide()
 	$VBoxContainer/HBoxContainer/Grid.show()
 	for child in $VBoxContainer/HBoxContainer/Grid.get_children():
-		$VBoxContainer/HBoxContainer/Spacer.remove_child(child)
 		child.queue_free()
 	
 	for trap in Player.get_traps():

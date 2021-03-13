@@ -100,6 +100,11 @@ func get_selected_trap():
 	
 func remove_trap(_trap):
 	Inventory.traps.erase(_trap)
+	if _trap == get_selected_trap():
+		if not get_traps().empty():
+			set_selected_trap(get_traps()[0])
+		else:
+			set_selected_trap(null)
 
 func add_bombs(_bombs):
 	Inventory.bombs += _bombs
