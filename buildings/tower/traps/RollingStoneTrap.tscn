@@ -7,9 +7,6 @@
 [ext_resource path="res://media/button_0.png" type="Texture" id=5]
 [ext_resource path="res://media/buildings/traps/Stone_Icon.png" type="Texture" id=6]
 
-
-
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 5 )
 region = Rect2( 387, 322, 10, 12 )
@@ -19,6 +16,8 @@ script = ExtResource( 4 )
 solid = false
 cost = 0
 Attack = ExtResource( 2 )
+trap_name = "Rolling Stone"
+description = "You know what it does. Place direction matters!"
 
 [node name="Body" parent="." index="0"]
 scale = Vector2( 0.2, 0.2 )

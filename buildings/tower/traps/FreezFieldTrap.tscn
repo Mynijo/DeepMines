@@ -14,6 +14,8 @@ detect_radius = 60
 cost = 0
 Attack = ExtResource( 4 )
 charges = 20
+trap_name = "FreezTrap"
+description = "Slows and freezes enemys"
 
 [node name="Body" parent="." index="0"]
 scale = Vector2( 0.8, 0.8 )

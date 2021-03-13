@@ -8,6 +8,7 @@ signal gameState_changed
 
 export (String) var relict_name = "dummy_name"
 export (String) var description = "dummy_description"
+export (int) var price = 100
 
 signal update_icon
 
@@ -16,6 +17,11 @@ var map
 func _ready():
 	map = get_tree().get_root().get_node("map")
 
+func get_name():
+	return relict_name
+
+func get_price():
+	return price
 
 func effect(_value, _tag):
 	pass
@@ -81,7 +87,6 @@ func call_on_gamestate_changed(var _new_gamestate):
 func _on_Icon_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			Player.add_debug("Relict")
 			Player.show_relic_preview(relict_name,get_icon().texture,get_description())
 
 

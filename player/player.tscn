@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
+[ext_resource path="res://media/button_0.png" type="Texture" id=2]
 [ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://relic/Relics.tscn" type="PackedScene" id=4]
 [ext_resource path="res://ui/ItemBarLeft.tscn" type="PackedScene" id=5]
@@ -19,6 +20,10 @@ extents = Vector2( 20, 450 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 800, 450 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 656, 256, 16, 16 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -237,6 +242,28 @@ margin_left = 42.0
 margin_top = 256.0
 margin_right = -1478.0
 margin_bottom = -303.0
+
+[node name="PanelContainer" type="PanelContainer" parent="UI"]
+margin_left = 40.8661
+margin_top = 137.689
+margin_right = 118.866
+margin_bottom = 215.689
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shop" type="TextureButton" parent="UI/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 71.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 64, 64 )
+texture_normal = SubResource( 5 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]
@@ -251,3 +278,4 @@ margin_bottom = -303.0
 [connection signal="pressed" from="UI/Buy_Bombs" to="." method="_on_Buy_Bombs_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/GameSpeed1" to="." method="_on_GameSpeed1_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/GameSpeed2_Stop" to="." method="_on_GameSpeed2_Stop_pressed"]
+[connection signal="pressed" from="UI/PanelContainer/Shop" to="." method="_on_Shop_pressed"]

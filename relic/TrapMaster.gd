@@ -58,7 +58,6 @@ func get_all_traps():
 			files.append(path + file)
 
 	dir.list_dir_end()
-
 	return files
 	
 func get_description():

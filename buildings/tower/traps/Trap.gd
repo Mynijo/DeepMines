@@ -3,6 +3,22 @@ extends "res://buildings/tower/Tower.gd"
 
 export (int) var charges = 1
 
+export (String) var trap_name = "dummy_name"
+export (String) var description = "dummy_description"
+export (int) var price
+
+func get_name():
+	return trap_name
+
+func get_price():
+	return price
+
+func get_icon():
+	if $MapIcon.texture:
+		return $MapIcon
+	return null
+
+
 func build_me():
 	builded = true
 	$GunCooldown.wait_time = get_gun_cooldown()
@@ -36,3 +52,6 @@ func _on_Trap_input_event(_viewport, _event, _shape_idx):
 				rotation += PI/2
 			if _event.button_index == BUTTON_WHEEL_DOWN:
 				rotation -= PI/2
+
+func get_description():
+	return description

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/RelictPreview.gd" type="Script" id=1]
 [ext_resource path="res://media/Fonts/KennyFutureNarrow16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://media/fonts/Kenney_Future_8.tres" type="DynamicFont" id=3]
 
 [node name="Preview" type="PanelContainer"]
 margin_right = 99.0
@@ -62,3 +63,4 @@ margin_bottom = 103.0
 rect_min_size = Vector2( 0, 85 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 3 )

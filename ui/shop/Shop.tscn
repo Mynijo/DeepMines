@@ -1,0 +1,314 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://media/fonts/Kenney_Future_21.tres" type="DynamicFont" id=1]
+[ext_resource path="res://media/button_0.png" type="Texture" id=2]
+[ext_resource path="res://ui/shop/Shop.gd" type="Script" id=3]
+[ext_resource path="res://ui/shop/ShopSlot.tscn" type="PackedScene" id=4]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 688, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 352, 64, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 720, 144, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 2 )
+region = Rect2( 672, 80, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 352, 320, 16, 16 )
+
+[node name="PanelContainer" type="PanelContainer"]
+margin_left = 500.0
+margin_top = 200.0
+margin_right = 1075.0
+margin_bottom = 609.0
+rect_min_size = Vector2( 660, 500 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 705.0
+margin_bottom = 502.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 698.0
+margin_bottom = 27.0
+custom_fonts/font = ExtResource( 1 )
+text = "Shop"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 31.0
+margin_right = 698.0
+margin_bottom = 495.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_right = 698.0
+margin_bottom = 230.0
+
+[node name="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+
+[node name="PanelContainer2" parent="VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 234.0
+margin_right = 464.0
+
+[node name="PanelContainer3" parent="VBoxContainer/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+margin_left = 468.0
+margin_right = 698.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
+margin_top = 234.0
+margin_right = 698.0
+margin_bottom = 464.0
+
+[node name="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2" instance=ExtResource( 4 )]
+
+[node name="PanelContainer2" parent="VBoxContainer/VBoxContainer/HBoxContainer2" instance=ExtResource( 4 )]
+margin_left = 234.0
+margin_right = 464.0
+
+[node name="BaseShop" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 468.0
+margin_right = 698.0
+margin_bottom = 230.0
+rect_min_size = Vector2( 230, 230 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 223.0
+margin_bottom = 223.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer"]
+margin_left = 21.0
+margin_right = 102.0
+margin_bottom = 216.0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 81.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 64, 64 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 74.0
+margin_bottom = 95.0
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_right = 67.0
+margin_bottom = 64.0
+
+[node name="TextureButtonPickaxe" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 60.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = SubResource( 1 )
+expand = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 67.0
+margin_bottom = 88.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 20.0
+texture = SubResource( 2 )
+stretch_mode = 4
+
+[node name="Cost" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 20.0
+margin_top = 3.0
+margin_right = 28.0
+margin_bottom = 17.0
+text = "5"
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_right = 67.0
+margin_bottom = 20.0
+text = "x10"
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer"]
+margin_top = 110.0
+margin_right = 81.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 64, 64 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 74.0
+margin_bottom = 95.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+margin_right = 67.0
+margin_bottom = 64.0
+
+[node name="TextureButtonBomb" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 60.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = SubResource( 3 )
+expand = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+margin_top = 68.0
+margin_right = 67.0
+margin_bottom = 88.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 20.0
+texture = SubResource( 2 )
+stretch_mode = 4
+
+[node name="Cost" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
+margin_left = 20.0
+margin_top = 3.0
+margin_right = 28.0
+margin_bottom = 17.0
+text = "5"
+
+[node name="Button2" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_right = 67.0
+margin_bottom = 20.0
+text = "x10"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer"]
+margin_left = 106.0
+margin_right = 195.0
+margin_bottom = 216.0
+alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2"]
+margin_top = 4.0
+margin_right = 89.0
+margin_bottom = 106.0
+rect_min_size = Vector2( 64, 64 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 82.0
+margin_bottom = 95.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 64.0
+
+[node name="TextureShovel" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 68.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = SubResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer"]
+margin_top = 68.0
+margin_right = 75.0
+margin_bottom = 88.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer/HBoxContainer"]
+margin_right = 16.0
+margin_bottom = 20.0
+texture = SubResource( 2 )
+stretch_mode = 4
+
+[node name="Cost" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer/HBoxContainer"]
+margin_left = 20.0
+margin_top = 3.0
+margin_right = 36.0
+margin_bottom = 17.0
+text = "10"
+
+[node name="Button3" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer/HBoxContainer"]
+margin_left = 40.0
+margin_right = 75.0
+margin_bottom = 20.0
+text = "x10"
+
+[node name="PanelContainer4" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2"]
+margin_top = 110.0
+margin_right = 89.0
+margin_bottom = 212.0
+rect_min_size = Vector2( 64, 102 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer4"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 82.0
+margin_bottom = 95.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer4/VBoxContainer"]
+margin_right = 75.0
+margin_bottom = 64.0
+
+[node name="TextureReset" type="TextureButton" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer4/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 68.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 50, 50 )
+texture_normal = SubResource( 5 )
+expand = true
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer4/VBoxContainer"]
+margin_top = 68.0
+margin_right = 75.0
+margin_bottom = 84.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer4/VBoxContainer/HBoxContainer"]
+margin_left = 19.0
+margin_right = 35.0
+margin_bottom = 16.0
+texture = SubResource( 2 )
+stretch_mode = 4
+
+[node name="Cost" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer4/VBoxContainer/HBoxContainer"]
+margin_left = 39.0
+margin_top = 1.0
+margin_right = 55.0
+margin_bottom = 15.0
+text = "50"
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/PanelContainer/TextureButtonPickaxe" to="." method="_on_TextureButtonPickaxe_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/PanelContainer/TextureButtonBomb" to="." method="_on_TextureButtonBomb_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer/PanelContainer2/VBoxContainer/HBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer/PanelContainer/TextureShovel" to="." method="_on_TextureShovel_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer3/VBoxContainer/HBoxContainer/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop/HBoxContainer/VBoxContainer2/PanelContainer4/VBoxContainer/PanelContainer/TextureReset" to="." method="_on_TextureReset_pressed"]

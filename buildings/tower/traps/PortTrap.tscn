@@ -24,6 +24,8 @@ animations = [ {
 script = ExtResource( 2 )
 solid = false
 detect_radius = 30
+trap_name = "Port Trap"
+description = "Port enemy back"
 explodeRadius = 30.0
 
 [node name="Body" parent="." index="0"]

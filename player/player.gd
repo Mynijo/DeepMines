@@ -64,6 +64,10 @@ func _ready():
 	add_trap(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
 	add_trap(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
 
+
+func add_relict(var relic):
+	$UI/Relics.add_relic(relic)
+		
 func add_trap(var trap):
 	Inventory.traps.append(trap)	
 	if selected_trap == null:
@@ -220,6 +224,8 @@ func change_Cursor_Mode(var mode):
 	$UI/RelictPreview.hide()
 	$UI/Control.close_trap_chooser()
 	$UI/Control.hilight_button(mode)
+	if shop:
+		shop.hide()
 	
 func _on_Cursor_Mode_BuildTrap_pressed():
 	change_Cursor_Mode(e_CURSOR_MODE.BuildTrap)
@@ -242,22 +248,22 @@ func disable_Mode_Buttons():
 	$UI/Buy_Bombs.hide()
 	$UI/Buy_Shovel.hide()
 
-func _on_Buy_Pickaxe_pressed():
-	if Player.get_money() >= 5:
-		Player.remove_money(5)
-		Player.add_pickaxe(1)
+func buy_Pickaxe(var amount):
+	if Player.get_money() >= 5 * amount:
+		Player.remove_money(5 * amount)
+		Player.add_pickaxe(1 * amount)
 
 
-func _on_Buy_Shovel_pressed():
-	if Player.get_money() >= 10:
-		Player.remove_money(10)
-		Player.add_shovel(1)
+func buy_Shovel(var amount):
+	if Player.get_money() >= 10 * amount:
+		Player.remove_money(10 * amount)
+		Player.add_shovel(1 * amount)
 
 
-func _on_Buy_Bombs_pressed():
-	if Player.get_money() >= 5:
-		Player.remove_money(5)
-		Player.add_bombs(1)
+func buy_Bombs(var amount):
+	if Player.get_money() >= 5 * amount:
+		Player.remove_money(5 * amount)
+		Player.add_bombs(1 * amount)
 
 func show_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list):
 	$UI/RelictPreview.hide()
@@ -312,3 +318,11 @@ func _enemy_dmg_taken():
 func _on_Tower_shoot(_attack, _position, _direction, _tower):
 	if speed_auto_stop:
 		set_game_speed(1)
+
+var shop
+func _on_Shop_pressed():
+	if not shop:
+		shop = load("res://ui/shop/Shop.tscn").instance()
+		shop.generate_shop()
+		$UI.add_child(shop)	
+	shop.show()

@@ -12,6 +12,11 @@ script = ExtResource( 2 )
 relict_name = "DivineShield"
 description = ""
 
+[node name="Icon" parent="." index="0"]
+margin_right = 27.0
+margin_bottom = 27.0
+texture = ExtResource( 5 )
+
 [node name="Charge3" type="TextureRect" parent="." index="2"]
 visible = false
 margin_right = 40.0

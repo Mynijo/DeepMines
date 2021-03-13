@@ -24,5 +24,4 @@ __meta__ = {
 }
 
 [node name="Tags" parent="." instance=ExtResource( 1 )]
-
 [connection signal="gui_input" from="Icon" to="." method="_on_Icon_gui_input"]

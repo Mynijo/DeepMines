@@ -10,6 +10,7 @@ region = Rect2( 32, 240, 16, 16 )
 
 [node name="Trap_Master" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+relict_name = "TrapMaster"
 
 [node name="Icon" parent="." index="0"]
 texture = SubResource( 1 )
