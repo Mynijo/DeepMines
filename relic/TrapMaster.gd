@@ -2,6 +2,8 @@ extends "res://relic/Relic.gd"
 
 var traps = []
 
+export (int) var pick_up_traps = 10
+export (int) var gamestate_changed_traps = 5
 
 # Declare member variables here. Examples:
 func _init():
@@ -18,11 +20,11 @@ func _ready():
 
 
 func call_on_pick_up_me():
-	call_deferred("add_traps", 10)
+	call_deferred("add_traps", pick_up_traps)
 	
 func call_on_gamestate_changed(var _new_gamestate):
 	if(_new_gamestate == Global_GameStateManager.e_GAMESTATE.build_phase):
-		call_deferred("add_traps", 5)
+		call_deferred("add_traps", gamestate_changed_traps)
 	
 	
 func add_traps(counter):
@@ -59,3 +61,5 @@ func get_all_traps():
 
 	return files
 	
+func get_description():
+	return "Place " + str(pick_up_traps) + " random traps instant and "+ str(gamestate_changed_traps) + " every wave"

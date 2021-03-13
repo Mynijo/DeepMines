@@ -10,6 +10,8 @@ region = Rect2( 464, 176, 16, 16 )
 
 [node name="Relic" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+relict_name = "Stickybomb"
+description = "Adds the StickyBomb effect to all Tower"
 
 [node name="Icon" parent="." index="0"]
 texture = SubResource( 1 )

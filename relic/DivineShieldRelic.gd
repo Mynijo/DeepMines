@@ -34,3 +34,6 @@ func call_on_player_take_damage(var _player):
 		change_icon()
 		if charges <= 0:
 			deactivate()
+			
+func get_description():
+	return "Nullify Player dmg " + str(charges) + " times"

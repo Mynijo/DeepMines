@@ -174,13 +174,19 @@ anchor_left = 0.985
 anchor_top = 0.133
 anchor_right = 0.985
 anchor_bottom = 0.133
-margin_left = -198.924
-margin_top = -1.03762
-margin_right = -98.9241
-margin_bottom = 250.962
+margin_left = -176.0
+margin_top = 0.300003
+margin_right = -76.0
+margin_bottom = 252.3
 rect_scale = Vector2( 2, 2 )
 
 [node name="RelictPreview" parent="UI" instance=ExtResource( 8 )]
+visible = false
+margin_left = 1400.0
+margin_top = 120.0
+margin_right = 1499.0
+margin_bottom = 331.0
+rect_scale = Vector2( 2, 2 )
 
 [node name="Debug" type="RichTextLabel" parent="UI"]
 margin_left = 1.36548

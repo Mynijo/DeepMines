@@ -7,9 +7,10 @@
 [ext_resource path="res://media/relics/Shield3.png" type="Texture" id=5]
 [ext_resource path="res://media/relics/Shield2.png" type="Texture" id=6]
 
-
 [node name="Divine_Shield_Relic" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+relict_name = "DivineShield"
+description = ""
 
 [node name="Charge3" type="TextureRect" parent="." index="2"]
 visible = false

@@ -4,7 +4,6 @@
 [ext_resource path="res://relic/TrapMaster.gd" type="Script" id=2]
 [ext_resource path="res://media/button_0.png" type="Texture" id=3]
 
-
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
 region = Rect2( 32, 240, 16, 16 )

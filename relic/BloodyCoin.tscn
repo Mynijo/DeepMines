@@ -4,10 +4,12 @@
 [ext_resource path="res://media/relics/BloodyCoin.png" type="Texture" id=2]
 [ext_resource path="res://relic/BloodyCoin.gd" type="Script" id=3]
 
-
-
 [node name="BloodyCoin" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+relict_name = "BloodyCoin"
+description = "Get money whene you take dmg"
 
 [node name="Icon" parent="." index="0"]
+margin_right = 27.0
+margin_bottom = 27.0
 texture = ExtResource( 2 )
