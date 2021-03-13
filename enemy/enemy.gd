@@ -80,7 +80,6 @@ func control(delta):
 		die()
 		
 func take_damage(_damage):
-	emit_signal('dmg_taken')
 	if dead or _damage == null:
 		return
 	if _damage == 0:
@@ -88,6 +87,8 @@ func take_damage(_damage):
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
 		_damage = x.effekt(_damage, $Tags.e_effect.took_dmg)
 	health = health - _damage
+	if _damage > 0:
+		emit_signal('dmg_taken')
 	if health > max_health:
 		health = max_health	
 	if health < 0:

@@ -17,6 +17,8 @@ func effect(_obj, _tag):
 		var temp_scatter = rand_range(0.1,scatter)
 		shoot(_obj, temp_scatter)
 		shoot(_obj, -temp_scatter)
+		shoot(_obj, temp_scatter/2)
+		shoot(_obj, -temp_scatter/2)
 	
 func shoot(_obj, _scatter):
 	var _attack = tower.Attack.instance()	

@@ -315,6 +315,7 @@ func _on_Tower_shoot(_attack, _position, _direction, _tower):
 
 var shop
 func _on_Shop_pressed():
+	change_Cursor_Mode(e_CURSOR_MODE.None)
 	if not shop:
 		shop = load("res://ui/shop/Shop.tscn").instance()
 		shop.generate_shop()

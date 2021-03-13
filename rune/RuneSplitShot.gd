@@ -21,6 +21,8 @@ func effect(_obj, _tag):
 			var temp_splitt = rand_range(0.1,splitt_angle)
 			shoot(_obj, temp_splitt)
 			shoot(_obj, -temp_splitt)
+			shoot(_obj, temp_splitt/2)
+			shoot(_obj, -temp_splitt/2)
 		return true
 			
 
