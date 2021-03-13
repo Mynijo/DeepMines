@@ -10,6 +10,7 @@ region = Rect2( 208, 288, 16, 16 )
 
 [node name="StatusEffectPortEmun" instance=ExtResource( 2 )]
 script = ExtResource( 1 )
+description = "Cant be ported"
 duration = 0.0
 
 [node name="Icon" parent="." index="2"]

@@ -38,3 +38,8 @@ func get_effect_text():
 		for condition in $Conditions.get_children():
 			text = text + " "+ condition.get_condition_text()
 	return  text
+
+func get_description():
+	var des = "Heal by " + str(heal_value)+"hp every " + str(tick_rate)+ " sec"
+	return des
+

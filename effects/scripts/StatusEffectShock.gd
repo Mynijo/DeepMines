@@ -59,3 +59,7 @@ func set_duration(_duration):
 	$Tags.add_tag($Tags.e_effect.health)
 	$Duration.wait_time = duration
 	$Duration.start()
+
+func get_description():
+	var des = "Shocked enemys explode on deaths. Dealing " + str(explodeDamage) + " dmg and shocks enemys"
+	return des

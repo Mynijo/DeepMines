@@ -4,9 +4,5 @@
 [ext_resource path="res://effects/scripts/StatusEffectDropRune.gd" type="Script" id=2]
 
 [node name="StatusEffectDropRune" instance=ExtResource( 1 )]
-
 script = ExtResource( 2 )
 duration = 0.0
-rune = null
-
-

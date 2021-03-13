@@ -42,3 +42,7 @@ func effekt(value, tag):
 		
 		delteMe()
 		return value
+
+func get_description():
+	var des = "First time Enemy take dmg, it will spawn a Portal. Portal will be used by outer Enemys"
+	return des

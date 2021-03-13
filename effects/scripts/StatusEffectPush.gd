@@ -31,4 +31,4 @@ func _on_Duration_timeout():
 		s.remove_tag($Tags.e_effect.animation)
 		s.add_tag($Tags.e_effect.dont_stack)
 		t.add_Status(s)
-	delteYou()
+	delteMe()

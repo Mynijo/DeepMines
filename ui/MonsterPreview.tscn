@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://media/Fonts/KenneyFuture10.tres" type="DynamicFont" id=1]
 [ext_resource path="res://media/Fonts/KennyFutureNarrow16.tres" type="DynamicFont" id=2]
 [ext_resource path="res://media/button_0.png" type="Texture" id=3]
 [ext_resource path="res://ui/MonsterPreview.gd" type="Script" id=4]
+[ext_resource path="res://media/fonts/KenneyFuture10.tres" type="DynamicFont" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -52,7 +53,7 @@ custom_constants/separation = 0
 
 [node name="MonsterName" type="Label" parent="VBoxContainer"]
 margin_right = 98.0
-margin_bottom = 18.0
+margin_bottom = 9.0
 size_flags_vertical = 1
 custom_fonts/font = ExtResource( 2 )
 text = "Gobo"
@@ -61,9 +62,9 @@ autowrap = true
 
 [node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
 margin_left = 6.0
-margin_top = 18.0
+margin_top = 9.0
 margin_right = 91.0
-margin_bottom = 98.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 85, 80 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -186,9 +187,9 @@ align = 2
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer"]
 margin_left = 6.0
-margin_top = 98.0
+margin_top = 89.0
 margin_right = 91.0
-margin_bottom = 128.0
+margin_bottom = 119.0
 rect_min_size = Vector2( 85, 16 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -206,9 +207,9 @@ columns = 4
 
 [node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer"]
 margin_left = 6.0
-margin_top = 128.0
+margin_top = 119.0
 margin_right = 91.0
-margin_bottom = 238.0
+margin_bottom = 229.0
 rect_min_size = Vector2( 85, 110 )
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -220,3 +221,4 @@ margin_right = 78.0
 margin_bottom = 103.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 5 )

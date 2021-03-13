@@ -65,3 +65,6 @@ func change_icon():
 		update_icon($Icon04)
 		explode_animation_scale = Vector2(3,3)
 	
+func get_description():
+	var des = "After " + str(duration.wait_time) + "s Stickybomb will explode. Dealing "+ str(percent_dmg) + "% of the Enemy live as dmg to all enemys around. Every new Stickybomb will reset the timer and increase dmg by " + str(IncDmg)
+	return des

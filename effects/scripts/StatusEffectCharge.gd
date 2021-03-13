@@ -44,7 +44,3 @@ func effekt(value, tag):
 
 func _on_Ticker_timeout():
 	ready = true
-
-func get_effect_text():
-	var text = "Get faster until unit change direction"
-	return  text

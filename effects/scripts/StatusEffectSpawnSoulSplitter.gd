@@ -22,10 +22,14 @@ func effekt(value, tag):
 		enemy = load(EnemyPath)
 	if tag == $Tags.e_effect.took_dmg:
 		var EnemyPath_ins = enemy.instance()
-		EnemyPath_ins.max_health = value
+		EnemyPath_ins.max_health = 1
 		call_deferred("emit_signal", 'spawn_SoulSplitter', EnemyPath_ins, parent.global_position, parent.way_points[0][1], parent.way_points[0][2])
 		return value
 	
 func load_settings(_settings):
 	.load_settings(_settings)
 	settings = _settings
+
+func get_description():
+	var des = "Everytime the enemy gets dmg, a SoulSplitter with 1 hp will be spawnt"
+	return des

@@ -6,6 +6,7 @@
 
 [node name="StatusEffektPush" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+description = "Pushs enemy back"
 duration = 0.1
 push_rate = 100.0
 status = ExtResource( 3 )

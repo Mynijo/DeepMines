@@ -10,6 +10,7 @@ region = Rect2( 384, 192, 16, 16 )
 
 [node name="StatusEffectCharge" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+description = "Speed up while walking straight. Stops at corners."
 duration = 0.0
 inc_speed = 0.25
 max_inc_speed = 4.0

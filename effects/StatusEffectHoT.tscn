@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
-region = Rect2( 627, 163, 10, 10 )
+region = Rect2( 624, 160, 16, 16 )
 
 [node name="StatusEffectHoT" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

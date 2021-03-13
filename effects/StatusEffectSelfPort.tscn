@@ -6,6 +6,7 @@
 
 [node name="StatusEffectSelfPort" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+description = "Port enemy by 1 field on dmg taken"
 duration = 0.0
 
 [node name="Icon" parent="." index="2"]

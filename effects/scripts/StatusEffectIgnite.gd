@@ -41,3 +41,9 @@ func refresh(_obj):
 
 func _on_IgniteTicker_timeout():
 	ready = true
+
+func get_description():
+	var des = "Deal " + str(damage)+" dmg every " + str(ignite_tick_rate)+ "sec. "
+	if speed_inc != 1:
+		des = des + "Increase speed by " +  str(speed_inc)
+	return des

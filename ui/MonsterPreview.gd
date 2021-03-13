@@ -35,12 +35,12 @@ func set_Status_List(status_list):
 		if status.has_icon():
 			var icon = load("res://ui/Effect_Icon.tscn").instance()
 			icon.set_preview(self)
-			icon.set_effect_text(status.get_effect_text())
+			icon.set_effect_text(status.get_full_description())
 			icon.set_texture(status.get_icon().texture)
 			$VBoxContainer/PanelContainer2/Effects.add_child(icon)
 			if first:
 				first = false
-				set_effect_text(status.get_effect_text())
+				set_effect_text(status.get_full_description())
 	
 
 func reset():

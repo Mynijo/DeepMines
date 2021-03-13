@@ -36,3 +36,7 @@ func effekt(value, tag):
 
 func _on_Timer_timeout():
 	time_to_run = false
+
+func get_description():
+	var des = "Moves only on full live or while took dmg in the last " + str($Timer.wait_time) + " Seconds"
+	return des

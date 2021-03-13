@@ -14,3 +14,5 @@ func effekt(value, tag):
 		Player.heal(heal_value)
 	return value
 	
+func get_description():
+	return "Will heal the player by " + str(heal_value)+"hp on death"

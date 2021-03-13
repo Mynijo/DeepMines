@@ -44,3 +44,7 @@ func refresh(_obj):
 		first_time = true
 		SlowRate = _obj.SlowRate
 		set_duration(_obj.duration)
+
+func get_description():
+	var des = "Enemy is slowed. Has " + str(freez_chance) + "% chance to freez. Chance is higher by every slow stack"
+	return des

@@ -11,12 +11,12 @@ animations = [  ]
 
 [node name="StatusEffectCharme" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+description = "While Charmed walk to other enemys and hit them."
 duration = 10.0
 
 [node name="Animation" type="AnimatedSprite" parent="." index="2"]
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "charme01"
 
 [node name="Icon" parent="." index="3"]
 texture = ExtResource( 3 )

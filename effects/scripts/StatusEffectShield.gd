@@ -29,3 +29,6 @@ func effekt(value, tag):
 func remove_self():
 	parent.remove_Status(self)
 		
+func get_description():
+	var des = "Shield absorbs " + str(max_health) + " dmg"
+	return des

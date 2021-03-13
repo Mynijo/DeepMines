@@ -17,6 +17,7 @@ animations = [ {
 
 [node name="StatusEffektFreeze" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+description = "Cant move. Will shatter into slowing bullets."
 duration = 2.0
 attack = ExtResource( 3 )
 
