@@ -1,6 +1,6 @@
 extends "res://relic/Relic.gd"
 
-export (int) var money = 1000
+export (int) var money = 200
 
 # Declare member variables here. Examples:
 func _init():

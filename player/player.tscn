@@ -127,39 +127,6 @@ margin_top = 664.005
 margin_right = 1498.99
 margin_bottom = 799.005
 
-[node name="Buy_Pickaxe" type="Button" parent="UI"]
-margin_left = 125.14
-margin_top = 317.256
-margin_right = 152.14
-margin_bottom = 337.256
-text = "5g"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Buy_Shovel" type="Button" parent="UI"]
-margin_left = 121.65
-margin_top = 398.787
-margin_right = 156.65
-margin_bottom = 418.787
-text = "10g"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Buy_Bombs" type="Button" parent="UI"]
-anchor_top = -0.00157132
-anchor_right = 9.53674e-09
-anchor_bottom = -0.00157132
-margin_left = 126.887
-margin_top = 472.533
-margin_right = 153.887
-margin_bottom = 492.533
-text = "5g"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Pos" type="Label" parent="UI"]
 anchor_left = 0.795
 anchor_top = 0.046
@@ -273,9 +240,6 @@ __meta__ = {
 [connection signal="mouse_entered" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_exited"]
 [connection signal="input_event" from="Camera/Area2D" to="." method="_on_Area2D_input_event"]
-[connection signal="pressed" from="UI/Buy_Pickaxe" to="." method="_on_Buy_Pickaxe_pressed"]
-[connection signal="pressed" from="UI/Buy_Shovel" to="." method="_on_Buy_Shovel_pressed"]
-[connection signal="pressed" from="UI/Buy_Bombs" to="." method="_on_Buy_Bombs_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/GameSpeed1" to="." method="_on_GameSpeed1_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/GameSpeed2_Stop" to="." method="_on_GameSpeed2_Stop_pressed"]
 [connection signal="pressed" from="UI/PanelContainer/Shop" to="." method="_on_Shop_pressed"]

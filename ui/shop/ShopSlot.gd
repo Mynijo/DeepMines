@@ -57,6 +57,8 @@ func _on_TextureButton_pressed():
 		
 	if relict:
 		Player.add_relict(relict)
+		relict = null
 	if trap:
 		Player.add_trap(trap)
+		trap = null
 	$VBoxContainer/PanelContainer/TextureButton.disabled = true

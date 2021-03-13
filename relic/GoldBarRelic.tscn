@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://relic/Relic.tscn" type="PackedScene" id=1]
-[ext_resource path="res://relic/GoldBarsRelic.gd" type="Script" id=2]
+[ext_resource path="res://relic/GoldBarRelic.gd" type="Script" id=2]
 [ext_resource path="res://media/relics/GoldBars.png" type="Texture" id=3]
-
 
 [node name="Divine_Shield_Relic" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Icon" parent="." index="0"]
-visible = false
+margin_right = 27.0
+margin_bottom = 27.0
 texture = ExtResource( 3 )

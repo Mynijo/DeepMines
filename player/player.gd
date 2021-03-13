@@ -45,14 +45,14 @@ func _ready():
 	$UI/Control.set_Bombs(Inventory.bombs)
 	
 	var relics = []
-	relics.append(load("res://relic/DivineShieldRelic.tscn").instance())
+	#relics.append(load("res://relic/DivineShieldRelic.tscn").instance())
 	#relics.append(load("res://relic/GoldBarsRelic.tscn").instance())
 	#relics.append(load("res://relic/BloodyCoin.tscn").instance())
 	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
-	relics.append(load("res://relic/BloodDrinker.tscn").instance())
+	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/TrapMaster.tscn").instance())
 	
 	for relic in relics:
@@ -238,15 +238,9 @@ func set_selected_trap(var trap):
 
 func enable_Mode_Buttons():
 	$UI/Control.show()
-	$UI/Buy_Pickaxe.show()
-	$UI/Buy_Bombs.show()
-	$UI/Buy_Shovel.show()
 	
 func disable_Mode_Buttons():
 	$UI/Control.hide()
-	$UI/Buy_Pickaxe.hide()
-	$UI/Buy_Bombs.hide()
-	$UI/Buy_Shovel.hide()
 
 func buy_Pickaxe(var amount):
 	if Player.get_money() >= 5 * amount:
