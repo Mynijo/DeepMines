@@ -7,8 +7,6 @@ var open = false
 
 
 export (PackedScene) var UpgradeSlotScene = preload("res://ui/TowerUpgradeSlot.tscn")
-	
-signal gameState_changed
 
 func _ready():
 	map = get_tree().get_root().get_node("map")

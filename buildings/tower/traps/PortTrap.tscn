@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://buildings/tower/traps/Trap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://buildings/tower/traps/PortTrap.gd" type="Script" id=2]
-[ext_resource path="res://media/button_0.png" type="Texture" id=3]
+[ext_resource path="res://media/buildings/traps/PortTrap.png" type="Texture" id=3]
 [ext_resource path="res://media/effects/port/port_01.png" type="Texture" id=5]
 [ext_resource path="res://media/effects/port/port_02.png" type="Texture" id=6]
 [ext_resource path="res://media/effects/port/port_05.png" type="Texture" id=7]
@@ -12,11 +12,7 @@
 [ext_resource path="res://media/effects/port/port_07.png" type="Texture" id=11]
 [ext_resource path="res://media/effects/port/port_08.png" type="Texture" id=12]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 3 )
-region = Rect2( 528, 160, 16, 16 )
-
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": false,
@@ -41,10 +37,10 @@ position = Vector2( -0.69931, -1.1101 )
 position = Vector2( 0, -0.23597 )
 
 [node name="MapIcon" parent="." index="6"]
-texture = SubResource( 1 )
+texture = ExtResource( 3 )
 
 [node name="Animation" type="AnimatedSprite" parent="." index="8"]
 visible = false
 scale = Vector2( 0.8, 0.8 )
-frames = SubResource( 2 )
+frames = SubResource( 1 )
 animation = "explosion"

@@ -28,6 +28,8 @@ enum e_CURSOR_MODE{
 signal player_take_damage
 signal player_took_damage
 
+signal current_cursor_mode_changed
+
 var Inventory
 
 var current_cursor_mode = e_CURSOR_MODE.None
@@ -38,9 +40,9 @@ func _ready():
 	$UI/Live.text = "Health:" + String(health)
 	$UI/Wave.text = "Level: 1"
 	$UI/Money.text = "Money:" + String(Inventory.money)
-	$UI/Pickaxe.text = String(Inventory.pickaxe)
-	$UI/Shovel.text  = String(Inventory.shovel)
-	$UI/Bombs.text  = String(Inventory.bombs)
+	$UI/Control.set_Pickaxes(Inventory.pickaxe)
+	$UI/Control.set_Shovels(Inventory.shovel)
+	$UI/Control.set_Bombs(Inventory.bombs)
 	
 	var relics = []
 	relics.append(load("res://relic/DivineShieldRelic.tscn").instance())
@@ -56,13 +58,19 @@ func _ready():
 	for relic in relics:
 		$UI/Relics.add_relic(relic)
 
-	Inventory.traps.append(load("res://buildings/tower/traps/PortTrap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/FreezFieldTrap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
-	Inventory.traps.append(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
-	_on_Cursor_Mode_BuildTrap_UP_pressed()
+	add_trap(load("res://buildings/tower/traps/PortTrap.tscn").instance())
+	add_trap(load("res://buildings/tower/traps/FreezFieldTrap.tscn").instance())
+	add_trap(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
+	add_trap(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
+	add_trap(load("res://buildings/tower/traps/RollingStoneTrap.tscn").instance())
 
+func add_trap(var trap):
+	Inventory.traps.append(trap)	
+	if selected_trap == null:
+		set_selected_trap(trap)
+		
+func get_traps():
+	return Inventory.traps
 
 func _unhandled_key_input(event):
 	velocity = Vector2(0, 0)
@@ -83,7 +91,6 @@ func _unhandled_key_input(event):
 		change_Cursor_Mode(e_CURSOR_MODE.Shovel)
 	if(Input.is_action_pressed("change_cursor_mode_spillage")):
 		change_Cursor_Mode(e_CURSOR_MODE.Spillage)
-				
 
 func set_new_wave_counter(_wave):
 	$UI/Wave.text = "Level: " + String(_wave)
@@ -93,46 +100,45 @@ func get_selected_trap():
 	
 func remove_trap(_trap):
 	Inventory.traps.erase(_trap)
-	_on_Cursor_Mode_BuildTrap_UP_pressed()
 
 func add_bombs(_bombs):
 	Inventory.bombs += _bombs
-	$UI/Bombs.text = String(Inventory.bombs)
+	$UI/Control.set_Bombs(Inventory.bombs)
 	
 func remove_bombs(_bombs):
 	if Inventory.bombs - _bombs < 0:
 		Inventory.bombs = 0
 	else:
 		Inventory.bombs -= _bombs
-	$UI/Bombs.text = String(Inventory.bombs)
+	$UI/Control.set_Bombs(Inventory.bombs)
 
 func get_bombs():
 	return Inventory.bombs
 
 func add_pickaxe(_pickaxe):
 	Inventory.pickaxe += _pickaxe
-	$UI/Pickaxe.text = String(Inventory.pickaxe)
+	$UI/Control.set_Pickaxes(Inventory.pickaxe)
 	
 func remove_pickaxe(_pickaxe):
 	if Inventory.pickaxe - _pickaxe < 0:
 		Inventory.pickaxe = 0
 	else:
 		Inventory.pickaxe -= _pickaxe
-	$UI/Pickaxe.text = String(Inventory.pickaxe)
+	$UI/Control.set_Pickaxes(Inventory.pickaxe)
 
 func get_pickaxe():
 	return Inventory.pickaxe
 	
 func add_shovel(_shovel):
 	Inventory.shovel += _shovel
-	$UI/Shovel.text  = String(Inventory.shovel)
+	$UI/Control.set_Shovels(Inventory.shovel)
 	
 func remove_shovel(_shovel):
 	if Inventory.shovel - _shovel < 0:
 		Inventory.shovel = 0
 	else:
 		Inventory.shovel -= _shovel
-	$UI/Shovel.text  = String(Inventory.shovel)
+	$UI/Control.set_Shovels(Inventory.shovel)
 	
 func get_shovel():
 	return Inventory.shovel
@@ -202,88 +208,34 @@ func _on_Area2D2Right_mouse_entered():
 func _on_Area2D2Right_mouse_exited():
 	velocity = Vector2(0, 0)
 
-func enable_Mode_Buttons():
-	$UI/Cursor_Mode_None.disabled = false
-	$UI/Cursor_Mode_Pickaxe.disabled = false
-	$UI/Cursor_Mode_Shovel.disabled = false
-	$UI/Cursor_Mode_Spillage.disabled = false
-	$UI/Cursor_Mode_BuildTrap.disabled = false
-	$UI/Buy_Pickaxe.disabled = false
-	$UI/Buy_Shovel.disabled = false
-	$UI/Buy_Bombs.disabled = false
-
-func disable_Mode_Buttons():
-	$UI/Cursor_Mode_None.disabled = true
-	$UI/Cursor_Mode_Pickaxe.disabled = true
-	$UI/Cursor_Mode_Shovel.disabled = true
-	$UI/Cursor_Mode_Spillage.disabled = true
-	$UI/Cursor_Mode_BuildTrap.disabled = true
-	$UI/Buy_Pickaxe.disabled = true
-	$UI/Buy_Shovel.disabled = true
-	$UI/Buy_Bombs.disabled = true
-	
 func change_Cursor_Mode(var mode):
 	current_cursor_mode = mode
-	enable_Mode_Buttons()
-	if(mode == e_CURSOR_MODE.None):
-		$UI/Cursor_Mode_None.disabled = true
-	else:
-		$UI/Cursor_Mode_None.disabled = false
-		
-	if(mode == e_CURSOR_MODE.Pickaxe):
-		$UI/Cursor_Mode_Pickaxe.disabled = true
-	if(mode == e_CURSOR_MODE.Shovel):
-		$UI/Cursor_Mode_Shovel.disabled = true
-	if(mode == e_CURSOR_MODE.Spillage):
-		$UI/Cursor_Mode_Spillage.disabled = true
-	if(mode == e_CURSOR_MODE.BuildTrap):
-		$UI/Cursor_Mode_BuildTrap.disabled = true
-
-func _on_Cursor_Mode_None_pressed():
-	change_Cursor_Mode(e_CURSOR_MODE.None)
+	emit_signal('current_cursor_mode_changed')
+	$UI/Preview.hide()
+	$UI/RelictPreview.hide()
+	$UI/Control.close_trap_chooser()
+	$UI/Control.hilight_button(mode)
 	
-
-func _on_Cursor_Mode_Pickaxe_pressed():
-	change_Cursor_Mode(e_CURSOR_MODE.Pickaxe)
-
-
-func _on_Cursor_Mode_Shovel_pressed():
-	change_Cursor_Mode(e_CURSOR_MODE.Shovel)
-
-
-func _on_Cursor_Mode_Spillage_pressed():
-	change_Cursor_Mode(e_CURSOR_MODE.Spillage)
-
-
 func _on_Cursor_Mode_BuildTrap_pressed():
 	change_Cursor_Mode(e_CURSOR_MODE.BuildTrap)
 
 
-func _on_Cursor_Mode_BuildTrap_UP_pressed():
-	if not Inventory.traps.empty():
-		var selected_trap_id = Inventory.traps.find(selected_trap)
-		if Inventory.traps.size() > selected_trap_id +1:
-			selected_trap = Inventory.traps[selected_trap_id +1]
-		else:
-			selected_trap = Inventory.traps[0]
-		$UI/Cursor_Mode_BuildTrap.icon = selected_trap.get_icon().duplicate()
-	else:
-		selected_trap = null
-		$UI/Cursor_Mode_BuildTrap.icon = null
 
+func set_selected_trap(var trap):		
+	selected_trap = trap
+	$UI/Control.selected_trap_changed()
 
-func _on_Cursor_Mode_BuildTrap_DOWN_pressed():
-	if not Inventory.traps.empty():
-		var selected_trap_id = Inventory.traps.find(selected_trap)
-		if Inventory.traps.size() > selected_trap_id -1:
-			selected_trap = Inventory.traps[selected_trap_id -1]
-		else:
-			selected_trap = Inventory.traps[Inventory.traps.size() -1]
-		$UI/Cursor_Mode_BuildTrap.icon = selected_trap.get_icon().duplicate()
-	else:
-		selected_trap = null
-		$UI/Cursor_Mode_BuildTrap.icon = null
-
+func enable_Mode_Buttons():
+	$UI/Control.show()
+	$UI/Buy_Pickaxe.show()
+	$UI/Buy_Bombs.show()
+	$UI/Buy_Shovel.show()
+	
+func disable_Mode_Buttons():
+	$UI/Control.hide()
+	$UI/Buy_Pickaxe.hide()
+	$UI/Buy_Bombs.hide()
+	$UI/Buy_Shovel.hide()
 
 func _on_Buy_Pickaxe_pressed():
 	if Player.get_money() >= 5:
@@ -312,7 +264,6 @@ func show_Preview(var name, var max_Health, var damage, var speed, var reward, v
 	$UI/Preview.set_Enemy_Textur(tex)	
 	$UI/Preview.set_Enemy_Name(name)	
 	$UI/Preview.set_Status_List(status_list)
-	$Camera/Area2D/CollisionShape2D.disabled = false
 	$UI/Preview.show()
 
 func show_relic_preview(var name, var tex, var status_text):
@@ -321,16 +272,13 @@ func show_relic_preview(var name, var tex, var status_text):
 	$UI/RelictPreview.set_relic_textur(tex)	
 	$UI/RelictPreview.set_relic_name(name)	
 	$UI/RelictPreview.set_relic_label(status_text)
-	$Camera/Area2D/CollisionShape2D.disabled = false
 	$UI/RelictPreview.show()
 
 
 func _on_Area2D_input_event(viewport, _event, shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == BUTTON_RIGHT and _event.pressed:
-			$UI/Preview.hide()
-			$UI/RelictPreview.hide()
-			$Camera/Area2D/CollisionShape2D.disabled = true
+			change_Cursor_Mode(e_CURSOR_MODE.None)
 
 var debug_counter = 0
 func add_debug(var text):
@@ -345,17 +293,8 @@ func set_game_speed(var speed):
 	$UI/HBoxContainer/Label.text = "Now: "+ str(speed)
 	Engine.set_time_scale(speed)
 
-func _on_GameSpeed0_5_pressed():
-	set_game_speed(0.5)
-
-
 func _on_GameSpeed1_pressed():
 	set_game_speed(1)
-
-
-func _on_GameSpeed2_pressed():
-	set_game_speed(2)
-
 
 func _on_GameSpeed2_Stop_pressed():
 	set_game_speed(2)

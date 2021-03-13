@@ -26,7 +26,7 @@ func change_game_state(var _new_stat):
 	match game_stat:
 		e_GAMESTATE.battle_phase:
 			map.hide_gen_buttons()
-			Player._on_Cursor_Mode_None_pressed()
+			Player.change_Cursor_Mode(Player.e_CURSOR_MODE.None)
 			Player.disable_Mode_Buttons()
 		e_GAMESTATE.build_phase:
 			map.show_gen_buttons()

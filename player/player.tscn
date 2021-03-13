@@ -1,9 +1,9 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
-[ext_resource path="res://media/button_0.png" type="Texture" id=2]
 [ext_resource path="res://ui/Minimap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://relic/Relics.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ui/ItemBarLeft.tscn" type="PackedScene" id=5]
 [ext_resource path="res://media/fonts/Kenney_Future_21.tres" type="DynamicFont" id=6]
 [ext_resource path="res://ui/MonsterPreview.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/RelictPreview.tscn" type="PackedScene" id=8]
@@ -19,26 +19,6 @@ extents = Vector2( 20, 450 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 800, 450 )
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 2 )
-region = Rect2( 688, 80, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
-region = Rect2( 672, 79, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 2 )
-region = Rect2( 720, 144, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 2 )
-region = Rect2( 736, 144.008, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 2 )
-region = Rect2( 640, 208, 16, 16 )
 
 [node name="Player" type="Node2D"]
 script = ExtResource( 1 )
@@ -83,7 +63,9 @@ shape = SubResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera/Area2D"]
 position = Vector2( -1.20239, 1.33484 )
 shape = SubResource( 4 )
-disabled = true
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 2
@@ -124,92 +106,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pickaxe" type="Label" parent="UI"]
-margin_left = 102.0
-margin_top = 119.0
-margin_right = 142.0
-margin_bottom = 133.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Shovel" type="Label" parent="UI"]
-margin_left = 104.0
-margin_top = 160.0
-margin_right = 144.0
-margin_bottom = 174.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Bombs" type="Label" parent="UI"]
-margin_left = 104.0
-margin_top = 199.0
-margin_right = 144.0
-margin_bottom = 213.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="WaveEnd" type="Label" parent="UI"]
 margin_left = 699.0
 margin_top = 24.0
 margin_right = 739.0
 margin_bottom = 38.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor_Mode_Pickaxe" type="Button" parent="UI"]
-margin_left = 70.0
-margin_top = 100.0
-margin_right = 100.0
-margin_bottom = 130.0
-icon = SubResource( 5 )
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor_Mode_Shovel" type="Button" parent="UI"]
-margin_left = 70.0
-margin_top = 140.0
-margin_right = 100.0
-margin_bottom = 170.0
-icon = SubResource( 6 )
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor_Mode_Spillage" type="Button" parent="UI"]
-margin_left = 70.0
-margin_top = 178.586
-margin_right = 100.0
-margin_bottom = 208.586
-icon = SubResource( 7 )
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor_Mode_BuildTrap" type="Button" parent="UI"]
-margin_left = 65.0
-margin_top = 220.0
-margin_right = 105.0
-margin_bottom = 260.0
-icon = SubResource( 8 )
-expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor_Mode_None" type="Button" parent="UI"]
-margin_left = 71.3348
-margin_top = 267.0
-margin_right = 101.335
-margin_bottom = 297.0
-icon = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -221,49 +122,34 @@ margin_top = 664.005
 margin_right = 1498.99
 margin_bottom = 799.005
 
-[node name="Cursor_Mode_BuildTrap_UP" type="Button" parent="UI"]
-margin_left = 31.043
-margin_top = 223.0
-margin_right = 61.043
-margin_bottom = 253.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cursor_Mode_BuildTrap_DOWN" type="Button" parent="UI"]
-margin_left = 109.117
-margin_top = 223.0
-margin_right = 139.117
-margin_bottom = 253.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Buy_Pickaxe" type="Button" parent="UI"]
-margin_left = 102.0
-margin_top = 96.0
-margin_right = 129.0
-margin_bottom = 116.0
+margin_left = 125.14
+margin_top = 317.256
+margin_right = 152.14
+margin_bottom = 337.256
 text = "5g"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Buy_Shovel" type="Button" parent="UI"]
-margin_left = 103.0
-margin_top = 136.0
-margin_right = 138.0
-margin_bottom = 156.0
+margin_left = 121.65
+margin_top = 398.787
+margin_right = 156.65
+margin_bottom = 418.787
 text = "10g"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Buy_Bombs" type="Button" parent="UI"]
-margin_left = 102.333
-margin_top = 174.586
-margin_right = 129.333
-margin_bottom = 194.586
+anchor_top = -0.00157132
+anchor_right = 9.53674e-09
+anchor_bottom = -0.00157132
+margin_left = 126.887
+margin_top = 472.533
+margin_right = 153.887
+margin_bottom = 492.533
 text = "5g"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -303,6 +189,7 @@ margin_right = 638.365
 margin_bottom = 898.721
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -315,35 +202,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameSpeed0_5" type="Button" parent="UI/HBoxContainer"]
-margin_right = 32.0
-margin_bottom = 31.0
-text = "0.5"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="GameSpeed1" type="Button" parent="UI/HBoxContainer"]
-margin_left = 36.0
-margin_right = 56.0
+margin_right = 20.0
 margin_bottom = 31.0
 text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameSpeed2" type="Button" parent="UI/HBoxContainer"]
-margin_left = 60.0
-margin_right = 80.0
-margin_bottom = 31.0
-text = "2"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="GameSpeed2_Stop" type="Button" parent="UI/HBoxContainer"]
-margin_left = 84.0
-margin_right = 121.0
+margin_left = 24.0
+margin_right = 61.0
 margin_bottom = 31.0
 text = "2 >I"
 __meta__ = {
@@ -351,11 +220,17 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="UI/HBoxContainer"]
-margin_left = 125.0
-margin_right = 169.0
+margin_left = 65.0
+margin_right = 109.0
 margin_bottom = 31.0
 text = "Now: 1
 "
+
+[node name="Control" parent="UI" instance=ExtResource( 5 )]
+margin_left = 42.0
+margin_top = 256.0
+margin_right = -1478.0
+margin_bottom = -303.0
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]
@@ -365,17 +240,8 @@ text = "Now: 1
 [connection signal="mouse_entered" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2D2Right" to="." method="_on_Area2D2Right_mouse_exited"]
 [connection signal="input_event" from="Camera/Area2D" to="." method="_on_Area2D_input_event"]
-[connection signal="pressed" from="UI/Cursor_Mode_Pickaxe" to="." method="_on_Cursor_Mode_Pickaxe_pressed"]
-[connection signal="pressed" from="UI/Cursor_Mode_Shovel" to="." method="_on_Cursor_Mode_Shovel_pressed"]
-[connection signal="pressed" from="UI/Cursor_Mode_Spillage" to="." method="_on_Cursor_Mode_Spillage_pressed"]
-[connection signal="pressed" from="UI/Cursor_Mode_BuildTrap" to="." method="_on_Cursor_Mode_BuildTrap_pressed"]
-[connection signal="pressed" from="UI/Cursor_Mode_None" to="." method="_on_Cursor_Mode_None_pressed"]
-[connection signal="pressed" from="UI/Cursor_Mode_BuildTrap_UP" to="." method="_on_Cursor_Mode_BuildTrap_UP_pressed"]
-[connection signal="pressed" from="UI/Cursor_Mode_BuildTrap_DOWN" to="." method="_on_Cursor_Mode_BuildTrap_DOWN_pressed"]
 [connection signal="pressed" from="UI/Buy_Pickaxe" to="." method="_on_Buy_Pickaxe_pressed"]
 [connection signal="pressed" from="UI/Buy_Shovel" to="." method="_on_Buy_Shovel_pressed"]
 [connection signal="pressed" from="UI/Buy_Bombs" to="." method="_on_Buy_Bombs_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/GameSpeed0_5" to="." method="_on_GameSpeed0_5_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/GameSpeed1" to="." method="_on_GameSpeed1_pressed"]
-[connection signal="pressed" from="UI/HBoxContainer/GameSpeed2" to="." method="_on_GameSpeed2_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/GameSpeed2_Stop" to="." method="_on_GameSpeed2_Stop_pressed"]

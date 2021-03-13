@@ -13,3 +13,6 @@ func parent_ready(_parent):
 func parent_health_changed(_health):
 	if _health <= parent.get_target().max_health * health_percent:
 		delete_me()
+
+func get_condition_text():
+	return "Aktivates at " + str(0.5 * 100) + "% Live"
