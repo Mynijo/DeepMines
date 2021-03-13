@@ -1,14 +1,14 @@
-Player relics (bar)
-Player Display Resources
 Tower Status Bar
-Monster Tool tip
 Rooms Only Heal fundation
 Gold Room
 Display Monster Route button (maybe relict)
-Shop
-Relict new Tower Upgrade option
 Hidden rooms?
-Play/Stop Button
 Save and load game
-Rune/Relict shoot on kill
-Map Mods bar
+
+Relicts:
+Golden Pickaxe
+Golden Shovel
+Golden Bomb
+Get gold every round
+
+Tower Upgrade preview
