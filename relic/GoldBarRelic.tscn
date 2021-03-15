@@ -4,8 +4,9 @@
 [ext_resource path="res://relic/GoldBarRelic.gd" type="Script" id=2]
 [ext_resource path="res://media/relics/GoldBars.png" type="Texture" id=3]
 
-[node name="Divine_Shield_Relic" instance=ExtResource( 1 )]
+[node name="GoldBarRelic" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+relict_name = "Golden Bar"
 
 [node name="Icon" parent="." index="0"]
 margin_right = 27.0

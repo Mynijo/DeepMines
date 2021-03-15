@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://relic/Relic.tscn" type="PackedScene" id=1]
+[ext_resource path="res://relic/GoldBomb.gd" type="Script" id=2]
+[ext_resource path="res://media/relics/GoldenBomb.png" type="Texture" id=3]
+
+[node name="GoldBomb" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+relict_name = "Gold Bomb"
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 5
