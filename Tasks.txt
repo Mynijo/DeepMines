@@ -5,12 +5,6 @@ Display Monster Route button (maybe relict)
 Hidden rooms?
 Save and load game
 
-Relicts:
-Golden Pickaxe
-Golden Shovel
-Golden Bomb
-Get gold every round
-
 Tower Upgrade preview
 
 Towerfundermante Kaufen
