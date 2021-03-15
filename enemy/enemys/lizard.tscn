@@ -1,12 +1,13 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://enemy/enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemy/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://media/monster/lizard/Walk3.png" type="Texture" id=2]
 [ext_resource path="res://media/monster/lizard/Walk1.png" type="Texture" id=3]
 [ext_resource path="res://media/monster/lizard/Walk2.png" type="Texture" id=4]
 [ext_resource path="res://media/monster/lizard/Walk6.png" type="Texture" id=5]
 [ext_resource path="res://media/monster/lizard/Walk4.png" type="Texture" id=6]
 [ext_resource path="res://media/monster/lizard/Walk5.png" type="Texture" id=7]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
