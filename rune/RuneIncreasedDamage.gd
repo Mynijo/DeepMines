@@ -1,6 +1,7 @@
 extends "res://Rune/RuneEffect.gd"
 
-export (float) var incrase
+export (float) var increase
+export (float) var flat
 
 func _init():
 	$Tags.add_tag($Tags.e_rune.effect_attack)
@@ -11,4 +12,4 @@ func effect(_obj, _tag):
 		sort_Obj(_obj)
 	if _tag == $Tags.e_rune.effect_attack:
 		if attack.has_method('effect_damage'):
-			attack.effect_damage(attack.get_damage() * incrase)
+			attack.effect_damage(attack.get_damage() * increase + flat)

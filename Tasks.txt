@@ -8,24 +8,13 @@ Save and load game
 Tower Upgrade preview
 
 Towerfundermante Kaufen
-Sof middel hard mode
+Soft middel hard mode
 
 Relict:
 
-Take 1dmg less
-Tower more dmg
-Tower more crit
-Tower more aps
-Tower detection range
 Enemys Span Burning
 
-Boomerang
-Chain
-Following
-Pierce
 Chance to open more than one map
 More ways in maps
 Less ways in maps
-Random relict
-Add Max hp
 

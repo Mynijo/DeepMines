@@ -16,6 +16,12 @@ func add_relic(_Relic):
 func get_relics():
 	return get_children()
 
+func get_relics_name():
+	var relics_name = []
+	for relic in get_children():
+		relics_name.append(relic.get_name())
+	return relics_name
+
 func remove_relics(_Relic):
 	remove_child(_Relic)
 	_Relic.queue_free()

@@ -1,7 +1,7 @@
 extends Node2D
 
 class class_Inventory:
-	var money = 250
+	var money = 500
 	var pickaxe = 10
 	var shovel = 5
 	var bombs = 10
@@ -336,3 +336,9 @@ func _on_Shop_pressed():
 		shop.generate_shop()
 		$UI.add_child(shop)	
 	shop.show()
+
+func get_relics():
+	return $UI/Relics.get_children()
+	
+func get_relics_name():
+	return $UI/Relics.get_relics_name()

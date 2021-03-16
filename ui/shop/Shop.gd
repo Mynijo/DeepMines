@@ -40,6 +40,8 @@ func generate_shop():
 
 	for i in range(2):
 		add_ramdom_relict()
+		
+	reoder_HBoxContainer2()
 
 	
 func add_random_trap():
@@ -49,12 +51,20 @@ func add_random_trap():
 	$VBoxContainer/VBoxContainer/HBoxContainer.add_child(slot)
 
 func add_ramdom_relict():
+	if relicts.empty():
+		return
 	var random_relict = relicts[randi()  % (relicts.size())]
+	var random_relict_obj = load(random_relict).instance()
 	relicts.erase(random_relict)
+	var relics_name = Player.get_relics_name()
+	if relics_name.has(random_relict_obj.get_name()):
+		random_relict_obj.free()
+		add_ramdom_relict()
+		return
+	
 	var slot = load("res://ui/shop/ShopSlot.tscn").instance()
-	slot.set_relict(load(random_relict).instance())
+	slot.set_relict(random_relict_obj)
 	$VBoxContainer/VBoxContainer/HBoxContainer2.add_child(slot)
-	reoder_HBoxContainer2()
 	
 func reoder_HBoxContainer2():
 	$VBoxContainer/VBoxContainer/HBoxContainer2.move_child($VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop, 2)
