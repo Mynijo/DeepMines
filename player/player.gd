@@ -8,7 +8,8 @@ class class_Inventory:
 	var traps = []
 	
 
-export (int) var health = 100
+export (int) var max_health = 100
+export (int) var health = max_health
 export (int) var camera_spped = 500
 
 var selected_trap
@@ -27,6 +28,8 @@ enum e_CURSOR_MODE{
 
 signal player_take_damage
 signal player_took_damage
+signal player_heal
+signal player_healed
 
 signal current_cursor_mode_changed
 
@@ -167,6 +170,9 @@ var take_dame = 0
 func take_damage(_damage):
 	take_dame = _damage
 	emit_signal('player_take_damage', self)
+	if take_dame < 0:
+		heal(-1*take_dame)
+		return
 	health -= take_dame
 	$UI/Live.text = "Health:" + String(health)
 	if health <= 0:
@@ -176,9 +182,18 @@ func take_damage(_damage):
 func get_health():
 	return health
 	
+var heal_value
 func heal(value):
-	health += value
+	var org_health = health
+	heal_value = value
+	health += heal_value
+	emit_signal('player_heal', self)
+	if health > max_health:
+		health = max_health
 	$UI/Live.text = "Health:" + String(health)
+	
+	if health - org_health > 0:
+		emit_signal('player_healed', health - org_health)
 
 func wave_changed(_wave):
 	$UI/Wave.text = "Wave:" + String(_wave)
