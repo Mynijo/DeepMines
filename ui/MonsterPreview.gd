@@ -1,9 +1,6 @@
 extends PanelContainer
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var enemy = null
 
 
 # Called when the node enters the scene tree for the first time.
@@ -27,6 +24,9 @@ func set_Enemy_Textur(var tex):
 
 func set_Enemy_Name(var name):
 	$VBoxContainer/MonsterName.text = name
+	
+func set_Enemy(var _enemy):
+	enemy = _enemy
 
 var counter = 0
 func set_Status_List(status_list):	
@@ -50,6 +50,9 @@ func reset():
 	$VBoxContainer/PanelContainer/CenterContainer/Stats/Reward/Label.text = ""
 	$VBoxContainer/PanelContainer/CenterContainer/TextureRect.texture = null
 	$VBoxContainer/PanelContainer3/Effect_label.text = ""
+	if enemy:
+		enemy.deaktivate_preview()
+	enemy = null
 	for child in $VBoxContainer/PanelContainer2/Effects.get_children():
 		child.free()
 		

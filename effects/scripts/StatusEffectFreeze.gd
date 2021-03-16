@@ -16,6 +16,7 @@ func _init():
 	$Tags.add_tag($Tags.e_effect.init)
 	$Tags.add_tag($Tags.e_effect.has_icon)
 	
+	
 func effekt(value, tag):
 	if tag == $Tags.e_effect.init:
 		parent = value

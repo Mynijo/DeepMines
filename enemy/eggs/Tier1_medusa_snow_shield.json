@@ -1,0 +1,81 @@
+{
+"eggName" : " " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/medusa.tscn" ,
+"not_default_values" : 
+{
+"gold_value" :50,
+"max_health" :150,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectFreeze.tscn" ,
+"not_default_values" : 
+{
+"duration" :10,
+},
+"conditions" : 
+[
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :0.8,
+}
+},
+],
+},
+{
+"packed_scene" : "res://Effects/StatusEffectShield.tscn" ,
+"not_default_values" : 
+{
+"duration" :10,
+"size_factor" :1,
+"max_health" :1000,
+},
+"conditions" : 
+[
+{
+"packed_scene" : "res://Effects/conditions/ConditionAtLive.tscn" ,
+"not_default_values" : 
+{
+"health_percent" :0.8,
+}
+},
+],
+},
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/Soul_Splitter.tscn" ,
+"not_default_values" : 
+{
+"max_health" :1,
+"damage" :5,
+"gold_value" :5,
+"speed" :30,
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/Soul_Splitter.tscn" ,
+"not_default_values" : 
+{
+"max_health" :1,
+"damage" :5,
+"gold_value" :5,
+"speed" :30,
+},
+"effects" : 
+[
+],
+},
+]
+}

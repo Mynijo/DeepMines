@@ -2,6 +2,7 @@ extends Node
 
 export (String) var description = "Dummy"
 export (float) var duration
+var interal_duration = duration
 var parent
 
 var removed_tags = []
@@ -9,16 +10,24 @@ var removed_tags = []
 signal parent_ready
 
 func _ready():
-	if duration != 0 and duration != null:
-		$Duration.wait_time = duration
-		$Duration.start()
+	start_duration()
 	parent = get_parent().get_parent().get_parent()
 	emit_signal("parent_ready", self)
 
 func _init():
 	pass
 
+func get_duration():
+	return duration
+
+func stop_duration():
+	$Duration.stop()
 	
+func start_duration():
+	if interal_duration != 0 and interal_duration != null:
+		$Duration.wait_time = interal_duration
+		$Duration.start()
+		
 func effekt(_value, _tag):
 	pass
 
@@ -33,12 +42,10 @@ func delteMe():
 	queue_free()
 
 func refresh(_obj):
-	set_duration(_obj.duration)
+	set_duration(_obj.interal_duration)
 
 func set_duration(_duration):
-	duration = _duration
-	$Duration.wait_time = duration
-	$Duration.start()
+	interal_duration = _duration
 	
 func remove_tag(_tag):
 	$Tags.remove_tag(_tag)
@@ -77,7 +84,7 @@ func get_icon():
 
 func remove_tags():
 	for t in $Tags.get_tags():
-		if(t != $Tags.e_effect.init and t!= $Tags.e_effect.buff and t!= $Tags.e_effect.debuff):
+		if(t != $Tags.e_effect.init and t != $Tags.e_effect.has_icon and t!= $Tags.e_effect.buff and t!= $Tags.e_effect.debuff):
 			removed_tags.append(t)
 			$Tags.remove_tag(t)
 			
@@ -99,4 +106,6 @@ func get_full_description():
 	var des = get_description()
 	for condition in $Conditions.get_children():
 		des = des + " " +condition.get_condition_text()
+	if duration > 0: 
+		des = des + " Duration: " + str(duration) + "S"
 	return des

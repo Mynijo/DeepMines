@@ -6,6 +6,8 @@ extends Node
 # var b = "text"
 var parent
 
+export (bool) var start_duaration_after_trigger = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

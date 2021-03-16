@@ -274,11 +274,11 @@ func buy_Bombs(var amount):
 		Player.remove_money(5 * amount)
 		Player.add_bombs(1 * amount)
 
-func refresh_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list):
+func refresh_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list, var enemy):
 	if $UI/Preview.visible:
-		show_Preview(name, max_Health, damage, speed, reward, tex, status_list)
+		show_Preview(name, max_Health, damage, speed, reward, tex, status_list, enemy)
 
-func show_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list):
+func show_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list, var enemy):
 	$UI/RelictPreview.hide()
 	$UI/Preview.reset()
 	$UI/Preview.set_Health(max_Health)
@@ -286,7 +286,8 @@ func show_Preview(var name, var max_Health, var damage, var speed, var reward, v
 	$UI/Preview.set_Speed(speed)
 	$UI/Preview.set_Reward(reward)
 	$UI/Preview.set_Enemy_Textur(tex)	
-	$UI/Preview.set_Enemy_Name(name)	
+	$UI/Preview.set_Enemy_Name(name)
+	$UI/Preview.set_Enemy(enemy)
 	$UI/Preview.set_Status_List(status_list)
 	$UI/Preview.show()
 

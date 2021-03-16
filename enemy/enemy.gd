@@ -124,7 +124,8 @@ func get_velocity():
 	
 func add_Status(_status):
 	$StatusEffects.add_Status(_status)
-	refresh_Preview()
+	if preview_aktive:
+		refresh_Preview()
 
 func add_Status_Icon(_status):
 	var icon = _status.get_icon().duplicate()
@@ -163,7 +164,8 @@ func remove_Status(_status):
 	$StatusEffects.remove_Status(_status)
 	if _status.has_icon():
 		remove_Status_Icon(_status)
-	refresh_Preview()
+	if preview_aktive:
+		refresh_Preview()
 
 func get_StatusEffects(_tag = null):
 	return  $StatusEffects.get_Status_list(_tag)
@@ -231,12 +233,20 @@ func get_spawner():
 func _on_Area2D_input_event(viewport, _event, shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == BUTTON_LEFT and _event.pressed:
-			Player.show_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list())
+			aktivate_preview()
 
-			
+var preview_aktive = false
 
+func aktivate_preview():
+	Player.show_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list(), self)
+	preview_aktive = true
+	
+func deaktivate_preview():
+	preview_aktive = false
+	
 func refresh_Preview():
-	Player.refresh_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list())
+	if preview_aktive:
+		Player.refresh_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list(), self)
 
 func _on_enemy_input_event(viewport, _event, shape_idx):
 	_on_Area2D_input_event(viewport, _event, shape_idx)
