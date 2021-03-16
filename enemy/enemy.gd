@@ -84,11 +84,13 @@ func take_damage(_damage):
 		return
 	if _damage == 0:
 		return
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
-		_damage = x.effekt(_damage, $Tags.e_effect.took_dmg)
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.take_dmg):
+		_damage = x.effekt(_damage, $Tags.e_effect.take_dmg)
 	health = health - _damage
 	if _damage > 0:
 		emit_signal('dmg_taken')
+		for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
+			x.effekt(_damage, $Tags.e_effect.took_dmg)
 	if health > max_health:
 		health = max_health	
 	if health < 0:
@@ -122,6 +124,7 @@ func get_velocity():
 	
 func add_Status(_status):
 	$StatusEffects.add_Status(_status)
+	refresh_Preview()
 
 func add_Status_Icon(_status):
 	var icon = _status.get_icon().duplicate()
@@ -160,6 +163,7 @@ func remove_Status(_status):
 	$StatusEffects.remove_Status(_status)
 	if _status.has_icon():
 		remove_Status_Icon(_status)
+	refresh_Preview()
 
 func get_StatusEffects(_tag = null):
 	return  $StatusEffects.get_Status_list(_tag)
@@ -228,9 +232,11 @@ func _on_Area2D_input_event(viewport, _event, shape_idx):
 	if _event is InputEventMouseButton and _event.pressed:
 		if _event.button_index == BUTTON_LEFT and _event.pressed:
 			Player.show_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list())
+
 			
 
-
+func refresh_Preview():
+	Player.refresh_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list())
 
 func _on_enemy_input_event(viewport, _event, shape_idx):
 	_on_Area2D_input_event(viewport, _event, shape_idx)

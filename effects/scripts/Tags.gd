@@ -24,6 +24,7 @@ enum e_effect{
 	animation,
 	debuff,
 	buff,
+	take_dmg,
 	took_dmg,
 	has_icon
 }

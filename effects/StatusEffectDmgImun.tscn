@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/scripts/StatusEffectDmgImun.gd" type="Script" id=2]
+[ext_resource path="res://media/effects/HolyShield.png" type="Texture" id=3]
+
+[node name="StatusEffectDmgImun" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+description = "Enemy does not take damage"
+duration = 0.0
+
+[node name="Icon" parent="." index="2"]
+texture = ExtResource( 3 )

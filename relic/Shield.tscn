@@ -6,7 +6,7 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
-region = Rect2( 640, 32, 16, 16 )
+region = Rect2( 592, 32, 16, 16 )
 
 [node name="Shield" instance=ExtResource( 1 )]
 script = ExtResource( 2 )

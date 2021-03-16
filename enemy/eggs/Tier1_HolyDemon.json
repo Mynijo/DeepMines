@@ -1,0 +1,28 @@
+{
+"eggName" : " HolyDemon" ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/demon.tscn" ,
+"not_default_values" : 
+{
+"gold_value" :50,
+"max_health" :200,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectAddDmgImunOnDmgTaken.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+]
+}

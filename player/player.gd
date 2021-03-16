@@ -274,6 +274,10 @@ func buy_Bombs(var amount):
 		Player.remove_money(5 * amount)
 		Player.add_bombs(1 * amount)
 
+func refresh_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list):
+	if $UI/Preview.visible:
+		show_Preview(name, max_Health, damage, speed, reward, tex, status_list)
+
 func show_Preview(var name, var max_Health, var damage, var speed, var reward, var tex, var status_list):
 	$UI/RelictPreview.hide()
 	$UI/Preview.reset()
