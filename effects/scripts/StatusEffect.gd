@@ -2,20 +2,25 @@ extends Node
 
 export (String) var description = "Dummy"
 export (float) var duration
-var interal_duration = duration
 var parent
 
 var removed_tags = []
 
+var start_duration_flag = true
+
 signal parent_ready
 
 func _ready():
-	start_duration()
+	if start_duration_flag:
+		start_duration()
 	parent = get_parent().get_parent().get_parent()
 	emit_signal("parent_ready", self)
 
 func _init():
 	pass
+
+func dont_start_duration():
+	start_duration_flag = false
 
 func get_duration():
 	return duration
@@ -24,8 +29,8 @@ func stop_duration():
 	$Duration.stop()
 	
 func start_duration():
-	if interal_duration != 0 and interal_duration != null:
-		$Duration.wait_time = interal_duration
+	if duration != 0 and duration != null:
+		$Duration.wait_time = duration
 		$Duration.start()
 		
 func effekt(_value, _tag):
@@ -42,10 +47,10 @@ func delteMe():
 	queue_free()
 
 func refresh(_obj):
-	set_duration(_obj.interal_duration)
+	set_duration(_obj.duration)
 
 func set_duration(_duration):
-	interal_duration = _duration
+	duration = _duration
 	
 func remove_tag(_tag):
 	$Tags.remove_tag(_tag)

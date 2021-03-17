@@ -5,7 +5,7 @@ export (int) var charges = 1
 
 export (String) var trap_name = "dummy_name"
 export (String) var description = "dummy_description"
-export (int) var price
+export (int) var price = 20
 
 func get_name():
 	return trap_name

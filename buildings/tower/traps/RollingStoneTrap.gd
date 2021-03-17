@@ -32,3 +32,6 @@ func activate_preview():
 
 func deactivate_preview():
 	$RayCastAnchor/DirIcon.hide()
+
+func get_description():
+	return "Deals 200 dmg. Place direction matters!"

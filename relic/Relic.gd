@@ -108,6 +108,11 @@ func _on_Icon_gui_input(event: InputEvent) -> void:
 			Player.show_relic_preview(relict_name,get_icon().texture,get_description())
 
 
+func is_buyable():
+	if $Tags.has_tag($Tags.e_relic.not_buyable):
+		return false
+	return true
+	 
 
 func get_description():
 	return description

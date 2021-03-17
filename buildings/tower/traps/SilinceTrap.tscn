@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://buildings/tower/traps/Trap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://buildings/tower/traps/SilinceTrap.gd" type="Script" id=2]
+[ext_resource path="res://media/button_0.png" type="Texture" id=3]
+[ext_resource path="res://media/effects/silinceEx/silinceEx_02.png" type="Texture" id=4]
+[ext_resource path="res://media/effects/silinceEx/silinceEx_03.png" type="Texture" id=5]
+[ext_resource path="res://media/effects/silinceEx/silinceEx_04.png" type="Texture" id=6]
+[ext_resource path="res://media/effects/silinceEx/silinceEx_05.png" type="Texture" id=7]
+[ext_resource path="res://media/effects/silinceEx/silinceEx_01.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 640, 224, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "explosion",
+"speed": 15.96
+} ]
+
+[node name="SilinceTrap" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+solid = false
+trap_name = "SilinceTrap"
+
+[node name="Body" parent="." index="0"]
+scale = Vector2( 0.5, 0.5 )
+region_rect = Rect2( 704, 1344, 64, 64 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2( -0.69931, -1.1101 )
+
+[node name="RayCast2D" parent="RayCastAnchor" index="0"]
+position = Vector2( 0, -0.23597 )
+
+[node name="MapIcon" parent="." index="6"]
+texture = SubResource( 1 )
+
+[node name="Animation" type="AnimatedSprite" parent="." index="8"]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+frames = SubResource( 2 )
+animation = "explosion"

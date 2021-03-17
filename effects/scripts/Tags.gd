@@ -11,7 +11,7 @@ enum e_rune{
 	init_attack,
 	init_tower,
 	whlie_processing,
-	process_animation
+	process_animation	
 }
 
 enum e_effect{
@@ -36,7 +36,8 @@ enum e_relic{
 	player_heal,
 	player_healed,
 	player_take_damage,
-	player_took_damage
+	player_took_damage,
+	not_buyable
 }
 
 

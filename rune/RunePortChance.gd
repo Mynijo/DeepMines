@@ -13,8 +13,8 @@ func effect(_obj, _tag):
 		sort_Obj(_obj)
 	if _tag == $Tags.e_rune.enemy_was_dmg:
 		if _obj.is_in_group("enemys"):
-			var is_emun = is_enemy_port_emun(_obj)
-			if not is_emun:
+			var is_immune = is_enemy_port_immune(_obj)
+			if not is_immune:
 				if rand_range(0,100) <= (port_chance):
 					var spawner = _obj.get_spawner()
 					var spawner_pos = spawner.get_pos()
@@ -27,12 +27,12 @@ func port_enemy(_enemy, _position):
 		var s = emun_status.instance()
 		_enemy.add_Status(s)
 		
-func is_enemy_port_emun(_enemy):
+func is_enemy_port_immune(_enemy):
 	var effects = _enemy.get_StatusEffects()
 	
 	for eff in effects:
-		if eff.has_method('is_port_emun'):
-			return eff.is_port_emun()
+		if eff.has_method('is_port_immunen'):
+			return eff.is_port_immune()
 	return false
 	
 	

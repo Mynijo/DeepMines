@@ -1,6 +1,6 @@
 extends "res://relic/Relic.gd"
 
-export (int) var increase_amount = 0
+export (float) var increase_amount = 0
 export (int) var flat_amount = 50
 
 # Declare member variables here. Examples:

@@ -26,6 +26,13 @@ func add_Status(_status):
 		_status.effekt(get_parent(), $Tags.e_effect.init)
 	return
 		
+func get_buffs(_tag = null):
+	var status_list = []	
+	for s in $Buffs.get_children():
+		if _tag == null or s.has_tag(_tag):
+			status_list.append(s)
+	return status_list
+	
 func get_Status_list(_tag = null):
 	var status_list = []	
 	for s in $Buffs.get_children():

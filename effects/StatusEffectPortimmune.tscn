@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://effects/scripts/StatusEffectPortEmun.gd" type="Script" id=1]
+[ext_resource path="res://effects/scripts/StatusEffectPortimmune.gd" type="Script" id=1]
 [ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://media/button_0.png" type="Texture" id=3]
 

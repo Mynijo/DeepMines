@@ -10,7 +10,6 @@ radius = 19.8996
 speed = 100
 damage = 200.0
 lifetime = 20.0
-crit_chance = 0.0
 max_target = 50
 
 [node name="Sprite" parent="." index="0"]

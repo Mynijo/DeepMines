@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Rune/RuneEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://rune/RuneAddHot.gd" type="Script" id=2]
@@ -14,9 +14,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=2]
+
 [node name="RuneAddHot" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
 [node name="Animation" parent="." index="1"]
 frames = SubResource( 1 )
 animation = "attack_on_fire"
+
+[node name="Icon" parent="." index="2"]
+texture = SubResource( 2 )

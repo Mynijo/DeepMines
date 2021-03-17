@@ -57,7 +57,7 @@ func add_ramdom_relict():
 	var random_relict_obj = load(random_relict).instance()
 	relicts.erase(random_relict)
 	var relics_name = Player.get_relics_name()
-	if relics_name.has(random_relict_obj.get_name()):
+	if relics_name.has(random_relict_obj.get_name()) or not random_relict_obj.is_buyable():
 		random_relict_obj.free()
 		add_ramdom_relict()
 		return
@@ -67,7 +67,10 @@ func add_ramdom_relict():
 	$VBoxContainer/VBoxContainer/HBoxContainer2.add_child(slot)
 	
 func reoder_HBoxContainer2():
-	$VBoxContainer/VBoxContainer/HBoxContainer2.move_child($VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop, 2)
+	if $VBoxContainer/VBoxContainer/HBoxContainer2.get_child_count() >= 2:
+		$VBoxContainer/VBoxContainer/HBoxContainer2.move_child($VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop, 2)
+	if $VBoxContainer/VBoxContainer/HBoxContainer2.get_child_count() == 1:
+		$VBoxContainer/VBoxContainer/HBoxContainer2.move_child($VBoxContainer/VBoxContainer/HBoxContainer2/BaseShop, 1)
 
 
 func _on_TextureButtonPickaxe_pressed():

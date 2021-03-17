@@ -17,7 +17,6 @@ solid = false
 cost = 0
 Attack = ExtResource( 2 )
 trap_name = "Rolling Stone"
-description = "You know what it does. Place direction matters!"
 
 [node name="Body" parent="." index="0"]
 scale = Vector2( 0.2, 0.2 )
