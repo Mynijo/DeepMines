@@ -1,0 +1,48 @@
+{
+"eggName" : "  " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"not_default_values" : 
+{
+"max_health" :300,
+"speed" :5,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectSelfPortOnTime.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/jinn.tscn" ,
+"not_default_values" : 
+{
+"max_health" :300,
+"speed" :5,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectSelfPortOnTime.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+]
+}
