@@ -5,6 +5,8 @@ signal pick_up_relic
 signal player_take_damage
 signal player_took_damage
 signal gameState_changed
+signal player_heal
+signal player_healed
 
 export (String) var relict_name = "dummy_name"
 export (String) var description = "dummy_description"
@@ -51,6 +53,10 @@ func activate():
 		_rc = Player.connect("player_take_damage", self, "call_on_player_take_damage")
 	if $Tags.has_tag($Tags.e_relic.player_took_damage):
 		_rc = Player.connect("player_took_damage", self, "call_on_player_took_damage")
+	if $Tags.has_tag($Tags.e_relic.player_heal):
+		_rc = Player.connect("player_heal", self, "call_on_player_heal")
+	if $Tags.has_tag($Tags.e_relic.player_healed):
+		_rc = Player.connect("player_healed", self, "call_player_healed")
 	if $Tags.has_tag($Tags.e_relic.game_stat_change):
 		_rc = Global_GameStateManager.connect("gameState_changed", self, "call_on_gamestate_changed")
 		
@@ -61,6 +67,12 @@ func deactivate():
 		get_parent().disconnect("pick_up_relic", self, "call_on_pick_up_me_calc")
 	if $Tags.has_tag($Tags.e_relic.player_take_damage):
 		Player.disconnect("player_take_damage", self, "call_on_player_take_damage")
+	if $Tags.has_tag($Tags.e_relic.player_took_damage):
+		Player.disconnect("player_took_damage", self, "call_on_player_took_damage")
+	if $Tags.has_tag($Tags.e_relic.player_heal):
+		Player.disconnect("player_heal", self, "call_on_player_heal")
+	if $Tags.has_tag($Tags.e_relic.player_healed):
+		Player.disconnect("player_healed", self, "call_player_healed")
 	if $Tags.has_tag($Tags.e_relic.game_stat_change):
 		Global_GameStateManager.disconnect("gameState_changed", self, "call_on_gamestate_changed")
 	
@@ -79,6 +91,12 @@ func call_on_player_take_damage(var _player):
 	pass
 	
 func call_on_player_took_damage(var _damge):
+	pass
+	
+func call_on_player_heal(var _player):
+	pass
+	
+func call_on_player_healed(var _damge):
 	pass
 	
 func call_on_gamestate_changed(var _new_gamestate):

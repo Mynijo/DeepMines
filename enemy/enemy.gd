@@ -34,219 +34,219 @@ var spawner = null
 var spawned = false
 
 func _ready():
-	map = get_tree().get_root().get_node("map")
-	var _rc
-	_rc = self.connect("dmg_taken", Player, "_enemy_dmg_taken")
-	
-	# find_way(Vector2(7, 0))
+    map = get_tree().get_root().get_node("map")
+    var _rc
+    _rc = self.connect("dmg_taken", Player, "_enemy_dmg_taken")
+    
+    # find_way(Vector2(7, 0))
 func set_last_tower_hit(_last_tower_hit):
-	last_tower_hit = _last_tower_hit
+    last_tower_hit = _last_tower_hit
 
 func spawn(_position, _start_cor, _start_level_cor):
-	global_position = _position
-	health = max_health
-	start_pos_as_cor = _start_cor
-	start_level_cor = _start_level_cor
-	
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.init):
-		x.effekt(self, $Tags.e_effect.init)
-	spawned = true
-	
+    global_position = _position
+    health = max_health
+    start_pos_as_cor = _start_cor
+    start_level_cor = _start_level_cor
+    
+    for x in $StatusEffects.get_Status_list($Tags.e_effect.init):
+        x.effekt(self, $Tags.e_effect.init)
+    spawned = true
+    
 
 func control(delta):
-	calc_move_direction()
-	current_speed = speed
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.speed):
-		current_speed = x.effekt(current_speed, $Tags.e_effect.speed)
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.health):
-		take_damage(x.effekt(health, $Tags.e_effect.health))
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
-		move_direction = x.effekt(move_direction, $Tags.e_effect.direction)	
-	
-	if !$Animation.is_playing():
-		$Animation.play('walk')
-		$Sprite.visible = true
-	else:
-		$Sprite.visible = false
-	if $Animation.is_playing() and speed != current_speed:
-		var farmes_count = $Animation.frames.get_frame_count('walk')
-		$Animation.frames.set_animation_speed('walk', farmes_count*current_speed/speed)
-	velocity = move_direction * current_speed * delta * -100	
-	
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
-		x.effekt(self, $Tags.e_effect.animation)
-			
-	if health <= 0:
-		die()
-		
+    calc_move_direction()
+    current_speed = speed
+    for x in $StatusEffects.get_Status_list($Tags.e_effect.speed):
+        current_speed = x.effekt(current_speed, $Tags.e_effect.speed)
+    for x in $StatusEffects.get_Status_list($Tags.e_effect.health):
+        take_damage(x.effekt(health, $Tags.e_effect.health))
+    for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
+        move_direction = x.effekt(move_direction, $Tags.e_effect.direction)	
+    
+    if !$Animation.is_playing():
+        $Animation.play('walk')
+        $Sprite.visible = true
+    else:
+        $Sprite.visible = false
+    if $Animation.is_playing() and speed != current_speed:
+        var farmes_count = $Animation.frames.get_frame_count('walk')
+        $Animation.frames.set_animation_speed('walk', farmes_count*current_speed/speed)
+    velocity = move_direction * current_speed * delta * -100	
+    
+    for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
+        x.effekt(self, $Tags.e_effect.animation)
+            
+    if health <= 0:
+        die()
+        
 func take_damage(_damage):
-	if dead or _damage == null:
-		return
-	if _damage == 0:
-		return
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.take_dmg):
-		_damage = x.effekt(_damage, $Tags.e_effect.take_dmg)
-	health = health - _damage
-	if _damage > 0:
-		emit_signal('dmg_taken')
-		for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
-			x.effekt(_damage, $Tags.e_effect.took_dmg)
-	if health > max_health:
-		health = max_health	
-	if health < 0:
-		health = 0
-	emit_signal('health_changed',health)	
-		
+    if dead or _damage == null:
+        return
+    if _damage == 0:
+        return
+    for x in $StatusEffects.get_Status_list($Tags.e_effect.take_dmg):
+        _damage = x.effekt(_damage, $Tags.e_effect.take_dmg)
+    health = health - _damage
+    if _damage > 0:
+        emit_signal('dmg_taken')
+        for x in $StatusEffects.get_Status_list($Tags.e_effect.took_dmg):
+            x.effekt(_damage, $Tags.e_effect.took_dmg)
+    if health > max_health:
+        health = max_health	
+    if health < 0:
+        health = 0
+    emit_signal('health_changed',health)	
+        
 func die():
-	for x in $StatusEffects.get_Status_list($Tags.e_effect.cast_on_death):
-			x.effekt(self,$Tags.e_effect.cast_on_death)
-	
-	Player.add_money(gold_value)
-	kill()
-		
+    for x in $StatusEffects.get_Status_list($Tags.e_effect.cast_on_death):
+            x.effekt(self,$Tags.e_effect.cast_on_death)
+    
+    Player.add_money(gold_value)
+    kill()
+        
 func kill():
-	dead = true
-	if spawner:
-		spawner.remove_enemy(self)
-	map.remove_enemy(self)
-	queue_free()
-	
-	
+    dead = true
+    if spawner:
+        spawner.remove_enemy(self)
+    map.remove_enemy(self)
+    queue_free()
+    
+    
 func _physics_process(delta):
-	if dead:
-		return
-	control(delta)
-	var _rc 
-	_rc = move_and_slide(velocity)
-		
+    if dead:
+        return
+    control(delta)
+    var _rc 
+    _rc = move_and_slide(velocity)
+        
 func get_velocity():
-	return velocity
-	
+    return velocity
+    
 func add_Status(_status):
-	$StatusEffects.add_Status(_status)
-	if preview_aktive:
-		refresh_Preview()
+    $StatusEffects.add_Status(_status)
+    if preview_aktive:
+        refresh_Preview()
 
 func add_Status_Icon(_status):
-	var icon = _status.get_icon().duplicate()
-	icon.visible = true
-	$StatusLeiste.add_child(icon)
+    var icon = _status.get_icon().duplicate()
+    icon.visible = true
+    $StatusLeiste.add_child(icon)
 
 
 func has_Status_Icon(_status):
-	for icon in $StatusLeiste.get_children():
-		var _status_icon = _status.get_icon()
-		if icon.texture == _status_icon.texture:
-			return true
-	return false
-			
+    for icon in $StatusLeiste.get_children():
+        var _status_icon = _status.get_icon()
+        if icon.texture == _status_icon.texture:
+            return true
+    return false
+            
 func remove_Status_Icon(_status):
-	for icon in $StatusLeiste.get_children():
-		var _status_icon = _status.get_icon()
-		if icon.texture == _status_icon.texture:
-			$StatusLeiste.remove_child(icon)
-			return
-			
+    for icon in $StatusLeiste.get_children():
+        var _status_icon = _status.get_icon()
+        if icon.texture == _status_icon.texture:
+            $StatusLeiste.remove_child(icon)
+            return
+            
 
 func update_icon(var _old_icon, var _new_icon):
-	for icon in $StatusLeiste.get_children():
-		if icon.texture == _old_icon.texture:
-			var pos_of_old_icon = icon.get_position_in_parent()
-			var new_icon = _new_icon.duplicate()			
-			$StatusLeiste.remove_child(icon)
-			icon.free()
-			$StatusLeiste.add_child(new_icon)
-			$StatusLeiste.move_child(new_icon, pos_of_old_icon)
-			new_icon.visible = true
+    for icon in $StatusLeiste.get_children():
+        if icon.texture == _old_icon.texture:
+            var pos_of_old_icon = icon.get_position_in_parent()
+            var new_icon = _new_icon.duplicate()			
+            $StatusLeiste.remove_child(icon)
+            icon.free()
+            $StatusLeiste.add_child(new_icon)
+            $StatusLeiste.move_child(new_icon, pos_of_old_icon)
+            new_icon.visible = true
 
 
 func remove_Status(_status):
-	$StatusEffects.remove_Status(_status)
-	if _status.has_icon():
-		remove_Status_Icon(_status)
-	if preview_aktive:
-		refresh_Preview()
+    $StatusEffects.remove_Status(_status)
+    if _status.has_icon():
+        remove_Status_Icon(_status)
+    if preview_aktive:
+        refresh_Preview()
 
 func get_StatusEffects(_tag = null):
-	return  $StatusEffects.get_Status_list(_tag)
+    return  $StatusEffects.get_Status_list(_tag)
 
 func load_settings(_settings):
-	if _settings.empty():
-		return
-	for k in _settings.keys():
-		set(k ,_settings[k])
+    if _settings.empty():
+        return
+    for k in _settings.keys():
+        set(k ,_settings[k])
 
 func calc_move_direction():
-	if way_points.size() >= 1:
-		move_direction = (position - way_points[0][0]).normalized()
-		if position.distance_to(way_points[0][0]) < 5:
-			way_points.pop_front()
-	else:
-		move_direction = Vector2(0, 0)
-		var heart = map.get_heart()
-		find_way(heart.get_cor(), heart.get_level_cor())
-	if move_direction.x > 0.1: #You know why 0.1
-		if $Sprite.scale.x > 0: 
-			$Sprite.scale.x *= -1
-		if $Animation.scale.x > 0: 
-			$Animation.scale.x *= -1
-	else:
-		if $Sprite.scale.x < 0: 
-			$Sprite.scale.x *= -1
-		if $Animation.scale.x < 0: 
-			$Animation.scale.x *= -1
+    if way_points.size() >= 1:
+        move_direction = (position - way_points[0][0]).normalized()
+        if position.distance_to(way_points[0][0]) < 5:
+            way_points.pop_front()
+    else:
+        move_direction = Vector2(0, 0)
+        var heart = map.get_heart()
+        find_way(heart.get_cor(), heart.get_level_cor())
+    if move_direction.x > 0.1: #You know why 0.1
+        if $Sprite.scale.x > 0: 
+            $Sprite.scale.x *= -1
+        if $Animation.scale.x > 0: 
+            $Animation.scale.x *= -1
+    else:
+        if $Sprite.scale.x < 0: 
+            $Sprite.scale.x *= -1
+        if $Animation.scale.x < 0: 
+            $Animation.scale.x *= -1
 
 func find_way(_target, _level_cor):
-	astar = Global_AStar.get_astar()
-	var point1 = Global_AStar.get_id_of_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, Global_AStar.level_cor_to_id(start_level_cor)))
-	var point2 = Global_AStar.get_id_of_point(Vector3(_target.x, _target.y, Global_AStar.level_cor_to_id(_level_cor)))
+    astar = Global_AStar.get_astar()
+    var point1 = Global_AStar.get_id_of_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, Global_AStar.level_cor_to_id(start_level_cor)))
+    var point2 = Global_AStar.get_id_of_point(Vector3(_target.x, _target.y, Global_AStar.level_cor_to_id(_level_cor)))
 
-	var path = astar.get_id_path(point1,point2)
-	
-	if start_level_cor != Vector2(0,0):
-		pass
-	
-	for id in path:
-		var point = astar.get_point_position(id)
-		var level_cor = Global_AStar.id_to_level_cor(point.z)
-		var cor = Vector2(point.x, point.y)
-		if level_cor != Vector2(0,0):
-			pass
-		way_points.append([map.get_pos_on_map_mid(cor, level_cor),cor, level_cor])
+    var path = astar.get_id_path(point1,point2)
+    
+    if start_level_cor != Vector2(0,0):
+        pass
+    
+    for id in path:
+        var point = astar.get_point_position(id)
+        var level_cor = Global_AStar.id_to_level_cor(point.z)
+        var cor = Vector2(point.x, point.y)
+        if level_cor != Vector2(0,0):
+            pass
+        way_points.append([map.get_pos_on_map_mid(cor, level_cor),cor, level_cor])
 
 
 
-	
+    
 func hit_building_get_dmg():
-	kill()
-	return damage
+    kill()
+    return damage
 
 func is_Enemy():
-	return true
-	
+    return true
+    
 func add_spawner(_spawner):
-	spawner = _spawner
-	
+    spawner = _spawner
+    
 func get_spawner():
-	return spawner
+    return spawner
 
 func _on_Area2D_input_event(viewport, _event, shape_idx):
-	if _event is InputEventMouseButton and _event.pressed:
-		if _event.button_index == BUTTON_LEFT and _event.pressed:
-			aktivate_preview()
+    if _event is InputEventMouseButton and _event.pressed:
+        if _event.button_index == BUTTON_LEFT and _event.pressed:
+            aktivate_preview()
 
 var preview_aktive = false
 
 func aktivate_preview():
-	Player.show_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list(), self)
-	preview_aktive = true
-	
+    Player.show_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list(), self)
+    preview_aktive = true
+    
 func deaktivate_preview():
-	preview_aktive = false
-	
+    preview_aktive = false
+    
 func refresh_Preview():
-	if preview_aktive:
-		Player.refresh_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list(), self)
+    if preview_aktive:
+        Player.refresh_Preview(enemy_name, health, damage, current_speed, gold_value, $Sprite.texture,$StatusEffects.get_Status_list(), self)
 
 func _on_enemy_input_event(viewport, _event, shape_idx):
-	_on_Area2D_input_event(viewport, _event, shape_idx)
+    _on_Area2D_input_event(viewport, _event, shape_idx)

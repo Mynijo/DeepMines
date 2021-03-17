@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://relic/Relic.tscn" type="PackedScene" id=1]
+[ext_resource path="res://relic/InceasedHeal.gd" type="Script" id=2]
+[ext_resource path="res://media/button_0.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 656, 160, 16, 16 )
+
+[node name="InceasedHeal" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+relict_name = "Inceas Heal"
+incease = 2
+
+[node name="Icon" parent="." index="0"]
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 5

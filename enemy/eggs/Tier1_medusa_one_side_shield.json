@@ -1,0 +1,26 @@
+{
+"eggName" : " " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/medusa.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectOneSidedShield.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+]
+}

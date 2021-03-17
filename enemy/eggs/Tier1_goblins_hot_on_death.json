@@ -1,0 +1,46 @@
+{
+"eggName" : "  " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"not_default_values" : 
+{
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectHotOnDeath.tscn" ,
+"not_default_values" : 
+{
+},
+"conditions" : 
+[
+],
+},
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"not_default_values" : 
+{
+"max_health" :200,
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/goblin.tscn" ,
+"not_default_values" : 
+{
+"max_health" :200,
+},
+"effects" : 
+[
+],
+},
+]
+}

@@ -1,0 +1,48 @@
+{
+"eggName" : " " ,
+"tier" : 1 ,
+"small_boss" : false ,
+"boss" : false ,
+"enemeys" : [
+{
+"packed_scene" : "res://Enemy/Enemys/Soul_Splitter.tscn" ,
+"not_default_values" : 
+{
+"max_health" :10,
+},
+"effects" : 
+[
+{
+"packed_scene" : "res://Effects/StatusEffectMaxDmgTaken.tscn" ,
+"not_default_values" : 
+{
+"max_dmg" :1,
+},
+"conditions" : 
+[
+],
+},
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/Soul_Splitter.tscn" ,
+"not_default_values" : 
+{
+"max_health" :1,
+},
+"effects" : 
+[
+],
+},
+{
+"packed_scene" : "res://Enemy/Enemys/Soul_Splitter.tscn" ,
+"not_default_values" : 
+{
+"max_health" :1,
+},
+"effects" : 
+[
+],
+},
+]
+}

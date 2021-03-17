@@ -7,11 +7,11 @@
 [ext_resource path="res://enemy/UnitDisplay.tscn" type="PackedScene" id=5]
 [ext_resource path="res://media/button_0.png" type="Texture" id=6]
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
 region = Rect2( 656, 48, 16, 16 )
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 65.262
 
 [node name="StatusEffectShield" instance=ExtResource( 1 )]
@@ -20,7 +20,7 @@ duration = 0.0
 max_health = 100
 
 [node name="Icon" parent="." index="2"]
-texture = SubResource( 2 )
+texture = SubResource( 1 )
 
 [node name="Shield" type="KinematicBody2D" parent="." index="3" groups=[
 "enemys",
@@ -35,7 +35,7 @@ max_health = 100
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield" index="1"]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="UnitDisplay" parent="Shield" index="2" instance=ExtResource( 5 )]
 position = Vector2( 0, -45 )

@@ -16,4 +16,4 @@ func call_on_player_take_damage(var _player):
 		_player.take_dame = _player.take_dame - dmg_reduction
 			
 func get_description():
-	return "Take " + str(dmg_reduction) + " less dmg"
+	return "Take " + str(dmg_reduction) + " less dmg. But at least " + str(dmg_reduction)
