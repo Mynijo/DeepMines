@@ -1,5 +1,5 @@
 {
-"eggName" : " " ,
+"eggName" : "  " ,
 "tier" : 1 ,
 "small_boss" : false ,
 "boss" : false ,
@@ -8,6 +8,7 @@
 "packed_scene" : "res://Enemy/Enemys/medusa.tscn" ,
 "not_default_values" : 
 {
+"speed" :50,
 },
 "effects" : 
 [

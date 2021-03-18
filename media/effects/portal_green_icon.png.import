@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lightning_explosion.png-86426a43066b1eb45a0bc1aa92886459.stex"
+path="res://.import/portal_green_icon.png-165e89004df0efeea88f7de23936b122.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/effects/lightning_explosion.png"
-dest_files=[ "res://.import/lightning_explosion.png-86426a43066b1eb45a0bc1aa92886459.stex" ]
+source_file="res://media/effects/portal_green_icon.png"
+dest_files=[ "res://.import/portal_green_icon.png-165e89004df0efeea88f7de23936b122.stex" ]
 
 [params]
 
