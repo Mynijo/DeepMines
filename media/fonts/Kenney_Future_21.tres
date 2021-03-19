@@ -3,5 +3,4 @@
 [ext_resource path="res://media/fonts/KenPixel Future.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 21
 font_data = ExtResource( 1 )

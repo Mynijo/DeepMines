@@ -45,7 +45,7 @@ func _ready():
 	UpgradeTowerUI.set_global_position(global_position)
 	UpgradeTowerUI.set_tower(self)
 
-func build_me():	
+func build_me():
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
@@ -55,7 +55,7 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneFollowing.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddCharme.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneAddIgnite.tscn").instance())
-	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())	
+	#runes_attached.append(load("res://rune/RuneAddShock.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneBoomerang.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneChain.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneIncreasedAps.tscn").instance())
@@ -66,11 +66,11 @@ func build_me():
 	#runes_attached.append(load("res://rune/RuneAddStickyBomb.tscn").instance())
 	#runes_attached.append(load("res://rune/RuneSplitShot.tscn").instance())
 	#runes_attached.append(load("res://rune/RunePortChance.tscn").instance())
-	emit_signal('Runes_Changed')	
+	emit_signal('Runes_Changed')
 	ini_possible_upgrades()
 	deactivate_preview()
 	builded = true
-	
+
 
 func ini_possible_upgrades():
 	if is_ini_possible_upgrades:
@@ -92,7 +92,7 @@ func get_possible_upgrades():
 
 func get_icon():
 	return $Body.texture
-	
+
 func connect_signals():
 	var _rc
 	_rc = self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
@@ -108,8 +108,8 @@ func remove_rune(_rune):
 	runes_attached.remove(_rune)
 	emit_signal('Runes_Changed')
 
-		
-func _process(delta):	
+
+func _process(delta):
 	if target.size() != 0:
 		if Attack != null:
 			if recalc_target:
@@ -123,10 +123,10 @@ func _process(delta):
 			attack.free()
 			var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
 			var target_dir = (predicted_position - global_position).normalized()
-			
+
 			var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 			$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
-			
+
 			if target_dir.dot(current_dir) > 0.999:
 				$RayCastAnchor.look_at(target.front().global_position)
 				ray.force_raycast_update()
@@ -140,7 +140,7 @@ func _process(delta):
 			#var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 			#$Body.global_rotation = current_dir.linear_interpolate(Vector2(1,0), turret_speed * delta).angle()
 			pass
-		
+
 func spawn(_position):
 	position = _position
 	build_me()
@@ -168,48 +168,48 @@ func _on_DetectRadius_body_entered(body):
 		target.append(body)
 	else:
 		pass
-	
+
 
 func _on_DetectRadius_body_exited(body):
 	target.erase(body)
-		
-func shoot():	
+
+func shoot():
 	$GunCooldown.start()
 	can_shoot = false
-	var b = Attack.instance()		
-	if runes_active:		
+	var b = Attack.instance()
+	if runes_active:
 		b.set_runes(runes_active, self)
 	emit_signal('shoot', b, global_position, Vector2(1, 0).rotated($Body.global_rotation), self)
-	
+
 	for r in runes_active:
 		if r.has_tag($Tags.e_rune.shoot):
 			r.effect(self,$Tags.e_rune.shoot)
 
 func _on_GunCooldown_timeout():
 	can_shoot = true
-	
+
 func get_gun_cooldown():
 	if gun_cooldown_effected:
 		return gun_cooldown_effected
 	return gun_cooldown
-	
+
 func effect_gun_cooldown(_gun_cooldown):
 	gun_cooldown_effected = _gun_cooldown
 	if gun_cooldown_effected > 0:
 		$GunCooldown.wait_time = gun_cooldown_effected
 		$GunCooldown.start()
-	
+
 func get_detect_radius():
 	if detect_radius_effected:
 		return detect_radius_effected
 	return detect_radius
-	
+
 func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
 	if detect_radius_effected > 0:
 		$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
 		$RayCastAnchor/RayCast2D.cast_to.y = detect_radius_effected
-	
+
 func runes_changed():
 	reset_tower()
 	var temp_runes = []
@@ -217,9 +217,9 @@ func runes_changed():
 	for r in runes:
 		temp_runes.append(r.duplicate())
 	for r in runes_attached:
-		temp_runes.append(r.duplicate())	
+		temp_runes.append(r.duplicate())
 	apply_runes(temp_runes)
-	
+
 func apply_runes(_runes):
 	for r in _runes:
 		add_child(r)
@@ -242,7 +242,7 @@ func is_Tower():
 
 func add_exp(_exp):
 	experience += _exp
-	
+
 func _on_TargetSelectionColldown_timeout():
 	recalc_target = true
 

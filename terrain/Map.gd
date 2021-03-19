@@ -234,10 +234,10 @@ func level_id_to_floor_number(_ebene):
 		if lvl == _ebene:
 			return i
 	return -1
-	
+
 func get_last_level():
 	return levels.back()
-	
+
 func get_blocks():
 	return $blocks.get_children()
 

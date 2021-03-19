@@ -6,7 +6,7 @@ class class_Inventory:
 	var shovel = 5
 	var bombs = 10
 	var traps = []
-	
+
 
 export (int) var max_health = 100
 export (int) var health = max_health
@@ -46,7 +46,7 @@ func _ready():
 	$UI/Control.set_Pickaxes(Inventory.pickaxe)
 	$UI/Control.set_Shovels(Inventory.shovel)
 	$UI/Control.set_Bombs(Inventory.bombs)
-	
+
 	var relics = []
 	#relics.append(load("res://relic/DivineShieldRelic.tscn").instance())
 	#relics.append(load("res://relic/GoldBarsRelic.tscn").instance())
@@ -57,7 +57,7 @@ func _ready():
 	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/BloodDrinker.tscn").instance())
 	#relics.append(load("res://relic/TrapMaster.tscn").instance())
-	
+
 	for relic in relics:
 		$UI/Relics.add_relic(relic)
 
@@ -70,12 +70,12 @@ func _ready():
 
 func add_relict(var relic):
 	$UI/Relics.add_relic(relic)
-		
+
 func add_trap(var trap):
-	Inventory.traps.append(trap)	
+	Inventory.traps.append(trap)
 	if selected_trap == null:
 		set_selected_trap(trap)
-		
+
 func get_traps():
 	return Inventory.traps
 
@@ -89,7 +89,7 @@ func _unhandled_key_input(_event):
 		velocity += Vector2(0, -1)
 	if(Input.is_action_pressed("move_down")):
 		velocity += Vector2(0, +1)
-			
+
 	if(Input.is_action_pressed("change_cursor_mode_none")):
 		change_Cursor_Mode(e_CURSOR_MODE.None)
 	if(Input.is_action_pressed("change_cursor_mode_pickaxe")):
@@ -104,7 +104,7 @@ func set_new_wave_counter(_wave):
 
 func get_selected_trap():
 	return selected_trap
-	
+
 func remove_trap(_trap):
 	Inventory.traps.erase(_trap)
 	if _trap == get_selected_trap():
@@ -116,7 +116,7 @@ func remove_trap(_trap):
 func add_bombs(_bombs):
 	Inventory.bombs += _bombs
 	$UI/Control.set_Bombs(Inventory.bombs)
-	
+
 func remove_bombs(_bombs):
 	if Inventory.bombs - _bombs < 0:
 		Inventory.bombs = 0
@@ -130,7 +130,7 @@ func get_bombs():
 func add_pickaxe(_pickaxe):
 	Inventory.pickaxe += _pickaxe
 	$UI/Control.set_Pickaxes(Inventory.pickaxe)
-	
+
 func remove_pickaxe(_pickaxe):
 	if Inventory.pickaxe - _pickaxe < 0:
 		Inventory.pickaxe = 0
@@ -140,21 +140,21 @@ func remove_pickaxe(_pickaxe):
 
 func get_pickaxe():
 	return Inventory.pickaxe
-	
+
 func add_shovel(_shovel):
 	Inventory.shovel += _shovel
 	$UI/Control.set_Shovels(Inventory.shovel)
-	
+
 func remove_shovel(_shovel):
 	if Inventory.shovel - _shovel < 0:
 		Inventory.shovel = 0
 	else:
 		Inventory.shovel -= _shovel
 	$UI/Control.set_Shovels(Inventory.shovel)
-	
+
 func get_shovel():
 	return Inventory.shovel
-	
+
 func add_money(value):
 	Inventory.money += value
 	$UI/Money.text = "Money:" + String(Inventory.money)
@@ -176,12 +176,12 @@ func take_damage(_damage):
 	health -= take_dame
 	$UI/Live.text = "Health:" + String(health)
 	if health <= 0:
-		pass 
+		pass
 	emit_signal('player_took_damage', take_dame)
 
 func get_health():
 	return health
-	
+
 var heal_value
 func heal(value):
 	var org_health = health
@@ -191,7 +191,7 @@ func heal(value):
 	if health > max_health:
 		health = max_health
 	$UI/Live.text = "Health:" + String(health)
-	
+
 	if health - org_health > 0:
 		emit_signal('player_healed', health - org_health)
 
@@ -207,7 +207,7 @@ func _physics_process(delta):
 		return
 	position = new_pos
 	$UI/Pos.text = str($Camera.get_global_mouse_position())
-	
+
 func _on_Area2DTop_mouse_entered():
 	velocity += Vector2(0, -1)
 
@@ -241,19 +241,19 @@ func change_Cursor_Mode(var mode):
 	$UI/Control.hilight_button(mode)
 	if shop:
 		shop.hide()
-	
+
 func _on_Cursor_Mode_BuildTrap_pressed():
 	change_Cursor_Mode(e_CURSOR_MODE.BuildTrap)
 
 
 
-func set_selected_trap(var trap):		
+func set_selected_trap(var trap):
 	selected_trap = trap
 	$UI/Control.selected_trap_changed()
 
 func enable_Mode_Buttons():
 	$UI/Control.show()
-	
+
 func disable_Mode_Buttons():
 	$UI/Control.hide()
 
@@ -285,7 +285,7 @@ func show_Preview(var name, var max_Health, var damage, var speed, var reward, v
 	$UI/Preview.set_Damage(damage)
 	$UI/Preview.set_Speed(speed)
 	$UI/Preview.set_Reward(reward)
-	$UI/Preview.set_Enemy_Textur(tex)	
+	$UI/Preview.set_Enemy_Textur(tex)
 	$UI/Preview.set_Enemy_Name(name)
 	$UI/Preview.set_Enemy(enemy)
 	$UI/Preview.set_Status_List(status_list)
@@ -294,8 +294,8 @@ func show_Preview(var name, var max_Health, var damage, var speed, var reward, v
 func show_relic_preview(var name, var tex, var status_text):
 	$UI/Preview.hide()
 	$UI/RelictPreview.reset()
-	$UI/RelictPreview.set_relic_textur(tex)	
-	$UI/RelictPreview.set_relic_name(name)	
+	$UI/RelictPreview.set_relic_textur(tex)
+	$UI/RelictPreview.set_relic_name(name)
 	$UI/RelictPreview.set_relic_label(status_text)
 	$UI/RelictPreview.show()
 
@@ -328,7 +328,7 @@ func _on_GameSpeed2_Stop_pressed():
 func _enemy_dmg_taken():
 	if speed_auto_stop:
 		set_game_speed(1)
-	
+
 func _on_Tower_shoot(_attack, _position, _direction, _tower):
 	if speed_auto_stop:
 		set_game_speed(1)
@@ -339,11 +339,11 @@ func _on_Shop_pressed():
 	if not shop:
 		shop = load("res://ui/shop/Shop.tscn").instance()
 		shop.generate_shop()
-		$UI.add_child(shop)	
+		$UI.add_child(shop)
 	shop.show()
 
 func get_relics():
 	return $UI/Relics.get_children()
-	
+
 func get_relics_name():
 	return $UI/Relics.get_relics_name()
