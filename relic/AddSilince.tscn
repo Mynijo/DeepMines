@@ -11,6 +11,7 @@ region = Rect2( 640, 224, 16, 16 )
 [node name="Relic" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 relict_name = "Silince chance"
+description = "Chance to silince a enemy"
 
 [node name="Icon" parent="." index="0"]
 texture = SubResource( 1 )

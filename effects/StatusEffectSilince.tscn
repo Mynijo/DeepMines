@@ -8,7 +8,7 @@
 atlas = ExtResource( 6 )
 region = Rect2( 640, 224, 16, 16 )
 
-[node name="StatusEffectShield" instance=ExtResource( 1 )]
+[node name="StatusEffectSilince" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 duration = 0.0
 

@@ -1,7 +1,7 @@
 extends Node2D
 
 class class_Inventory:
-	var money = 50000
+	var money = 500
 	var pickaxe = 10
 	var shovel = 5
 	var bombs = 10

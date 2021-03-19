@@ -20,5 +20,5 @@ func effekt(value, tag):
 			buff.add_condition(condition_obj)
 		
 func get_description():
-	var des = "Deaktivate other buffs for " + str(silince_duration) + " Seconds"
-	return des
+	description = "Deaktivate other buffs for " + str(silince_duration) + " Seconds"
+	return description
