@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://media/button_0.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://media/fonts/Kenney_Future_21.tres" type="DynamicFont" id=6]
 [ext_resource path="res://ui/MonsterPreview.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/RelictPreview.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/UI_Top.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 800, 20 )
@@ -82,43 +83,6 @@ margin_right = 563.595
 margin_bottom = 62.0203
 rect_min_size = Vector2( 16, 16 )
 mouse_filter = 2
-
-[node name="Live" type="Label" parent="UI"]
-margin_top = -0.612305
-margin_right = 154.0
-margin_bottom = 32.3877
-rect_scale = Vector2( 2, 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Money" type="Label" parent="UI"]
-margin_left = -1.0
-margin_top = 35.0
-margin_right = 50.0
-margin_bottom = 49.0
-rect_scale = Vector2( 2, 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Wave" type="Label" parent="UI"]
-margin_top = 65.0
-margin_right = 101.0
-margin_bottom = 82.0
-rect_scale = Vector2( 2, 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WaveEnd" type="Label" parent="UI"]
-margin_left = 699.0
-margin_top = 24.0
-margin_right = 739.0
-margin_bottom = 38.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Minimap" parent="UI" instance=ExtResource( 3 )]
 process_priority = 2
@@ -231,6 +195,11 @@ stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TopUI" parent="UI" instance=ExtResource( 9 )]
+margin_right = 0.00012207
+margin_bottom = 6.10352e-05
+mouse_filter = 2
 [connection signal="mouse_entered" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_entered"]
 [connection signal="mouse_exited" from="Camera/Area2DTop" to="." method="_on_Area2DTop_mouse_exited"]
 [connection signal="mouse_entered" from="Camera/Area2DBottom" to="." method="_on_Area2DBottom_mouse_entered"]

@@ -40,9 +40,9 @@ var current_cursor_mode = e_CURSOR_MODE.None
 func _ready():
 	map = get_tree().get_root().get_node("map")
 	Inventory = class_Inventory.new()
-	$UI/Live.text = "Health:" + String(health)
-	$UI/Wave.text = "Level: 1"
-	$UI/Money.text = "Money:" + String(Inventory.money)
+	$UI/TopUI.set_life(health)
+	$UI/TopUI.set_wave(1)
+	$UI/TopUI.set_gold(Inventory.money)
 	$UI/Control.set_Pickaxes(Inventory.pickaxe)
 	$UI/Control.set_Shovels(Inventory.shovel)
 	$UI/Control.set_Bombs(Inventory.bombs)
@@ -100,7 +100,7 @@ func _unhandled_key_input(_event):
 		change_Cursor_Mode(e_CURSOR_MODE.Spillage)
 
 func set_new_wave_counter(_wave):
-	$UI/Wave.text = "Level: " + String(_wave)
+	$UI/TopUI.set_wave(_wave)
 
 func get_selected_trap():
 	return selected_trap
@@ -157,11 +157,11 @@ func get_shovel():
 
 func add_money(value):
 	Inventory.money += value
-	$UI/Money.text = "Money:" + String(Inventory.money)
+	$UI/TopUI.set_gold(Inventory.money)
 
 func remove_money(value):
 	Inventory.money -= value
-	$UI/Money.text = "Money:" + String(Inventory.money)
+	$UI/TopUI.set_gold(Inventory.money)
 
 func get_money():
 	return Inventory.money
@@ -174,7 +174,7 @@ func take_damage(_damage):
 		heal(-1*take_dame)
 		return
 	health -= take_dame
-	$UI/Live.text = "Health:" + String(health)
+	$UI/TopUI.set_life(health)
 	if health <= 0:
 		pass
 	emit_signal('player_took_damage', take_dame)
@@ -190,13 +190,13 @@ func heal(value):
 	emit_signal('player_heal', self)
 	if health > max_health:
 		health = max_health
-	$UI/Live.text = "Health:" + String(health)
+	$UI/TopUI.set_life(health)
 
 	if health - org_health > 0:
 		emit_signal('player_healed', health - org_health)
 
 func wave_changed(_wave):
-	$UI/Wave.text = "Wave:" + String(_wave)
+	$UI/TopUI.set_wave(_wave)
 
 func wave_status(_status):
 	$UI/WaveEnd.text = _status

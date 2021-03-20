@@ -14,7 +14,7 @@ dest_files=[ "res://.import/portal_icon.png-c3ba24334b3f99b1eaff9ec1ae7f51a6.ste
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
