@@ -28,11 +28,11 @@ func port_enemy(_enemy, _position):
 		_enemy.add_Status(s)
 		
 func is_enemy_port_immune(_enemy):
-	var effects = _enemy.get_StatusEffects()
-	
-	for eff in effects:
-		if eff.has_method('is_port_immunen'):
-			return eff.is_port_immune()
+	if _enemy.has_method('get_StatusEffects'):
+		var effects = _enemy.get_StatusEffects()
+		for eff in effects:
+			if eff.has_method('is_port_immunen'):
+				return eff.is_port_immune()
 	return false
 	
 	
