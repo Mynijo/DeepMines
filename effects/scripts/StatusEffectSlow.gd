@@ -30,7 +30,6 @@ func effekt(value, tag):
 					if x.name.is_subsequence_of(self.name):
 						parent.remove_Status(x)
 		return value * SlowRate
-	var temp =  $Tags.get_tags()
 	if tag == $Tags.e_effect.animation:
 		$Animation.global_position = value.global_position
 		$Animation.show()

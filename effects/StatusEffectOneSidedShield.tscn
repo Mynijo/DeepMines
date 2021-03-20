@@ -8,7 +8,6 @@
 [ext_resource path="res://media/button_0.png" type="Texture" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 656, 48, 16, 16 )
 

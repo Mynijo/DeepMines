@@ -5,5 +5,5 @@
 
 [node name="RuneChain" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-chain = 3
+chain = 2
 detect_distance = 800

@@ -18,7 +18,6 @@ func explode():
 					return
 						
 	for r in runes:
-		var temp = r.get_tags()
 		if r.has_tag($Tags.e_rune.explode):
 			if !r.effect(self, $Tags.e_rune.explode):
 				return

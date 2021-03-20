@@ -56,6 +56,7 @@ func chain():
 		var _time = (distance / attack.get_speed())
 		var predicted_position = closestTaget.global_position + (closestTaget.get_velocity() * _time)
 		
+		
 		var dir = (predicted_position - attack.global_position).normalized()
 		attack.rotation = dir.angle()
 		attack.velocity = dir * attack.get_speed()

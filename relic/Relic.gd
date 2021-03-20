@@ -1,12 +1,12 @@
 extends Node
 
 
-signal pick_up_relic
-signal player_take_damage
-signal player_took_damage
-signal gameState_changed
-signal player_heal
-signal player_healed
+#signal pick_up_relic
+#signal player_take_damage
+#signal player_took_damage
+#signal gameState_changed
+#signal player_heal
+#signal player_healed
 
 export (String) var relict_name = "dummy_name"
 export (String) var description = "dummy_description"
