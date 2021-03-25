@@ -16,7 +16,7 @@ var game_stat = e_GAMESTATE.none
 var map
 
 func _ready():
-	map = get_tree().get_root().get_node("map")
+	map = get_tree().get_root().get_node("Map")
 	
 	
 func change_game_state(var _new_stat):
@@ -25,11 +25,11 @@ func change_game_state(var _new_stat):
 	game_stat = _new_stat
 	match game_stat:
 		e_GAMESTATE.battle_phase:
-			map.hide_gen_buttons()
+			#map.hide_gen_buttons()
 			Player.change_Cursor_Mode(Player.e_CURSOR_MODE.None)
 			Player.disable_Mode_Buttons()
 		e_GAMESTATE.build_phase:
-			map.show_gen_buttons()
+			#map.show_gen_buttons()
 			Player.enable_Mode_Buttons()
 	emit_signal('gameState_changed', game_stat)
 

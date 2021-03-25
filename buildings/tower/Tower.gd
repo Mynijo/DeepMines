@@ -38,7 +38,7 @@ enum e_rule{
 }
 
 func _ready():
-	map = get_tree().get_root().get_node("map")
+	map = get_tree().get_root().get_node("Map")
 	connect_signals()
 	UpgradeTowerUI.hide()
 	get_tree().get_root().add_child(UpgradeTowerUI)

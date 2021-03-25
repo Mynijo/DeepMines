@@ -38,7 +38,7 @@ var Inventory
 var current_cursor_mode = e_CURSOR_MODE.None
 
 func _ready():
-	map = get_tree().get_root().get_node("map")
+	map = get_tree().get_root().get_node("Map")
 	Inventory = class_Inventory.new()
 	$UI/TopUI.set_life(health)
 	$UI/TopUI.set_wave(1)

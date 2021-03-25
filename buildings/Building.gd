@@ -13,7 +13,8 @@ var map
 
 
 func _ready():
-	map = get_tree().get_root().get_node("map")
+	map = get_tree().get_root().get_node("Map")
+	pass
 	
 func take_damage(_damage):
 	health -= _damage

@@ -24,7 +24,7 @@ var Level_cor
 var map
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	map = get_tree().get_root().get_node("map")
+	map = get_tree().get_root().get_node("Map")
 
 func _enter_tree():
 	Player.connect("current_cursor_mode_changed", self, "on_current_cursor_mode_changed")
