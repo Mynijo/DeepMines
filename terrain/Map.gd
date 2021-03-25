@@ -11,7 +11,7 @@ signal Runes_Changed
 
 var leveltype_list = {
 	"normal"   : [["res://buildings/playerBuildings/TowerFoundation.tscn"], ["res://buildings/playerBuildings/TowerFoundation.tscn"]],
-	"heart"    : [["res://buildings/playerBuildings/DungeonHeart.tscn", Vector2(10,1)], ["res://buildings/playerBuildings/TowerFoundation.tscn", Vector2(2,6)], ["res://buildings/playerBuildings/TowerFoundation.tscn", Vector2(8,6)]],
+	"heart"    : [["res://buildings/playerBuildings/DungeonHeart.tscn", Vector2(5,1)], ["res://buildings/playerBuildings/TowerFoundation.tscn", Vector2(2,6)], ["res://buildings/playerBuildings/TowerFoundation.tscn", Vector2(8,6)]],
 	"shop"     : [], # no towers
 	"biome"    : [],
 	"rune"     : [], # big enemy spawner for rune field and 2 enemy spawner for normal tower
@@ -33,15 +33,10 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	gen_level(Vector2(0, 0), leveltype_list["heart"])
-	gen_level(Vector2(0, 1), leveltype_list["normal"])
-	gen_level(Vector2(1, 0), leveltype_list["normal"])
-	gen_level(Vector2(1, 1), leveltype_list["normal"])
-	gen_level(Vector2(-1, 0), leveltype_list["normal"])
-	gen_level(Vector2(-1, 1), leveltype_list["normal"])
+	#gen_level(Vector2(0, 1), leveltype_list["normal"])
+	#gen_level(Vector2(1, 0), leveltype_list["normal"])
+	#gen_level(Vector2(1, 1), leveltype_list["normal"])
 	
-	gen_level(Vector2(0, 2), leveltype_list["normal"])
-	gen_level(Vector2(1, 2), leveltype_list["normal"])
-	gen_level(Vector2(-1, 2), leveltype_list["normal"])
 	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.build_phase)
 	
 func get_new_rand_pos(used_pos):
