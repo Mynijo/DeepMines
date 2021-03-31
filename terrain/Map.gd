@@ -349,12 +349,21 @@ func is_current_entry(cor):
 var enemys = []
 func _on_Spawn_Enemy(_Enemy, _pos, _cor):
 	var temp_pos = get_pos_on_map_mid(_cor)
+	$enemys.add_child(_Enemy)
 	enemys.append(_Enemy)
 	_Enemy.spawn(temp_pos, _cor)
-	$enemys.add_child(_Enemy)
 	Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.battle_phase)
 
 func remove_enemy(_enemy):
 	enemys.erase(_enemy)
 	if enemys.empty():
 		Global_GameStateManager.change_game_state(Global_GameStateManager.e_GAMESTATE.build_phase)
+
+func _on_Tower_shoot(attack, _position, _direction, _tower):
+	var bullet = attack
+	$NodesTemp.add_child(bullet)
+	bullet.start(_position, _direction, _tower)
+
+func _on_spawn_attack(_attack, _position,_tower):
+	add_child(_attack)
+	_attack.spwan(_position,_tower)
