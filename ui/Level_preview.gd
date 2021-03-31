@@ -33,8 +33,9 @@ func set_level_type(_leveltype):
 
 
 func _on_TextureButton_pressed():
-	map.gen_level(level_cor, leveltype)
-	hide()
+	if Global_GameStateManager.get_game_stat() == Global_GameStateManager.e_GAMESTATE.build_phase:
+		map.gen_level(level_cor, leveltype)
+		hide()
 
 func disabel():
 	$PanelContainer/TextureButton.disabled = true;
