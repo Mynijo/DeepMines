@@ -19,7 +19,7 @@ func _init():
 func effekt(value, tag):
 	if tag == $Tags.e_effect.init:
 		parent = value
-		map = get_tree().get_root().get_node("map")
+		map = get_tree().get_root().get_node("Map")
 	if tag == $Tags.e_effect.took_dmg:
 		var way_poins_size = parent.way_points.size()
 		if way_poins_size > 12:

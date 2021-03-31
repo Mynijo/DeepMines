@@ -97,6 +97,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Cor" type="Label" parent="UI"]
+anchor_left = 0.795
+anchor_top = 0.046
+anchor_right = 0.795
+anchor_bottom = 0.046
+margin_top = -2.4
+margin_right = 287.0
+margin_bottom = 24.6
+custom_fonts/font = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Preview" parent="UI" instance=ExtResource( 7 )]
 visible = false
 anchor_left = 0.985
@@ -130,9 +143,9 @@ __meta__ = {
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 margin_left = 1391.0
-margin_top = 40.0
+margin_top = 70.0
 margin_right = 1560.0
-margin_bottom = 71.0
+margin_bottom = 101.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

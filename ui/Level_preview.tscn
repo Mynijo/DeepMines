@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://media/button_0.png" type="Texture" id=1]
+[ext_resource path="res://ui/Level_preview.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 640, 208, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 592, 208, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 512, 112, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 656, 256, 16, 16 )
+
+[node name="Level_preview" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_top = -0.187286
+margin_right = 14.0
+margin_bottom = 13.8127
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 7.0
+margin_bottom = 7.0
+disabled = true
+texture_normal = SubResource( 5 )
+texture_disabled = SubResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Normal" type="TextureRect" parent="PanelContainer/TextureButton"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shop" type="TextureRect" parent="PanelContainer/TextureButton"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+texture = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="PanelContainer/TextureButton" to="." method="_on_TextureButton_pressed"]

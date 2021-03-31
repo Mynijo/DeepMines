@@ -8,13 +8,15 @@ export (bool) var solid = true
 
 var pos
 var cor
-var level_cor
 var map
 
 
 func _ready():
-	map = get_tree().get_root().get_node("Map")
+	set_map(get_tree().get_root().get_node("Map"))
 	pass
+	
+func set_map(_map):
+	map = _map
 	
 func take_damage(_damage):
 	health -= _damage
@@ -41,15 +43,11 @@ func set_pos(_pos):
 func get_pos():
 	return pos
 	
-func set_cor(_cor, _level_cor):
+func set_cor(_cor):
 	cor = _cor
-	level_cor = _level_cor
 
 func get_cor():
 	return cor
-
-func get_level_cor():
-	return level_cor
 	
 func calcDmg(_body):
 	var dmg = _body.hit_building_get_dmg()

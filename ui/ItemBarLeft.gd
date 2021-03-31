@@ -30,7 +30,7 @@ func hilight_button(var mode):
 		$VBoxContainer/Pickaxes/TextureButtonPickaxes/TextureRect_selceted.show()
 	if mode == Player.e_CURSOR_MODE.Shovel:
 		$VBoxContainer/Shovels/TextureButtonShovels/TextureRect_selceted.show()
-	if mode == Player.e_CURSOR_MODE.Spillage:
+	if mode == Player.e_CURSOR_MODE.Bomb:
 		$VBoxContainer/Bombs/TextureButtonBombs/TextureRect_selceted.show()
 	if mode == Player.e_CURSOR_MODE.BuildTrap:
 		$VBoxContainer/HBoxContainer/Traps/TextureButton/TextureRect_selceted.show()
@@ -42,7 +42,7 @@ func _on_TextureButtonShovels_pressed():
 	Player.change_Cursor_Mode(Player.e_CURSOR_MODE.Shovel)
 
 func _on_TextureButtonBombs_pressed():
-	Player.change_Cursor_Mode(Player.e_CURSOR_MODE.Spillage)
+	Player.change_Cursor_Mode(Player.e_CURSOR_MODE.Bomb)
 
 func _on_TextureButton_pressed():
 	Player.change_Cursor_Mode(Player.e_CURSOR_MODE.BuildTrap)

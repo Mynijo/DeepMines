@@ -35,10 +35,10 @@ func generate_shop():
 			$VBoxContainer/VBoxContainer/HBoxContainer2.remove_child(child)
 			child.queue_free()
 			
-	for i in range(3):
+	for _i in range(3):
 		add_random_trap()
 
-	for i in range(2):
+	for _i in range(2):
 		add_ramdom_relict()
 		
 	reoder_HBoxContainer2()

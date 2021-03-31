@@ -10,7 +10,7 @@ export (PackedScene) var UpgradeSlotScene = preload("res://ui/TowerUpgradeSlot.t
 
 func _ready():
 	var _rc
-	map = get_tree().get_root().get_node("map")
+	map = get_tree().get_root().get_node("Map")
 	_rc = Global_GameStateManager.connect("gameState_changed", self, "on_gameState_changed")
 	_rc = Player.connect("current_cursor_mode_changed", self, "on_current_cursor_mode_changed")
 	

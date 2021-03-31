@@ -22,7 +22,7 @@ enum e_CURSOR_MODE{
 	None,
 	Pickaxe,
 	Shovel,
-	Spillage,
+	Bomb,
 	BuildTrap
 }
 
@@ -82,13 +82,13 @@ func get_traps():
 func _unhandled_key_input(_event):
 	velocity = Vector2(0, 0)
 	if(Input.is_action_pressed("move_left")):
-		velocity += Vector2(-1, 0)
+		velocity += Vector2(-3, 0)
 	if(Input.is_action_pressed("move_right")):
-		velocity += Vector2(1, 0)
+		velocity += Vector2(3, 0)
 	if(Input.is_action_pressed("move_up")):
-		velocity += Vector2(0, -1)
+		velocity += Vector2(0, -3)
 	if(Input.is_action_pressed("move_down")):
-		velocity += Vector2(0, +1)
+		velocity += Vector2(0, +3)
 
 	if(Input.is_action_pressed("change_cursor_mode_none")):
 		change_Cursor_Mode(e_CURSOR_MODE.None)
@@ -96,8 +96,10 @@ func _unhandled_key_input(_event):
 		change_Cursor_Mode(e_CURSOR_MODE.Pickaxe)
 	if(Input.is_action_pressed("change_cursor_mode_shovel")):
 		change_Cursor_Mode(e_CURSOR_MODE.Shovel)
-	if(Input.is_action_pressed("change_cursor_mode_spillage")):
-		change_Cursor_Mode(e_CURSOR_MODE.Spillage)
+	if(Input.is_action_pressed("change_cursor_mode_bomb")):
+		change_Cursor_Mode(e_CURSOR_MODE.Bomb)
+		
+
 
 func set_new_wave_counter(_wave):
 	$UI/TopUI.set_wave(_wave)
@@ -207,6 +209,11 @@ func _physics_process(delta):
 		return
 	position = new_pos
 	$UI/Pos.text = str($Camera.get_global_mouse_position())
+	$UI/Cor.text = str(map.get_TileMap().world_to_map($Camera.get_global_mouse_position()))
+	
+
+func get_global_mouse_position():
+	return $Camera.get_global_mouse_position()
 
 func _on_Area2DTop_mouse_entered():
 	velocity += Vector2(0, -1)
@@ -347,3 +354,29 @@ func get_relics():
 
 func get_relics_name():
 	return $UI/Relics.get_relics_name()
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == BUTTON_WHEEL_UP:
+			$Camera.zoom = $Camera.zoom - Vector2(0.1, 0.1)
+			if$Camera.zoom < Vector2(0.5,0.5):
+				$Camera.zoom = Vector2(0.5,0.5)
+			if$Camera.zoom < Vector2(2.1,2.1) and $Camera.zoom > Vector2(1.9,1.9):
+				$Camera.zoom = Vector2(1.9,1.9)
+			if$Camera.zoom < Vector2(2.9,2.9) and $Camera.zoom > Vector2(2.7,2.7):
+				$Camera.zoom = Vector2(2.7,2.7)
+			if$Camera.zoom < Vector2(3.7,3.7) and $Camera.zoom > Vector2(3.5,3.5):
+				$Camera.zoom = Vector2(3.5,3.5)
+			if$Camera.zoom < Vector2(4.5,4.5) and $Camera.zoom > Vector2(4.3,4.3):
+				$Camera.zoom = Vector2(4.3,4.3)
+		if event.button_index == BUTTON_WHEEL_DOWN:
+			$Camera.zoom = $Camera.zoom + Vector2(0.1, 0.1)
+			if$Camera.zoom < Vector2(2.1,2.1) and $Camera.zoom > Vector2(1.9,1.9):
+				$Camera.zoom = Vector2(2.1,2.1)
+			if$Camera.zoom < Vector2(2.9,2.9) and $Camera.zoom > Vector2(2.7,2.7):
+				$Camera.zoom = Vector2(2.9,2.9)
+			if$Camera.zoom < Vector2(3.7,3.7) and $Camera.zoom > Vector2(3.5,3.5):
+				$Camera.zoom = Vector2(3.7,3.7)
+			if$Camera.zoom < Vector2(4.5,4.5) and $Camera.zoom > Vector2(4.3,4.3):
+				$Camera.zoom = Vector2(4.5,4.5)
+		#Player.add_debug($Camera.zoom)

@@ -24,4 +24,4 @@ func update_healthbar(_value):
 
 func reset_max_value(_max_value):
 	$HealthBar.max_value = _max_value
-	$HealthLabel.text = String (parent.max_health)
+	$HealthLabel.text = String (get_parent().max_health)

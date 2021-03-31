@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/air.jpg-934478834bd3db329ab99c3a0e933b82.stex"
+path="res://.import/hole_autotile_template_3x3_minimal.png-b9ab07498793f8809ee45412ae1b5dd5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://media/blocks/air.jpg"
-dest_files=[ "res://.import/air.jpg-934478834bd3db329ab99c3a0e933b82.stex" ]
+source_file="res://media/blocks/hole_autotile_template_3x3_minimal.png"
+dest_files=[ "res://.import/hole_autotile_template_3x3_minimal.png-b9ab07498793f8809ee45412ae1b5dd5.stex" ]
 
 [params]
 

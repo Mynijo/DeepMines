@@ -34,7 +34,7 @@ var spawner = null
 var spawned = false
 
 func _ready():
-	map = get_tree().get_root().get_node("map")
+	map = get_tree().get_root().get_node("Map")
 	var _rc
 	_rc = self.connect("dmg_taken", Player, "_enemy_dmg_taken")
 	
@@ -42,11 +42,10 @@ func _ready():
 func set_last_tower_hit(_last_tower_hit):
 	last_tower_hit = _last_tower_hit
 
-func spawn(_position, _start_cor, _start_level_cor):
+func spawn(_position, _start_cor):
 	global_position = _position
 	health = max_health
 	start_pos_as_cor = _start_cor
-	start_level_cor = _start_level_cor
 	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.init):
 		x.effekt(self, $Tags.e_effect.init)
@@ -186,8 +185,8 @@ func calc_move_direction():
 			way_points.pop_front()
 	else:
 		move_direction = Vector2(0, 0)
-		var heart = map.get_heart()
-		find_way(heart.get_cor(), heart.get_level_cor())
+		var heart_cor = map.get_heart_cor()
+		find_way(heart_cor)
 	if move_direction.x > 0.1: #You know why 0.1
 		if $Sprite.scale.x > 0: 
 			$Sprite.scale.x *= -1
@@ -199,10 +198,10 @@ func calc_move_direction():
 		if $Animation.scale.x < 0: 
 			$Animation.scale.x *= -1
 
-func find_way(_target, _level_cor):
+func find_way(_target):
 	astar = Global_AStar.get_astar()
-	var point1 = Global_AStar.get_id_of_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, Global_AStar.level_cor_to_id(start_level_cor)))
-	var point2 = Global_AStar.get_id_of_point(Vector3(_target.x, _target.y, Global_AStar.level_cor_to_id(_level_cor)))
+	var point1 = Global_AStar.get_id_of_point(Vector3(start_pos_as_cor.x, start_pos_as_cor.y, 0))
+	var point2 = Global_AStar.get_id_of_point(Vector3(_target.x, _target.y, 0))
 
 	var path = astar.get_id_path(point1,point2)
 	
@@ -211,11 +210,8 @@ func find_way(_target, _level_cor):
 	
 	for id in path:
 		var point = astar.get_point_position(id)
-		var level_cor = Global_AStar.id_to_level_cor(point.z)
 		var cor = Vector2(point.x, point.y)
-		if level_cor != Vector2(0,0):
-			pass
-		way_points.append([map.get_pos_on_map_mid(cor, level_cor),cor, level_cor])
+		way_points.append([map.get_pos_on_map_mid(cor),cor])
 
 
 
