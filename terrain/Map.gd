@@ -37,13 +37,17 @@ var leveltype_list = {
 enum e_Blocks {
 	e_Dirt,
 	e_Floor,
-	e_Pit
+	e_Pit,
+	e_Buliding_solid,
+	e_Buliding_free
 }
 
 var block_typs ={
 	e_Blocks.e_Dirt : {mineable = true, buildable = false, walkable = false, digable = false, bombable = false},
 	e_Blocks.e_Floor : {mineable = false, buildable = true, walkable = true, digable = true, bombable = true},
-	e_Blocks.e_Pit : {mineable = false, buildable = false, walkable = false, digable = false, bombable = true}
+	e_Blocks.e_Pit : {mineable = false, buildable = false, walkable = false, digable = false, bombable = true},
+	e_Blocks.e_Buliding_solid : {mineable = false, buildable = false, walkable = false, digable = false, bombable = false},
+	e_Blocks.e_Buliding_free : {mineable = false, buildable = false, walkable = true, digable = false, bombable = false}
 }
 
 func _init():
@@ -118,7 +122,7 @@ func gen_level(_level_cor, _leveltype):
 	fill_level(_level_cor)
 	var used_pos = []
 	levels.append(_level_cor)
-	var buildings_pos = []
+	var buildings = []
 	
 	var level_cor_start = get_global_cor(Vector2(0, 0), _level_cor)
 	var level_cor_end   = get_global_cor(map_tile_size, _level_cor) - Vector2(1, 1)
@@ -132,7 +136,7 @@ func gen_level(_level_cor, _leveltype):
 		var building_obj =  load(buidling[0]).instance()
 		add_building(building_obj, cor)
 		used_pos.append(cor)
-		buildings_pos.append(cor)
+		buildings.append(building_obj)
 		
 	var rand_left
 	if level_entries.has(String(level_cor_to_id(_level_cor + Vector2(-1, 0)))):
@@ -193,11 +197,16 @@ func gen_level(_level_cor, _leveltype):
 			$TileMap.set_cellv(gen_lvl_id_to_cor(id), 1)
 	
 	# Set each field around the buildings to air
-	for building_pos in buildings_pos:
+	for building in buildings:
+		var building_pos = building.get_cor()
 		for _x in range(building_pos.x - 1, building_pos.x + 2):
 			for _y in range(building_pos.y - 1, building_pos.y + 2):
 				if is_cor_in_map(Vector2(_x, _y), _level_cor):
 					$TileMap.set_cellv(Vector2(_x, _y), 1)
+		if building.get_solid():
+			$TileMap.set_cellv(building_pos, 3)
+		else:
+			$TileMap.set_cellv(building_pos, 4)
 	
 	update_level(_level_cor)
 	Player.set_new_wave_counter(levels.size())
@@ -250,7 +259,10 @@ func add_building(_building, _cor):
 	_building.set_pos(temp_pos)
 	_building.set_cor(_cor)
 	$Buildings.add_child(_building)
-	$TileMap.set_cellv(_cor, 1)
+	if _building.get_solid():
+		$TileMap.set_cellv(_cor, 3)
+	else:
+		$TileMap.set_cellv(_cor, 4)
 
 func get_pos_on_map_mid(_cor):
 	return (_cor * block_size_pix) + get_root_offset() + (block_size_pix /2)
