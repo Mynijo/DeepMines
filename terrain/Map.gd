@@ -203,10 +203,12 @@ func gen_level(_level_cor, _leveltype):
 			for _y in range(building_pos.y - 1, building_pos.y + 2):
 				if is_cor_in_map(Vector2(_x, _y), _level_cor):
 					$TileMap.set_cellv(Vector2(_x, _y), 1)
+					
+	for building in buildings:
 		if building.get_solid():
-			$TileMap.set_cellv(building_pos, 3)
+			$TileMap.set_cellv(building.get_cor(), 3)
 		else:
-			$TileMap.set_cellv(building_pos, 4)
+			$TileMap.set_cellv(building.get_cor(), 4)
 	
 	update_level(_level_cor)
 	Player.set_new_wave_counter(levels.size())
